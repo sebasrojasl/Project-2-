@@ -1,0 +1,14 @@
+CREATE TABLE `project2`.`country` (
+  `id_country` INT NOT NULL AUTO_INCREMENT COMMENT 'unique identifier of the country',
+  `country_name` VARCHAR(45) NOT NULL COMMENT 'name of the country. ',
+  `id_continent` INT NOT NULL,
+  PRIMARY KEY (`id_country`),
+  UNIQUE INDEX `country_name_UNIQUE` (`country_name` ASC) VISIBLE,
+  UNIQUE INDEX `id_country_UNIQUE` (`id_country` ASC) VISIBLE,
+  INDEX `id_continent_idx` (`id_continent` ASC) VISIBLE,
+  CONSTRAINT `id_continent_fk`
+    FOREIGN KEY (`id_continent`)
+    REFERENCES `project2`.`continent` (`id_continent`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+COMMENT = 'Catalogue table that stores all countries. ';
