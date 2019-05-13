@@ -1,0 +1,6 @@
+CREATE TABLE `project2`.`alignment` (
+  `id_alignment` INT NOT NULL COMMENT 'this is the unique identifier of the alignment',
+  `alignment_name` VARCHAR(45) NOT NULL COMMENT 'name of the alignment',
+  PRIMARY KEY (`id_alignment`),
+  UNIQUE INDEX `alignment_name_UNIQUE` (`alignment_name` ASC) VISIBLE)
+COMMENT = 'this is the catalogue that storages all the alignments';
