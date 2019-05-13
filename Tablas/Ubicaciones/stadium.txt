@@ -1,0 +1,13 @@
+CREATE TABLE `project2`.`stadium` (
+  `id_stadium` INT NOT NULL AUTO_INCREMENT COMMENT 'Unique identifier of the stadium.',
+  `stadium_name` VARCHAR(45) NOT NULL COMMENT 'Name of the stadium. ',
+  `id_district` INT NULL COMMENT 'Unique identifier of the district. ',
+  PRIMARY KEY (`id_stadium`),
+  UNIQUE INDEX `stadium_name_UNIQUE` (`stadium_name` ASC) VISIBLE,
+  INDEX `id_district_fk_idx` (`id_district` ASC) VISIBLE,
+  CONSTRAINT `id_district_fk`
+    FOREIGN KEY (`id_district`)
+    REFERENCES `project2`.`district` (`id_district`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+COMMENT = 'Table that stores all stadiums. ';

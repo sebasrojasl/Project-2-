@@ -1,0 +1,13 @@
+CREATE TABLE `project2`.`district` (
+  `id_district` INT NOT NULL AUTO_INCREMENT COMMENT 'Unique identifier of the district. ',
+  `district_name` VARCHAR(45) NOT NULL COMMENT 'Name of the district. ',
+  `id_canton` INT NULL COMMENT 'Unique identifier of the canton. ',
+  PRIMARY KEY (`id_district`),
+  UNIQUE INDEX `district_name_UNIQUE` (`district_name` ASC) VISIBLE,
+  INDEX `id_canton_fk_idx` (`id_canton` ASC) VISIBLE,
+  CONSTRAINT `id_canton_fk`
+    FOREIGN KEY (`id_canton`)
+    REFERENCES `project2`.`canton` (`id_canton`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+COMMENT = 'Catalogue table that stores all districts. ';
