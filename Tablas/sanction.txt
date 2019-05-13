@@ -1,0 +1,26 @@
+CREATE TABLE `project2`.`sanction` (
+  `id_sanction` INT NOT NULL COMMENT 'unique identifier of the sanction',
+  `id_sanction_type` INT NOT NULL COMMENT 'the type of the sanction ',
+  `id_player` INT NOT NULL COMMENT 'the player that made the sanction',
+  `minute` INT NOT NULL COMMENT 'the minute when teh sanction was made',
+  `id_match` INT NOT NULL COMMENT 'the match where the sanction was made',
+  PRIMARY KEY (`id_sanction`),
+  INDEX `id_match_fk_idx` (`id_match` ASC) VISIBLE,
+  INDEX `id_player_fk_idx` (`id_player` ASC) VISIBLE,
+  INDEX `id_sanction_type_fk_idx` (`id_sanction_type` ASC) VISIBLE,
+  CONSTRAINT `id_match_fk`
+    FOREIGN KEY (`id_match`)
+    REFERENCES `project2`.`match` (`id_match`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_player_fk`
+    FOREIGN KEY (`id_player`)
+    REFERENCES `project2`.`player` (`id_player`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_sanction_type_fk`
+    FOREIGN KEY (`id_sanction_type`)
+    REFERENCES `project2`.`sanction_type` (`id_sanction_type`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+COMMENT = 'table that storages all the sanctions';
