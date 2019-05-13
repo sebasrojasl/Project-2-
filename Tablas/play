@@ -1,0 +1,19 @@
+CREATE TABLE `project2`.`play` (
+  `id_play` INT NOT NULL AUTO_INCREMENT COMMENT 'unique identifier of the plays',
+  `minute` INT NOT NULL COMMENT 'minute when the play was made',
+  `id_match` INT NOT NULL COMMENT 'match where the play was made',
+  `id_player` INT NULL COMMENT 'player that made the play',
+  PRIMARY KEY (`id_play`),
+  INDEX `id_player_idx` (`id_player` ASC) VISIBLE,
+  INDEX `id_match_idx` (`id_match` ASC) VISIBLE,
+  CONSTRAINT `id_player`
+    FOREIGN KEY (`id_player`)
+    REFERENCES `project2`.`player` (`id_player`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_match`
+    FOREIGN KEY (`id_match`)
+    REFERENCES `project2`.`match` (`id_match`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+COMMENT = 'table that storages all the plays of the match';
