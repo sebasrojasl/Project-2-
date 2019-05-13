@@ -5,7 +5,6 @@ CREATE TABLE `project2`.`country` (
   PRIMARY KEY (`id_country`),
   UNIQUE INDEX `country_name_UNIQUE` (`country_name` ASC) VISIBLE,
   INDEX `id_continent_fk_idx` (`id_continent` ASC) VISIBLE,
-  UNIQUE INDEX `id_continent_UNIQUE` (`id_continent` ASC) VISIBLE,
   CONSTRAINT `id_continent_fk`
     FOREIGN KEY (`id_continent`)
     REFERENCES `project2`.`continent` (`id_continent`)
