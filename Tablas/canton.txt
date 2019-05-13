@@ -3,7 +3,6 @@ CREATE TABLE `project2`.`canton` (
   `canton_name` VARCHAR(45) NOT NULL COMMENT 'Name of the canton. ',
   `id_province` INT NOT NULL COMMENT 'Unique identifier of the province. ',
   PRIMARY KEY (`id_canton`),
-  UNIQUE INDEX `id_canton_UNIQUE` (`id_canton` ASC) VISIBLE,
   UNIQUE INDEX `canton_name_UNIQUE` (`canton_name` ASC) VISIBLE,
   UNIQUE INDEX `id_province_UNIQUE` (`id_province` ASC) VISIBLE,
   CONSTRAINT `id_province_fk`
