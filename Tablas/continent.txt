@@ -1,6 +1,0 @@
-CREATE TABLE `project2`.`continent` (
-  `id_continent` INT NOT NULL AUTO_INCREMENT COMMENT 'Unique identifier of the continent.',
-  `continent_name` VARCHAR(45) NOT NULL COMMENT 'Name of the continent.',
-  PRIMARY KEY (`id_continent`),
-  UNIQUE INDEX `continent_name_UNIQUE` (`continent_name` ASC) VISIBLE)
-COMMENT = 'Catalogue table that stores all continents.';
