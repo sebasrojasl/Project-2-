@@ -1,0 +1,12 @@
+CREATE TABLE `project2`.`player` (
+  `id_player` INT NOT NULL AUTO_INCREMENT COMMENT 'Unique identifier of the player',
+  `player_name` VARCHAR(50) NOT NULL COMMENT 'name of the player',
+  `player_number` INT NOT NULL COMMENT 'Number if the t-shirt of the player',
+  `identification` INT NOT NULL COMMENT 'the identification of the player',
+  `picture` BLOB NULL COMMENT 'A profile picture for the player',
+  `id_team` INT NOT NULL COMMENT 'Is the team where the players plays',
+  `id_nationality` INT NOT NULL COMMENT 'Stores the nationality of the player',
+  PRIMARY KEY (`id_player`),
+  UNIQUE INDEX `identification_UNIQUE` (`identification` ASC) VISIBLE,
+  UNIQUE INDEX `id_player_UNIQUE` (`id_player` ASC) VISIBLE)
+COMMENT = 'This table stores all the players of the teams ';
