@@ -4,6 +4,7 @@ CREATE TABLE `project2`.`district` (
   `id_canton` INT NOT NULL COMMENT 'Unique identifier of the canton.',
   PRIMARY KEY (`id_district`),
   UNIQUE INDEX `district_name_UNIQUE` (`district_name` ASC) VISIBLE,
+  UNIQUE INDEX `id_canton_UNIQUE` (`id_canton` ASC) VISIBLE,
   CONSTRAINT `id_canton_fk `
     FOREIGN KEY (`id_canton`)
     REFERENCES `project2`.`canton` (`id_canton`)
