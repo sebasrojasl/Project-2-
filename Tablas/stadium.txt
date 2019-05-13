@@ -1,5 +1,5 @@
 CREATE TABLE `project2`.`stadium` (
-  `id_stadium` INT NOT NULL COMMENT 'Unique identifier of the stadium. ',
+  `id_stadium` INT NOT NULL AUTO_INCREMENT COMMENT 'Unique identifier of the stadium. ',
   `stadium_name` VARCHAR(45) NOT NULL COMMENT 'Name of the stadium. ',
   `id_district` INT NOT NULL COMMENT 'Unique identifier of the district. ',
   UNIQUE INDEX `id_stadium_UNIQUE` (`id_stadium` ASC) VISIBLE,

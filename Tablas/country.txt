@@ -1,5 +1,5 @@
 CREATE TABLE `project2`.`country` (
-  `id_country` INT NOT NULL COMMENT 'Unique identifier of the country.',
+  `id_country` INT NOT NULL AUTO_INCREMENT COMMENT 'Unique identifier of the country.',
   `country_name` VARCHAR(45) NOT NULL COMMENT 'Name of the country. ',
   `id_continent` INT NOT NULL COMMENT 'Unique identifier of the continent. ',
   PRIMARY KEY (`id_country`),
