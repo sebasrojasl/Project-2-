@@ -1,0 +1,26 @@
+CREATE TABLE `project2`.`team` (
+  `id_team` INT NOT NULL AUTO_INCREMENT COMMENT 'the unique identifier of the team',
+  `id_country` INT NOT NULL COMMENT 'the country where the team is',
+  `id_alignment` INT NOT NULL COMMENT 'the alignment that the team uses',
+  `id_captain` INT NOT NULL COMMENT 'the captain of the team\n',
+  `team_name` VARCHAR(45) NOT NULL COMMENT 'the name of the team',
+  PRIMARY KEY (`id_team`),
+  INDEX `id_alignment_fk_idx` (`id_alignment` ASC) VISIBLE,
+  INDEX `id_captain_fk_idx` (`id_captain` ASC) VISIBLE,
+  INDEX `id_countryteam_fk _idx` (`id_country` ASC) VISIBLE,
+  CONSTRAINT `id_alignment_fk`
+    FOREIGN KEY (`id_alignment`)
+    REFERENCES `project2`.`alignment` (`id_alignment`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_captain_fk`
+    FOREIGN KEY (`id_captain`)
+    REFERENCES `project2`.`player` (`id_player`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_countryteam_fk `
+    FOREIGN KEY (`id_country`)
+    REFERENCES `project2`.`country` (`id_country`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+COMMENT = 'table that storages teams';
