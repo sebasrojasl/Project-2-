@@ -6,7 +6,7 @@ CREATE TABLE `project2`.`match` (
   PRIMARY KEY (`id_match`),
   INDEX `id_event_fk_idx` (`id_event` ASC) VISIBLE,
   INDEX `id_stadium_fk_idx` (`id_stadium` ASC) VISIBLE,
-  CONSTRAINT `id_event_fk`
+  CONSTRAINT `id_event_match_fk`
     FOREIGN KEY (`id_event`)
     REFERENCES `project2`.`event` (`id_event`)
     ON DELETE NO ACTION
