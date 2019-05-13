@@ -1,0 +1,7 @@
+CREATE TABLE `project2`.`nationality` (
+  `id_nationality` INT NOT NULL AUTO_INCREMENT COMMENT 'unique identifier of the nationality',
+  `nationality_name` VARCHAR(45) NOT NULL COMMENT 'name of the nationality',
+  PRIMARY KEY (`id_nationality`),
+  UNIQUE INDEX `id_nationality_UNIQUE` (`id_nationality` ASC) VISIBLE,
+  UNIQUE INDEX `nationality_name_UNIQUE` (`nationality_name` ASC) VISIBLE)
+COMMENT = 'this table storages all the nationalities ';
