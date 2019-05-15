@@ -1,0 +1,3 @@
+ALTER TABLE `project2`.`award_type` 
+ADD UNIQUE INDEX `award_type_name_UNIQUE` (`award_type_name` ASC) VISIBLE;
+;
