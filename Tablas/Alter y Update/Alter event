@@ -1,0 +1,3 @@
+ALTER TABLE `project2`.`event` 
+ADD UNIQUE INDEX `event_name_UNIQUE` (`event_name` ASC) VISIBLE;
+;
