@@ -1,0 +1,16 @@
+CREATE TABLE `project2`.`team_x_match` (
+  `id_team` INT NOT NULL COMMENT 'Unique identifier for the table team_x_match.',
+  `id_match` INT NOT NULL COMMENT 'Unique identifier for the table team_x_match.',
+  PRIMARY KEY (`id_team`, `id_match`),
+  INDEX `id_match_team_x_match_fk_idx` (`id_match` ASC) VISIBLE,
+  CONSTRAINT `id_team_team_x_match_fk`
+    FOREIGN KEY (`id_team`)
+    REFERENCES `project2`.`team` (`id_team`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_match_team_x_match_fk`
+    FOREIGN KEY (`id_match`)
+    REFERENCES `project2`.`match` (`id_match`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+COMMENT = 'This table storages the teams per match.';
