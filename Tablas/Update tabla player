@@ -1,0 +1,9 @@
+ALTER TABLE `project2`.`player` 
+ADD INDEX `id_nationality_fk_idx` (`id_nationality` ASC) VISIBLE;
+;
+ALTER TABLE `project2`.`player` 
+ADD CONSTRAINT `id_nationality_fk`
+  FOREIGN KEY (`id_nationality`)
+  REFERENCES `project2`.`nationality` (`id_nationality`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
