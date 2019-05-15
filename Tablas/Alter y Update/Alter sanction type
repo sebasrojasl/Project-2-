@@ -1,0 +1,3 @@
+ALTER TABLE `project2`.`sanction_type` 
+ADD UNIQUE INDEX `sanction_name_UNIQUE` (`sanction_name` ASC) VISIBLE;
+;
