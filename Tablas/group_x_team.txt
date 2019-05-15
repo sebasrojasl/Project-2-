@@ -1,0 +1,16 @@
+CREATE TABLE `project2`.`group_x_team` (
+  `id_group` INT NOT NULL COMMENT 'unique identifierfor the table group_x_team',
+  `id_team` INT NOT NULL COMMENT 'unique identifierfor the table group_x_team',
+  PRIMARY KEY (`id_group`, `id_team`),
+  INDEX `id_tema_group_x_team_fk_idx` (`id_team` ASC) VISIBLE,
+  CONSTRAINT `id_group_group_x_team_fk`
+    FOREIGN KEY (`id_group`)
+    REFERENCES `project2`.`group` (`id_group`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_team_group_x_team_fk`
+    FOREIGN KEY (`id_team`)
+    REFERENCES `project2`.`team` (`id_team`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+COMMENT = 'This tables storages the teams per goup';
