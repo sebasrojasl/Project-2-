@@ -1,0 +1,5 @@
+ALTER TABLE `project2`.`event` 
+ADD COLUMN `creation_date` DATE ,
+ADD COLUMN `creation_user` VARCHAR(45) ,
+ADD COLUMN `modification_date` DATE ,
+ADD COLUMN `modification_user` VARCHAR(45);
