@@ -1,0 +1,2 @@
+ALTER TABLE `project2`.`play` 
+ADD COLUMN `id_type_play` VARCHAR(45) NOT NULL COMMENT 'reference the type of playof from the play catalogue' AFTER `modification_user`;
