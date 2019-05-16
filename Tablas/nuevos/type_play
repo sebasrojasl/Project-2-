@@ -1,0 +1,6 @@
+CREATE TABLE `project2`.`type_play` (
+  `id_type_play` INT NOT NULL COMMENT 'Identifier of the table type_play',
+  `play_name` VARCHAR(45) NOT NULL COMMENT 'name of the play',
+  PRIMARY KEY (`id_type_play`),
+  UNIQUE INDEX `play_name_UNIQUE` (`play_name` ASC) VISIBLE)
+COMMENT = 'Catalogue that storages the type of the play';
