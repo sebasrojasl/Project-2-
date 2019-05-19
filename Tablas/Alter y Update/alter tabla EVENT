@@ -1,3 +1,5 @@
+PRIMERO 
+
 ALTER TABLE `project2`.`event` 
 ADD COLUMN `id_type_event` INT NOT NULL COMMENT 'the type of the event' AFTER `year`,
 CHANGE COLUMN `id_event` `id_event` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'unique identifier of the event' ,
@@ -5,6 +7,7 @@ CHANGE COLUMN `event_name` `year` INT NOT NULL COMMENT 'year that the event occu
 DROP INDEX `event_name_UNIQUE` ;
 ;
 
+SEGUNDO
 
 ALTER TABLE `project2`.`event` 
 ADD INDEX `id_type_event_fk_idx` (`id_type_event` ASC) VISIBLE;
