@@ -1,0 +1,5 @@
+CREATE TABLE `project2`.`type_event` (
+  `id_type_event` INT NOT NULL AUTO_INCREMENT COMMENT 'unique identifier of type event',
+  `name_type_event` VARCHAR(45) NOT NULL COMMENT 'name of the type of the event',
+  PRIMARY KEY (`id_type_event`))
+COMMENT = 'this table storages all type of events';
