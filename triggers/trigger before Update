@@ -1,0 +1,378 @@
+DELIMITER $$
+create trigger before_update_alignment
+	Before update ON project2.alignment
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into alignment(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+DELIMITER $$
+create trigger before_update_award
+	Before update ON project2.award
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into award(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+DELIMITER $$
+create trigger before_update_award_type
+	Before update ON project2.award_type
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into award_type(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+DELIMITER $$
+create trigger before_update_canton
+	Before update ON project2.canton
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into canton(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+DELIMITER $$
+create trigger before_update_continent
+	Before update ON project2.continent
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into continent(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+DELIMITER $$
+create trigger before_update_country
+	Before update ON project2.country
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into country(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+DELIMITER $$
+create trigger before_update_district
+	Before update ON project2.district
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into district(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+DELIMITER $$
+create trigger before_update_event
+	Before update ON project2.event
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into event(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+DELIMITER $$
+create trigger before_update_group
+	Before update ON project2.group
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into project2.group(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+DELIMITER $$
+create trigger before_update_match
+	Before update ON project2.match
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into project2.match(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+DELIMITER $$
+create trigger before_update_nationality
+	Before update ON project2.nationality
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into project2.nationality(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+DELIMITER $$
+create trigger before_update_play
+	Before update ON project2.play
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into project2.play(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+create trigger before_update_player
+	Before update ON project2.player
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into project2.player(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+DELIMITER $$
+create trigger before_update_province
+	Before update ON project2.province
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into project2.province(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+DELIMITER $$
+create trigger before_update_stadium
+	Before update ON project2.stadium
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into project2.stadium(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+DELIMITER $$
+create trigger before_update_team
+	Before update ON project2.team
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into project2.team(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+DELIMITER $$
+create trigger before_update_user
+	Before update ON project2.user
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into project2.user(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
+
+DELIMITER $$
+create trigger before_update_user_type
+	Before update ON project2.user_type
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+    insert into project2.user_type(
+    modification_date,
+    modification_user)
+    
+    VALUES(
+    sysdate(),
+    vUser
+    );
+  
+END$$
+DELIMITER ;
