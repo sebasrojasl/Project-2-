@@ -1,0 +1,15 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_canton`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_canton` (IN pname VARCHAR(50), IN pprovince int)
+BEGIN
+
+	INSERT INTO canton(canton_name, id_province)
+	VALUES(pname, pprovince);
+
+END$$
+
+DELIMITER ;
+
