@@ -1,0 +1,15 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_continent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_continent` ( in pname VARCHAR(50))
+
+BEGIN
+
+    INSERT INTO continent(continent_name) 
+    VALUES(pname);
+
+END$$
+
+DELIMITER ;
