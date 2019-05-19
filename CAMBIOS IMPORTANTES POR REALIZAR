@@ -60,7 +60,7 @@ ADD CONSTRAINT `id_type_play_fk`
 
 
 
-3)Quitar en jugador la condicion de no nulo en id partido
+3)Quitar en jugador la condicion de no nulo en id capitan
 
 
 ALTER TABLE `project2`.`team` 
