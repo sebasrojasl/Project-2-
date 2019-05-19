@@ -33,4 +33,15 @@ ADD CONSTRAINT `id_alignment_fk`
 
 
 
+
 3)Quitar en jugador la condicion de no nulo en id partido
+
+
+ALTER TABLE `project2`.`team` 
+DROP FOREIGN KEY `id_captain_fk`;
+ALTER TABLE `project2`.`team` 
+CHANGE COLUMN `id_captain` `id_captain` INT(11) NULL COMMENT 'the captain of the team\\n' ;
+ALTER TABLE `project2`.`team` 
+ADD CONSTRAINT `id_captain_fk`
+  FOREIGN KEY (`id_captain`)
+  REFERENCES `project2`.`player` (`id_player`);
