@@ -5,8 +5,8 @@ create trigger before_insert_alignment
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -18,8 +18,8 @@ create trigger before_insert_award
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -30,8 +30,8 @@ create trigger before_insert_award_type
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -42,8 +42,8 @@ create trigger before_insert_canton
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -55,8 +55,8 @@ create trigger before_insert_continent
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -68,8 +68,8 @@ create trigger before_insert_country
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -80,8 +80,8 @@ create trigger before_insert_district
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -93,8 +93,8 @@ create trigger before_insert_event
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -106,8 +106,8 @@ create trigger before_insert_group
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -120,8 +120,8 @@ create trigger before_insert_match
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -132,8 +132,8 @@ create trigger before_insert_nationality
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -145,8 +145,8 @@ create trigger before_insert_play
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -158,8 +158,8 @@ create trigger before_insert_player
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -171,8 +171,8 @@ create trigger before_insert_province
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -183,8 +183,8 @@ create trigger before_insert_sanction_type
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -195,8 +195,8 @@ create trigger before_insert_stadium
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -208,8 +208,8 @@ create trigger before_insert_team
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -221,8 +221,8 @@ create trigger before_insert_user
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
 
@@ -234,7 +234,7 @@ create trigger before_insert_user_type
 BEGIN
 	DECLARE vUser varchar(50);
     select user() into vUser;
-    set new.modification_date = sysdate();
-    set new.modification_user = vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
 END$$
 DELIMITER ;
