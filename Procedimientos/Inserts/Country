@@ -1,0 +1,15 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_country`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_country` (IN pname VARCHAR(50), IN pcontinent int)
+
+BEGIN
+	
+    INSERT INTO country(country_name, id_continent) 
+    VALUES(pname, pcontinent);
+
+END$$
+
+DELIMITER ;
