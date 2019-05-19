@@ -1,9 +1,30 @@
 1)Alineacion requiere agrgar auto increment
 
+PRIMERO ESTE
+
+ALTER TABLE `project2`.`team` 
+DROP FOREIGN KEY `id_alignment_fk`;
+ALTER TABLE `project2`.`team` 
+DROP INDEX `id_alignment_fk_idx` ;
+;
+
+SEGUNDO ESTE
 
 ALTER TABLE `project2`.`alignment` 
 CHANGE COLUMN `id_alignment` `id_alignment` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'this is the unique identifier of the alignment' ;
 
+
+TERCERO ESTE
+
+ALTER TABLE `project2`.`team` 
+ADD INDEX `id_alignment_fk_idx` (`id_alignment` ASC) VISIBLE;
+;
+ALTER TABLE `project2`.`team` 
+ADD CONSTRAINT `id_alignment_fk`
+  FOREIGN KEY (`id_alignment`)
+  REFERENCES `project2`.`alignment` (`id_alignment`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
 
 
 2)Tipo jugada requiere agregar auto increment
