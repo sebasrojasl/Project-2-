@@ -30,6 +30,32 @@ ADD CONSTRAINT `id_alignment_fk`
 2)Tipo jugada requiere agregar auto increment
 
 
+PRIMERO ESTO
+
+ALTER TABLE `project2`.`play` 
+DROP FOREIGN KEY `id_type_play_fk`;
+ALTER TABLE `project2`.`play` 
+DROP INDEX `id_type_play_fk_idx` ;
+;
+
+
+SEGUNDO ESTO
+
+ALTER TABLE `project2`.`type_play` 
+CHANGE COLUMN `id_type_play` `id_type_play` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'Identifier of the table type_play' ;
+
+
+TERCERO ESTO
+
+ALTER TABLE `project2`.`play` 
+ADD INDEX `id_type_play_fk_idx` (`id_type_play` ASC) VISIBLE;
+;
+ALTER TABLE `project2`.`play` 
+ADD CONSTRAINT `id_type_play_fk`
+  FOREIGN KEY (`id_type_play`)
+  REFERENCES `project2`.`type_play` (`id_type_play`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
 
 
 
