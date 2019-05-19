@@ -1,0 +1,15 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_event`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_event` (IN pyear int, IN ptypeevent int)
+BEGIN
+
+	INSERT INTO project2.event(year, id_type_event)
+	VALUES(pyear, ptypeevent);
+    
+END$$
+
+DELIMITER ;
+
