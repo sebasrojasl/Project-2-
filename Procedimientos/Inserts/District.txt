@@ -1,0 +1,16 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_discrict`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_discrict` (IN pname VARCHAR(50), IN pcanton int)
+
+BEGIN
+	
+    INSERT INTO district(district_name, id_canton)
+	VALUES (pname, pcanton);
+
+END$$
+
+DELIMITER ;
+
