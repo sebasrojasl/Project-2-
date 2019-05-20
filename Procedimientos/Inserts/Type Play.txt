@@ -7,7 +7,7 @@ CREATE PROCEDURE `insert_typeplay` (IN pname VARCHAR(50))
 BEGIN
 	INSERT INTO type_play(play_name)
 	VALUES(pname);
-
+	commit;
 END$$
 
 DELIMITER ;
