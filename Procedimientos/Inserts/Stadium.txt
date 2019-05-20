@@ -8,6 +8,7 @@ BEGIN
 
 	INSERT INTO stadium(stadium_name, id_district)
 	VALUES(pname, pdistrict);
+	commit;
 END$$
 
 DELIMITER ;
