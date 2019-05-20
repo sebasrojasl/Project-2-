@@ -11,29 +11,6 @@ END$$
 DELIMITER ;
 
 
-DELIMITER $$
-create trigger before_insert_award
-	Before insert ON award
-	for each row
-BEGIN
-	DECLARE vUser varchar(50);
-    select user() into vUser;
-    set new.creation_date = sysdate();
-    set new.creation_user = vUser;
-END$$
-DELIMITER ;
-
-DELIMITER $$
-create trigger before_insert_award_type
-	Before insert ON award_type
-	for each row
-BEGIN
-	DECLARE vUser varchar(50);
-    select user() into vUser;
-    set new.creation_date = sysdate();
-    set new.creation_user = vUser;
-END$$
-DELIMITER ;
 
 DELIMITER $$
 create trigger before_insert_canton
@@ -204,6 +181,32 @@ DELIMITER ;
 DELIMITER $$
 create trigger before_insert_team
 	Before insert ON project2.team
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    select user() into vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+create trigger before_insert_type_event
+	Before insert ON project2.stadium
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    select user() into vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+create trigger before_insert_type_play
+	Before insert ON project2.stadium
 	for each row
 BEGIN
 	DECLARE vUser varchar(50);
