@@ -8,7 +8,7 @@ BEGIN
 	
     INSERT INTO play(minute, id_match, id_player, id_type_play)
 	VALUES(pminute, pmatch, pplayer, ptypeplay);
-	
+	commit;
 
 END$$
 
