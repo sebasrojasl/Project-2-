@@ -8,7 +8,7 @@ BEGIN
 
 	INSERT INTO sanction(sanction_name)
 	VALUES(pname);
-
+	commit;
 END$$
 
 DELIMITER ;
