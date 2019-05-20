@@ -3,7 +3,7 @@ DROP procedure IF EXISTS `insert_district`;
 
 DELIMITER $$
 USE `project2`$$
-CREATE PROCEDURE `insert_discrict` (IN pname VARCHAR(50), IN pcanton int)
+CREATE PROCEDURE `insert_district` (IN pname VARCHAR(50), IN pcanton int)
 
 BEGIN
 	
