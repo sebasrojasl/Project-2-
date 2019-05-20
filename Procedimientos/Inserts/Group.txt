@@ -8,6 +8,7 @@ BEGIN
 	
     INSERT INTO project2.group(group_name, id_event)
     VALUES(pname, pidevent);
+    commit;
 
 END$$
 
