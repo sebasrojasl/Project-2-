@@ -1,0 +1,13 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_match`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_match` (IN pevent int, IN pstadium int)
+BEGIN
+	INSERT INTO project2.match(id_event, id_estadium)
+    VALUES(pevent, pstadium);
+	
+END$$
+
+DELIMITER ;
