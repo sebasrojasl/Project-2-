@@ -8,6 +8,7 @@ BEGIN
 	
     INSERT INTO team(id_country, id_alignment, id_captain, team_name)
 	VALUES(pcountry, palignment, pacaptain, pname);
+	commit;
 
 END$$
 
