@@ -9,6 +9,7 @@ BEGIN
 	
     INSERT INTO district(district_name, id_canton)
 	VALUES (pname, pcanton);
+	commit;
 
 END$$
 
