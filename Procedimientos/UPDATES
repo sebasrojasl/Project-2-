@@ -1,0 +1,384 @@
+USE `project2`;
+DROP procedure IF EXISTS `updateTeam`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updateTeam` (pid_team int, pteam_name varchar(70), pid_country int, pid_alignment int, pid_captain int)
+BEGIN
+    update team
+    set
+    team_name = ifnull(pteam_name, team_name),
+    id_country = ifnull(pid_country, id_country),
+    id_alignment = ifnull(pid_alignment, id_alignment), 
+    id_captain = ifnull(pid_captain, id_captain)
+    where id_team = pid_team;
+    commit;
+END$$
+
+DELIMITER ;
+
+----------------------------------------------
+
+USE `project2`;
+DROP procedure IF EXISTS `updateStadium`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updateStadium` (pid_stadium int, pstadium_name varchar(70), pid_district int)
+BEGIN
+    update stadium
+    set
+    stadium_name = ifnull(pstadium_name, stadium_name),
+    id_district = ifnull(pid_district, id_district)
+    where id_stadium = pid_stadium;
+    commit;
+END$$
+
+DELIMITER ;
+
+----------------------------------------------
+
+USE `project2`;
+DROP procedure IF EXISTS `updateAlignment`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updateAlignment` (pid_alignment int, palignment_name varchar(70))
+BEGIN
+    update alignment
+    set
+    alignment_name = ifnull(palignment_name, alignment_name)
+    where id_alignment = pid_alignment;
+    commit;
+END$$
+
+DELIMITER ;
+
+
+----------------------------------------------
+
+USE `project2`;
+DROP procedure IF EXISTS `UpdateContinent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `UpdateContinent` (pid_continent int, pcontinent_name varchar(70))
+BEGIN
+	update continent 
+    set 
+    continent_name = ifnull(pcontinent_name, continent_name)
+    where id_continent = pid_continent;
+    commit; 
+
+END$$
+
+DELIMITER ;
+
+----------------------------------------------
+
+USE `project2`;
+DROP procedure IF EXISTS `updateEvent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updateEvent` (pid_event int, pyear date, pid_type_event int)
+BEGIN
+    update event
+    set
+    year = ifnull(pyear, year), 
+    id_type_event = ifnull(pid_type_event, id_type_event) 
+    where id_event = pid_event;
+    commit;
+END$$
+
+DELIMITER ;
+
+
+----------------------------------------------
+
+USE `project2`;
+DROP procedure IF EXISTS `updateCanton`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updateCanton` (pid_canton int, pcanton_name varchar(70), pid_province int)
+BEGIN
+ update canton
+    set
+    canton_name = ifnull(pcanton_name, canton_name),
+    id_province = ifnull(pid_province, id_province)
+    where id_canton = pid_canton;
+    commit; 
+END$$
+
+DELIMITER ;
+
+
+----------------------------------------------
+
+USE `project2`;
+DROP procedure IF EXISTS `UpdateCountry`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `UpdateCountry` (pid_country int, pcountry_name varchar(70), pid_continent int)
+BEGIN
+	update country 
+    set 
+    country_name = ifnull(pcountry_name, country_name), 
+    id_continent = ifnull(pid_continent, id_continent) 
+    where id_country = pid_country;
+    commit;
+END$$
+
+DELIMITER ;
+
+
+
+----------------------------------------------
+
+
+USE `project2`;
+DROP procedure IF EXISTS `updateDistrict`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updateDistrict` (pid_district int, pdistrict_name varchar(70), pid_canton int)
+BEGIN
+    update district 
+    set 
+    district_name = ifnull(pdistrict_name, district_name), 
+    id_canton = ifnull(pid_canton, id_canton) 
+    where id_district = pid_district;
+    commit; 
+END$$
+
+DELIMITER ;
+
+
+----------------------------------------------
+
+USE `project2`;
+DROP procedure IF EXISTS `updateGroup`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updateGroup` (pid_group int, pgroup_name varchar(70), pid_event int)
+BEGIN
+    update project2.group
+    set
+    group_name = ifnull(pgroup_name, group_name), 
+    id_event = ifnull(pid_event, id_event)
+    where id_group = pid_group;
+    commit;
+END$$
+
+DELIMITER ;
+
+
+----------------------------------------------
+
+USE `project2`;
+DROP procedure IF EXISTS `updateMatch`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updateMatch` (pid_match int, pid_event int, pid_stadium int, pdate date)
+BEGIN
+    update project2.match
+    set
+    id_event = ifnull(pid_event, id_event), 
+    id_stadium = ifnull(pid_stadium, id_stadium),
+    date = ifnull(pdate, date)
+    where id_match = pid_match;
+    commit;
+END$$
+
+DELIMITER ;
+
+
+----------------------------------------------
+
+USE `project2`;
+DROP procedure IF EXISTS `updateNationality`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updateNationality` (pid_nationality int, pnationality_name varchar(70))
+
+BEGIN
+    update nationality
+    set
+    nationality_name = ifnull(pnationality_name, nationality_name)
+    where id_nationality = pid_nationality;
+    commit;
+END$$
+
+DELIMITER ;
+
+
+----------------------------------------------
+
+
+USE `project2`;
+DROP procedure IF EXISTS `updatePlay`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updatePlay` (pid_play int, pminute int, pid_match int, pid_player int, pid_type_play int)
+BEGIN
+    update play
+    set
+    minute = ifnull(pminute, minute),
+    id_match = ifnull(pid_match, id_match),
+    id_player = ifnull(pid_player, id_player),
+    id_type_play = ifnull(pid_type_play, id_type_play)
+    where id_play = pid_play;
+    commit;
+END$$
+
+DELIMITER ;
+
+
+----------------------------------------------
+
+
+USE `project2`;
+DROP procedure IF EXISTS `updateProvince`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updateProvince` (pid_province int, pprovince_name varchar(70), pid_country int)
+BEGIN
+    update province
+    set 
+    province_name = ifnull(pprovince_name, province_name),
+    id_country = ifnull(pid_country, id_country)
+    where id_province = pid_province;
+    commit; 
+END$$
+
+DELIMITER ;
+
+----------------------------------------------
+
+USE `project2`;
+DROP procedure IF EXISTS `updateSanction`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updateSanction` (pid_sanction int, pid_sanction_type int, pid_player int, pminute int, pid_match int)
+BEGIN
+    update sanction
+    set
+    id_sanction_type = ifnull(pid_sanction_type, id_sanction_type),
+    id_player = ifnull(pid_player, id_player),
+    minute = ifnull(pminute, minute),
+    id_match = ifnull(pid_match, id_match)
+    where id_sanction = pid_sanction;
+    commit;
+END$$
+
+DELIMITER ;
+
+----------------------------------------------
+
+USE `project2`;
+DROP procedure IF EXISTS `updatePlayer`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updatePlayer` (pid_player int, pplayer_name varchar(70), pplayer_number int, pidentification int, ppicture BLOB, pid_team int, pid_nationality int)
+BEGIN
+    update player
+    set
+    player_name = ifnull(pplayer_name, player_name),
+    player_number = ifnull(pplayer_number, player_number),
+    identification = ifnull(pidentification,  identification), 
+    picture = ifnull(ppicture, picture), 
+    id_team = ifnull(pid_team, id_team),
+    id_nationality = ifnull(pid_nationality, id_nationality)
+    where id_player = pid_player;
+    commit;
+END$$
+
+DELIMITER ;
+
+
+----------------------------------------------
+
+USE `project2`;
+DROP procedure IF EXISTS `updateSanctionType`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updateSanctionType` (pid_sanction_type int, psanction_type_name varchar(70))
+BEGIN
+    update sanction_type
+    set
+    sanction_name = ifnull(psanction_type_name, sanction_name)
+    where id_sanction_type = pid_sanction_type;
+    commit;
+END$$
+
+DELIMITER ;
+
+
+----------------------------------------------
+
+USE `project2`;
+DROP procedure IF EXISTS `updateTypePlay`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updateTypePlay` (pid_type_play int, pplay_name varchar(70))
+
+BEGIN
+    update type_play
+    set
+    play_name = ifnull(ptype_play_name, play_name)
+    where id_type_play = pid_type_play;
+    commit;
+END$$
+
+DELIMITER ;
+
+----------------------------------------------
+
+USE `project2`;
+DROP procedure IF EXISTS `updateUser`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updateUser` (pid_user int, puser_name varchar(70), ppassword varchar(50), pid_user_type int)
+BEGIN
+    update user
+    set
+    user_name = ifnull(puser_name, user_name),
+    password = ifnull(ppassword, password), 
+    id_user_type = ifnull(pid_user_type, id_user_type)
+    where id_user = pid_user;
+    commit;
+END$$
+
+DELIMITER ;
+
+
+----------------------------------------------
+
+USE `project2`;
+DROP procedure IF EXISTS `updateUserType`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `updateUserType` (pid_user_type int, ptype_user_name varchar(70))
+BEGIN
+    update user_type
+    set
+    type_user_name = ifnull(puser_type_name, type_user_name)
+    where id_user_type = pid_user_type;
+    commit;
+END$$
+
+DELIMITER ;
+
