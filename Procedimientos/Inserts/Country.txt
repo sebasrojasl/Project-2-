@@ -9,7 +9,8 @@ BEGIN
 	
     INSERT INTO country(country_name, id_continent) 
     VALUES(pname, pcontinent);
-
-END$$
+    commit;
+    
+    END$$
 
 DELIMITER ;
