@@ -1,0 +1,15 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_sanction`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_sanction` (IN psanctiontype int, IN pplayer int, IN pminute int, IN pmatch int) 
+BEGIN
+	
+    INSERT INTO sanction(id_sanction_type, id_player, minute, id_match)
+	VALUES(psanctiontype, pplayer, pminute, pmatch);
+
+END$$
+
+DELIMITER ;
+
