@@ -1,0 +1,5 @@
+ALTER TABLE `project2`.`alignment` 
+ADD COLUMN `creation_date` DATE NULL AFTER `alignment_name`,
+ADD COLUMN `creation_user` VARCHAR(45) NULL AFTER `creation_date`,
+ADD COLUMN `modification_date` DATE NULL AFTER `creation_user`,
+ADD COLUMN `modification_user` VARCHAR(45) NULL AFTER `modification_date`;
