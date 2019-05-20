@@ -1,0 +1,14 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_stadium`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_stadium` (IN pname VARCHAR(45), IN pdistrict int)
+BEGIN
+
+	INSERT INTO stadium(stadium_name, id_district)
+	VALUES(pname, pdistrict);
+END$$
+
+DELIMITER ;
+
