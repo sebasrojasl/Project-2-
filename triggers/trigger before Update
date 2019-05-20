@@ -10,5 +10,143 @@
   
 END $$ 
 delimiter $$;
--------------------------------------------------------------------------------------------------------
+
+
+
+
+ delimiter $$
+ create TRIGGER `before_update_canton` BEFORE UPDATE ON `canton` FOR EACH ROW BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+  
+   set new.modification_date= sysdate();
+    set new.modification_user= vUser;
+  
+END $$ 
+delimiter $$;
+
+
+
+
+delimiter $$
+ create TRIGGER `before_update_continent` BEFORE UPDATE ON `continent` FOR EACH ROW BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+  
+   set new.modification_date= sysdate();
+    set new.modification_user= vUser;
+  
+END $$ 
+delimiter $$;
+
+
+
+ delimiter $$
+ create TRIGGER `before_update_country` BEFORE UPDATE ON `country` FOR EACH ROW BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+  
+   set new.modification_date= sysdate();
+    set new.modification_user= vUser;
+  
+END $$ 
+delimiter $$;
+
+
+
+ delimiter $$
+ create TRIGGER `before_update_district` BEFORE UPDATE ON `district` FOR EACH ROW BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+  
+   set new.modification_date= sysdate();
+    set new.modification_user= vUser;
+  
+END $$ 
+delimiter $$;
+
+
+
+ delimiter $$
+ create TRIGGER `before_update_event` BEFORE UPDATE ON `event` FOR EACH ROW BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+  
+   set new.modification_date= sysdate();
+    set new.modification_user= vUser;
+  
+END $$ 
+delimiter $$;
+
+
+
+
+ delimiter $$
+ create TRIGGER `before_update_group` BEFORE UPDATE ON `group` FOR EACH ROW BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+  
+   set new.modification_date= sysdate();
+    set new.modification_user= vUser;
+  
+END $$ 
+delimiter $$;
+
+
+
+ delimiter $$
+ create TRIGGER `before_update_match` BEFORE UPDATE ON `match` FOR EACH ROW BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+  
+   set new.modification_date= sysdate();
+    set new.modification_user= vUser;
+  
+END $$ 
+delimiter $$;
+
+
+
+ delimiter $$
+ create TRIGGER `before_update_nationality` BEFORE UPDATE ON `nationality` FOR EACH ROW BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+  
+   set new.modification_date= sysdate();
+    set new.modification_user= vUser;
+  
+END $$ 
+delimiter $$;
+
+
+
+ delimiter $$
+ create TRIGGER `before_update_play` BEFORE UPDATE ON `play` FOR EACH ROW BEGIN
+	DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+  
+   set new.modification_date= sysdate();
+    set new.modification_user= vUser;
+  
+END $$ 
+delimiter $$;
+
 
