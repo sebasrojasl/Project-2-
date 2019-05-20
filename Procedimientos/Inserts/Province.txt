@@ -9,6 +9,7 @@ BEGIN
 	
 	INSERT INTO province(province_name, id_country) 
     VALUES(pname, pcountry);
+    commit;
 
 
 END$$
