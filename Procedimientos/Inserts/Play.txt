@@ -1,0 +1,15 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_play`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_play` (IN pminute int, IN pmatch int, IN pplayer int, IN ptypeplay int)
+BEGIN
+	
+    INSERT INTO play(minute, id_match, id_player, id_type_play)
+	VALUES(pminute, pmatch, pplayer, ptypeplay);
+	
+
+END$$
+
+DELIMITER ;
