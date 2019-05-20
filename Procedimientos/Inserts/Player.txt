@@ -1,0 +1,15 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_player`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_player` (IN pname VARCHAR(50), IN pnumber int, IN pidentification int, ppicture blob, IN pteam int, IN pnationality int)
+BEGIN
+
+	INSERT INTO player(player_name, player_number, identification, picture, id_team, id_nationality)
+	VALUES(pname, pnumber, pidentification, ppicture, pteam, pnationality);
+    
+END$$
+
+DELIMITER ;
+
