@@ -1,4 +1,4 @@
 set @db = 'project2';
 
 SELECT concat('ALTER TABLE ', @db, '.', TABLE_NAME, ' AUTO_INCREMENT = 1;') 
-FROM information_schema.TABLES WHERE TABLE_SCHEMA = @dbevent
+FROM information_schema.TABLES WHERE TABLE_SCHEMA = @db
