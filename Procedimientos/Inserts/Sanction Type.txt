@@ -1,0 +1,14 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_sanctiontype`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_sanctiontype` (IN pname VARCHAR(50))
+BEGIN
+
+	INSERT INTO sanction(sanction_name)
+	VALUES(pname);
+
+END$$
+
+DELIMITER ;
