@@ -8,6 +8,7 @@ CREATE PROCEDURE `insert_alignment` (IN pname VARCHAR(50))
 BEGIN
 	INSERT INTO alignment(alignment_name)
 	VALUES(pname);
+	commit;
 END$$
 
 DELIMITER ;
