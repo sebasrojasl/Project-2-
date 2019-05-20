@@ -8,6 +8,7 @@ BEGIN
 	
     INSERT INTO sanction(id_sanction_type, id_player, minute, id_match)
 	VALUES(psanctiontype, pplayer, pminute, pmatch);
+	commit;
 
 END$$
 
