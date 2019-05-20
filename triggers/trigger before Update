@@ -150,3 +150,141 @@ END $$
 delimiter $$;
 
 
+
+
+delimiter $$
+create TRIGGER `before_update_player` BEFORE UPDATE ON `player` FOR EACH ROW BEGIN
+    DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+   set new.modification_date= sysdate();
+   set new.modification_user= vUser;
+END $$ 
+delimiter $$;
+
+
+
+delimiter $$
+create TRIGGER `before_update_province` BEFORE UPDATE ON `province` FOR EACH ROW BEGIN
+    DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+   set new.modification_date= sysdate();
+   set new.modification_user= vUser;
+END $$ 
+delimiter $$;
+
+
+
+delimiter $$
+create TRIGGER `before_update_sanction` BEFORE UPDATE ON `sanction` FOR EACH ROW BEGIN
+    DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+   set new.modification_date= sysdate();
+   set new.modification_user= vUser;
+END $$ 
+delimiter $$;
+
+
+
+
+delimiter $$
+create TRIGGER `before_update_sanction_type` BEFORE UPDATE ON `sanction_type` FOR EACH ROW BEGIN
+    DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+   set new.modification_date= sysdate();
+   set new.modification_user= vUser;
+END $$ 
+delimiter $$;
+
+
+
+
+delimiter $$
+create TRIGGER `before_update_stadium` BEFORE UPDATE ON `stadium` FOR EACH ROW BEGIN
+    DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+   set new.modification_date= sysdate();
+   set new.modification_user= vUser;
+END $$ 
+delimiter $$;
+
+
+
+
+delimiter $$
+create TRIGGER `before_update_team` BEFORE UPDATE ON `team` FOR EACH ROW BEGIN
+    DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+   set new.modification_date= sysdate();
+   set new.modification_user= vUser;
+END $$ 
+delimiter $$;
+
+
+
+
+delimiter $$
+create TRIGGER `before_update_type_event` BEFORE UPDATE ON `type_event` FOR EACH ROW BEGIN
+    DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+   set new.modification_date= sysdate();
+   set new.modification_user= vUser;
+END $$ 
+delimiter $$;
+
+
+
+
+delimiter $$
+create TRIGGER `before_update_type_play` BEFORE UPDATE ON `type_play` FOR EACH ROW BEGIN
+    DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+   set new.modification_date= sysdate();
+   set new.modification_user= vUser;
+END $$ 
+delimiter $$;
+
+
+
+
+delimiter $$
+create TRIGGER `before_update_user` BEFORE UPDATE ON `user` FOR EACH ROW BEGIN
+    DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+   set new.modification_date= sysdate();
+   set new.modification_user= vUser;
+END $$ 
+delimiter $$;
+
+
+
+
+delimiter $$
+create TRIGGER `before_update_user_type` BEFORE UPDATE ON `user_type` FOR EACH ROW BEGIN
+    DECLARE vUser varchar(50);
+    -- Find username of the person performing the update.
+    select user() into vUser;
+    -- Insert record into audit rows.
+   set new.modification_date= sysdate();
+   set new.modification_user= vUser;
+END $$ 
+delimiter $$;
+
+
