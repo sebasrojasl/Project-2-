@@ -1,0 +1,14 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_group`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_group` (IN pname VARCHAR(50), IN pidevent int)
+BEGIN
+	
+    INSERT INTO project2.group(group_name, id_event)
+    VALUES(pname, pidevent);
+
+END$$
+
+DELIMITER ;
