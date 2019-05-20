@@ -8,6 +8,7 @@ BEGIN
 
 	INSERT INTO project2.event(year, id_type_event)
 	VALUES(pyear, ptypeevent);
+	commit;
     
 END$$
 
