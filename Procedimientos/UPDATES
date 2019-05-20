@@ -17,7 +17,7 @@ END$$
 
 DELIMITER ;
 
-----------------------------------------------
+
 
 USE `project2`;
 DROP procedure IF EXISTS `updateStadium`;
@@ -36,7 +36,8 @@ END$$
 
 DELIMITER ;
 
-----------------------------------------------
+
+
 
 USE `project2`;
 DROP procedure IF EXISTS `updateAlignment`;
@@ -55,7 +56,7 @@ END$$
 DELIMITER ;
 
 
-----------------------------------------------
+
 
 USE `project2`;
 DROP procedure IF EXISTS `UpdateContinent`;
@@ -74,7 +75,7 @@ END$$
 
 DELIMITER ;
 
-----------------------------------------------
+
 
 USE `project2`;
 DROP procedure IF EXISTS `updateEvent`;
@@ -94,7 +95,7 @@ END$$
 DELIMITER ;
 
 
-----------------------------------------------
+
 
 USE `project2`;
 DROP procedure IF EXISTS `updateCanton`;
@@ -114,7 +115,7 @@ END$$
 DELIMITER ;
 
 
-----------------------------------------------
+
 
 USE `project2`;
 DROP procedure IF EXISTS `UpdateCountry`;
@@ -135,7 +136,7 @@ DELIMITER ;
 
 
 
-----------------------------------------------
+
 
 
 USE `project2`;
@@ -156,7 +157,7 @@ END$$
 DELIMITER ;
 
 
-----------------------------------------------
+
 
 USE `project2`;
 DROP procedure IF EXISTS `updateGroup`;
@@ -176,7 +177,7 @@ END$$
 DELIMITER ;
 
 
-----------------------------------------------
+
 
 USE `project2`;
 DROP procedure IF EXISTS `updateMatch`;
@@ -197,7 +198,7 @@ END$$
 DELIMITER ;
 
 
-----------------------------------------------
+
 
 USE `project2`;
 DROP procedure IF EXISTS `updateNationality`;
@@ -217,7 +218,7 @@ END$$
 DELIMITER ;
 
 
-----------------------------------------------
+
 
 
 USE `project2`;
@@ -240,7 +241,7 @@ END$$
 DELIMITER ;
 
 
-----------------------------------------------
+
 
 
 USE `project2`;
@@ -260,7 +261,7 @@ END$$
 
 DELIMITER ;
 
-----------------------------------------------
+
 
 USE `project2`;
 DROP procedure IF EXISTS `updateSanction`;
@@ -281,7 +282,7 @@ END$$
 
 DELIMITER ;
 
-----------------------------------------------
+
 
 USE `project2`;
 DROP procedure IF EXISTS `updatePlayer`;
@@ -305,7 +306,7 @@ END$$
 DELIMITER ;
 
 
-----------------------------------------------
+
 
 USE `project2`;
 DROP procedure IF EXISTS `updateSanctionType`;
@@ -324,7 +325,7 @@ END$$
 DELIMITER ;
 
 
-----------------------------------------------
+
 
 USE `project2`;
 DROP procedure IF EXISTS `updateTypePlay`;
@@ -343,7 +344,7 @@ END$$
 
 DELIMITER ;
 
-----------------------------------------------
+
 
 USE `project2`;
 DROP procedure IF EXISTS `updateUser`;
@@ -364,7 +365,7 @@ END$$
 DELIMITER ;
 
 
-----------------------------------------------
+
 
 USE `project2`;
 DROP procedure IF EXISTS `updateUserType`;
