@@ -8,6 +8,7 @@ BEGIN
 
 	INSERT INTO user_type(type_user_name)
 	VALUES(pname);
+	commit;
 
 END$$
 
