@@ -1,0 +1,15 @@
+CREATE TABLE `project2`.`dashboard` (
+  `id_dashboard` INT NOT NULL AUTO_INCREMENT COMMENT 'Unique identifier of the dashboard.',
+  `id_event` INT NOT NULL COMMENT 'Unique identifier of the event.',
+  `goals_per_match` FLOAT NOT NULL COMMENT 'Goals per match in an event. ',
+  `expulsions` FLOAT NOT NULL COMMENT 'Expulsions from an event. ',
+  `cautions` FLOAT NOT NULL COMMENT 'Cautions from an event. ',
+  `avg_shots_per_team` FLOAT NOT NULL COMMENT 'Average shots per team in an event. ',
+  PRIMARY KEY (`id_dashboard`),
+  INDEX `id_event_dash_fk_idx` (`id_event` ASC) VISIBLE,
+  CONSTRAINT `id_event_dash_fk`
+    FOREIGN KEY (`id_event`)
+    REFERENCES `project2`.`event` (`id_event`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+COMMENT = 'Table that stores statistics of an event. ';
