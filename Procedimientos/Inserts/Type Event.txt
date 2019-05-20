@@ -1,0 +1,14 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_typevent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_typevent` (IN pname VARCHAR(50))
+BEGIN
+
+	INSERT INTO type_event(name_type_event)
+	VALUES(pname);
+    
+END$$
+
+DELIMITER ;
