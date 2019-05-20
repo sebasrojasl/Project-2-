@@ -8,6 +8,7 @@ BEGIN
 
 	INSERT INTO type_event(name_type_event)
 	VALUES(pname);
+	commit;
     
 END$$
 
