@@ -1,0 +1,13 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_typeplay`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_typeplay` (IN pname VARCHAR(50))
+BEGIN
+	INSERT INTO type_play(play_name)
+	VALUES(pname);
+
+END$$
+
+DELIMITER ;
