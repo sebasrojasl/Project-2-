@@ -1,0 +1,15 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_usertype`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_usertype` (IN pname VARCHAR(50))
+BEGIN
+
+	INSERT INTO user_type(type_user_name)
+	VALUES(pname);
+
+END$$
+
+DELIMITER ;
+
