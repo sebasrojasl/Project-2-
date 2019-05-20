@@ -153,6 +153,20 @@ BEGIN
 END$$
 DELIMITER ;
 
+
+DELIMITER $$
+create trigger before_insert_sanction
+	Before insert ON project2.stadium
+	for each row
+BEGIN
+	DECLARE vUser varchar(50);
+    select user() into vUser;
+    set new.creation_date = sysdate();
+    set new.creation_user = vUser;
+END$$
+DELIMITER ;
+
+
 DELIMITER $$
 create trigger before_insert_sanction_type
 	Before insert ON project2.sanction_type
