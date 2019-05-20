@@ -1,5 +1,5 @@
 USE `project2`;
-DROP procedure IF EXISTS `insert_discrict`;
+DROP procedure IF EXISTS `insert_district`;
 
 DELIMITER $$
 USE `project2`$$
