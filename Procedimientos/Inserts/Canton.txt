@@ -8,7 +8,7 @@ BEGIN
 
 	INSERT INTO canton(canton_name, id_province)
 	VALUES(pname, pprovince);
-
+	commit;
 END$$
 
 DELIMITER ;
