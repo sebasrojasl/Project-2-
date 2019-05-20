@@ -1,0 +1,15 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_user`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_user` (IN pusername VARCHAR(50), IN ppassword VARCHAR(50), IN pusertype int)
+BEGIN
+	INSERT INTO user(user_name, password, id_user_type)
+	VALUES(pusername, ppassword, pusertype);
+
+
+END$$
+
+DELIMITER ;
+
