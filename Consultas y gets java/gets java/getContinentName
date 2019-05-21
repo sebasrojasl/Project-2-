@@ -1,0 +1,5 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getContinentsName`()
+begin 
+	select continent.continent_name
+    from continent;
+end
