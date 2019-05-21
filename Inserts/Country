@@ -1,0 +1,56 @@
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Argentina', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Bahamas', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Barbados', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Belice', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Bolivia', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Brasil', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Canadá', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Chile', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Colombia', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Costa Rica', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Cuba', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Dominica', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('República Dominicana', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Ecuador', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('El Salvador', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Estados Unidos', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Granada', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Guatemala', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Guyana', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Haití', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Honduras', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Jamaica', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('México', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Nicaragua', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Panamá', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Paraguay', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Perú', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Puerto Rico', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Trinidad y Tobago', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Uruguay', '1');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Venezuela', '1');
+
+
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Angola', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Argelia', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Benin', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Botsuana', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Burkina Faso', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Cabo Verde', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Camerún ', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Congo', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Costa de Marfil', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Egipto', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Eritrea', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Etiopía', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Ghana', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Guinea', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Madagascar', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Nigeria', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Ruanda', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Senegal', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Sudan', '2');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Zimbabue', '2');
+
+
+
