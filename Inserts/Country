@@ -54,3 +54,48 @@ INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Zimba
 
 
 
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Abania', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Alemania', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Andorra', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Armenia', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Austria', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Bélgica', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Bulgaria', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Bosnia y Herzegovina', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('República Checa', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Croacia', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Dinamarca', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Eslovaquia', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Eslovenia', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('España', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Estonia ', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Finlandia', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Francia', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Gerorgia', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Grecia', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Hungría', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Irlanda', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Islandia', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Italia', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Letonia', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Lituania', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Luxemburgo', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('República de Macedonia', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Malta', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Mónaco', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Noruega', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Países Bajos', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Polonia', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Portugal', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Reino Unido', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Rumania', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Rusia', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Suiza', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Ucrania', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Serbia', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('San Marino', '3');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Suecia', '3');
+
+
+
+
