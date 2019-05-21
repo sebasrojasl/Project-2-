@@ -1,0 +1,6 @@
+INSERT INTO `project2`.`continent` (`continent_name`) VALUES ('América');
+INSERT INTO `project2`.`continent` (`continent_name`) VALUES ('África');
+INSERT INTO `project2`.`continent` (`continent_name`) VALUES ('Europa');
+INSERT INTO `project2`.`continent` (`continent_name`) VALUES ('Asia');
+INSERT INTO `project2`.`continent` (`continent_name`) VALUES ('Oceanía');
+INSERT INTO `project2`.`continent` (`continent_name`) VALUES ('Artártida');
