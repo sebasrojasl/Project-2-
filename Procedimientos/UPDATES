@@ -351,19 +351,18 @@ DROP procedure IF EXISTS `updateUser`;
 
 DELIMITER $$
 USE `project2`$$
-CREATE PROCEDURE `updateUser` (pid_user int, puser_name varchar(70), ppassword varchar(50), pid_user_type int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateUser`(puser_name varchar(70), ppassword varchar(50), pid_user_type int)
 BEGIN
     update user
     set
     user_name = ifnull(puser_name, user_name),
     password = ifnull(ppassword, password), 
     id_user_type = ifnull(pid_user_type, id_user_type)
-    where id_user = pid_user;
+    where user_name = puser_name;
     commit;
 END$$
 
 DELIMITER ;
-
 
 
 
