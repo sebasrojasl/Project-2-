@@ -1,0 +1,16 @@
+USE `project2`;
+DROP procedure IF EXISTS `getCountrytNames`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getCountrytNames`(in pcontinent_Name varchar(50))
+begin 
+
+	select country.country_name
+    from country
+    inner join continent
+    on country.id_continent= continent.id_continent
+    where  continent.continent_name= pcontinent_Name;
+end$$
+
+DELIMITER ;
