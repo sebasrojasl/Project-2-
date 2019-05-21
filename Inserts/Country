@@ -97,5 +97,31 @@ INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('San M
 INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Suecia', '3');
 
 
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Afganistán', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Arabia Saudita', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Banglades', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Bután', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Camboya', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Catar', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('China', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Corea del Norte', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Corea del Sur', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Emiratos Árabes Unidos', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Filipinas', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('India', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Indonesia', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Irán', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Iraq', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Israel', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Japón', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Jordania', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Laos', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Líbano', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Mongolia', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Nepal', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Vietnam', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Yemen', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Turquía', '4');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Taiwan', '4');
 
 
