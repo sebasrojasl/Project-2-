@@ -1,0 +1,9 @@
+DELIMITER //
+CREATE PROCEDURE `getDistrictName` (in pCanton_Name varchar(50))
+begin 
+		select district.district_name
+        from district
+        inner join canton
+        on district.id_canton = canton.id_canton and canton.canton_name=pCanton_Name;
+end //
+DELIMITER ;
