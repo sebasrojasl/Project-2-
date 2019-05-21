@@ -1,0 +1,9 @@
+DELIMITER //
+CREATE PROCEDURE `getProvinceName` (in pcountry_Name varchar(50))
+begin 
+	select province.province_name
+    from province
+    inner join country
+   on province.id_country = country.id_country and country.country_name= pcountry_name;
+end //
+DELIMITER ;
