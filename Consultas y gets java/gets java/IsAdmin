@@ -1,0 +1,14 @@
+USE `project2`;
+DROP procedure IF EXISTS `isAdmin`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `isAdmin`(in pnickname varchar(50))
+begin 
+	select (case when project2.user.id_user_type=1 then "true"else "false" end)result
+    from project2.user
+    where project2.user.user_name =pnickname;
+    
+end$$
+
+DELIMITER ;
