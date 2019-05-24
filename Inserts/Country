@@ -125,3 +125,15 @@ INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Turqu
 INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Taiwan', '4');
 
 
+
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Australia', '5');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Fiyi', '5');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Kiribati', '5');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Micronesia', '5');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Nueva Zelanda', '5');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Palaos', '5');
+INSERT INTO `project2`.`country` (`country_name`, `id_continent`) VALUES ('Islas Salomón', '5');
+
+
+
+
