@@ -1,0 +1,10 @@
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Rio de Janeiro', '6');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Manaus', '6');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Curitiba', '6');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Sao Paulo', '6');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Salvador de Bahia', '6');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Cuiabá', '6');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Porto Alegre', '6');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Recife', '6');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Natal', '6');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Brasilia', '6');
