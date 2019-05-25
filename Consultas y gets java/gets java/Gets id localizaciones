@@ -1,0 +1,80 @@
+USE `project2`;
+DROP procedure IF EXISTS `getIdContinent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getIdContinent`(in nameContinent varchar(70))
+BEGIN
+select continent.id_continent
+from continent
+where continent.continent_name= nameContinent;
+END$$
+
+DELIMITER ;
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getIdCountry`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getIdCountry`(in nameCountry varchar(70))
+BEGIN
+select  country.id_country
+from country 
+where country.country_name= nameCountry;
+END$$
+
+DELIMITER ;
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getIdProvince`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getIdProvince` (in NameProvince varchar(70))
+BEGIN
+select province.id_province
+from province
+where province.province_name= NameProvince;
+END$$
+
+DELIMITER ;
+
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getIdCanton`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getIdCanton`(in NameCanton varchar(70))
+BEGIN
+select canton.id_canton
+from canton 
+where canton.canton_name= NameCanton;
+
+END$$
+
+DELIMITER ;
+
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getIdDistrict`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getIdDistrict` (in NameDistrict varchar (70))
+BEGIN
+select district.id_district
+from district
+where district.district_name= NameDistrict;
+END$$
+
+DELIMITER ;
