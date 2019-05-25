@@ -1,9 +1,16 @@
-DELIMITER //
-CREATE PROCEDURE `getDistrictName` (in pCanton_Name varchar(50))
+
+USE `project2`;
+DROP procedure IF EXISTS `project2`.`getDistrictName`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getDistrictNames`(in pCanton_Name varchar(50))
 begin 
 		select district.district_name
         from district
         inner join canton
         on district.id_canton = canton.id_canton and canton.canton_name=pCanton_Name;
-end //
+end$$
+
 DELIMITER ;
+;
