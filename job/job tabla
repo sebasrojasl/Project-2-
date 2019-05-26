@@ -1,0 +1,8 @@
+CREATE TABLE `statistict` (
+   `id_Statistict` int(11) NOT NULL AUTO_INCREMENT,
+   `goals_per_match` int(11) DEFAULT NULL COMMENT 'goals per match per event',
+   `Averague_Cautions` int(11) DEFAULT NULL COMMENT 'Averague_Cautions per match',
+   `Averague_Expulsions` int(11) DEFAULT NULL COMMENT 'Averague_Expulsions per match',
+   `Average_Shots` int(11) DEFAULT NULL COMMENT 'Average_Shots',
+   PRIMARY KEY (`id_Statistict`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='table that stores event statistics\n'
