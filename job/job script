@@ -1,0 +1,5 @@
+CREATE EVENT IF NOT EXISTS `Statistic_save_event`
+ON SCHEDULE
+  EVERY 11 DAY_HOUR
+  DO
+  call insertStatistic()
