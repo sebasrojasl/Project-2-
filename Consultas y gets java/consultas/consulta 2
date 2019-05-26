@@ -59,3 +59,4 @@ on tempSanciones.id_team= team.id_team and team_x_match.id_match = tempSanciones
 end$$
 
 DELIMITER ;
+
