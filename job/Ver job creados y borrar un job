@@ -1,0 +1,7 @@
+SHOW EVENTS FROM project2;
+
+
+
+
+--borrar job 
+drop event nombreevento
