@@ -1,5 +1,5 @@
 CREATE EVENT IF NOT EXISTS `Statistic_save_event`
-ON SCHEDULE
-  EVERY 11 DAY_HOUR
-  DO
+ON SCHEDULE EVERY '11' DAY 
+starts '2019-05-27 11:00:00'
+ DO
   call insertStatistic()
