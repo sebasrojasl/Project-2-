@@ -1,0 +1,2 @@
+ALTER TABLE `project2`.`team` 
+ADD COLUMN `logo_team` VARCHAR(300) NULL AFTER `team_name`;
