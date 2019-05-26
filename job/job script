@@ -3,3 +3,5 @@ ON SCHEDULE EVERY '1' DAY
 starts '2019-05-27 11:00:00'
  DO
   call insertStatistic()
+
+cuando ejecuten el script deben actualizar la fecha de inicio para un dia despues
