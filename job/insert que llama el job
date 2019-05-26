@@ -1,7 +1,7 @@
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertStatistic`()
 BEGIN
-insert into statistict(goals_per_match,Averague_Cautions,Averague_Expulsions,Average_Shots)
-select ifnull(tempGoles.goles/TempMatch.TotalPartidos,0) as PorcentajeGoles,ifnull(tempSancionesAmarillas.Amarillas/TempMatch.TotalPartidos,0)  as PorcentajeAmarillas
+insert into statistict(id_event,goals_per_match,Averague_Cautions,Averague_Expulsions,Average_Shots)
+select project2.event.id_event,ifnull(tempGoles.goles/TempMatch.TotalPartidos,0) as PorcentajeGoles,ifnull(tempSancionesAmarillas.Amarillas/TempMatch.TotalPartidos,0)  as PorcentajeAmarillas
     ,ifnull(tempSancionesRojas.Rojas/tempMatch.TotalPartidos,0)as PorcentajeRojas, ifnull(TempTiros.Totaltiros/TempEquipos.TotalEquipos,0) as Promediotiros
     from project2.event
     left join( select count(case when play.id_type_play=4 then 1 end) as goles,project2.match.id_event
