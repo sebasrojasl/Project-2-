@@ -9,8 +9,10 @@ CREATE TABLE `statistict` (
  
  
  ;
- 
+
+
  
  ALTER TABLE `project2`.`statistict` 
 ADD COLUMN `creation_date` DATE ,
+ADD COLUMN `id_event` INT NULL AFTER `id_Statistict',
 ADD COLUMN `creation_user` VARCHAR(45);
