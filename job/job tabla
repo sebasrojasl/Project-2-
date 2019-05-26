@@ -6,3 +6,13 @@ CREATE TABLE `statistict` (
    `Average_Shots` int(11) DEFAULT NULL COMMENT 'Average_Shots',
    PRIMARY KEY (`id_Statistict`)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='table that stores event statistics\n'
+ 
+ 
+ ;
+ 
+ 
+ ALTER TABLE `project2`.`statistict` 
+ADD COLUMN `creation_date` DATE ,
+ADD COLUMN `creation_user` VARCHAR(45) ,
+ADD COLUMN `modification_date` DATE ,
+ADD COLUMN `modification_user` VARCHAR(45);
