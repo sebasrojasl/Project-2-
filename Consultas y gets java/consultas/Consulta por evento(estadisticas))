@@ -1,0 +1,51 @@
+USE `project2`;
+DROP procedure IF EXISTS `getStatisticbyEvent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getStatisticbyEvent`(in pid_event int)
+BEGIN
+
+    select ifnull(tempGoles.goles/TempMatch.TotalPartidos,0) as PorcentajeGoles,ifnull(tempSancionesAmarillas.Amarillas/TempMatch.TotalPartidos,0)  as PorcentajeAmarillas
+    ,ifnull(tempSancionesRojas.Rojas/tempMatch.TotalPartidos,0)as PorcentajeRojas, ifnull(TempTiros.Totaltiros/TempEquipos.TotalEquipos,0) as Promediotiros
+    from project2.event
+    left join( select count(case when play.id_type_play=4 then 1 end) as goles,project2.match.id_event
+		from play
+		inner join project2.match
+		on play.id_match= project2.match.id_match and project2.match.id_event=pid_event
+	)tempGoles
+    on project2.event.id_event= tempGoles.id_event
+    
+    
+    left join(select count(project2.match.id_event)as TotalPartidos,project2.match.id_event from project2.match where project2.match.id_event=pid_event)TempMatch
+    on project2.event.id_event = TempMatch.id_event
+    
+    left join( select count(case when sanction.id_sanction_type=1 then 1 end)as Amarillas, project2.match.id_event
+		from sanction 
+        inner join project2.match
+        on sanction.id_match = project2.match.id_match and project2.match.id_event= pid_event
+    )tempSancionesAmarillas
+    on project2.event.id_event=tempSancionesAmarillas.id_event
+    
+    
+    left join( select count(case when sanction.id_sanction_type=2 then 1 end)as Rojas, project2.match.id_event
+		from sanction 
+        inner join project2.match
+        on sanction.id_match = project2.match.id_match and project2.match.id_event= pid_event
+    )tempSancionesRojas
+    on project2.event.id_event=tempSancionesRojas.id_event
+    
+   left join (select count(play.id_play)as totalTiros,project2.match.id_event
+	   from project2.match
+	   inner join play 
+	   on play.id_match= project2.match.id_match and play.id_type_play=5
+       where project2.match.id_event = pid_event
+   )TempTiros
+   on TempTiros.id_event= project2.event.id_event
+   inner join(select count(case when project2.match.id_event=2 then 2 end)TotalEquipos, project2.match.id_event from project2.match
+   )TempEquipos
+   on TempEquipos.id_event = project2.event.id_event
+    ;
+end$$
+
+DELIMITER ;
