@@ -1,0 +1,68 @@
+USE `project2`;
+DROP procedure IF EXISTS `getStatitisticForjava`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getStatitisticForjava`(in pid_event int,in pid_group int )
+BEGIN 
+select team.logo_team,team.team_name,sum(StatisticResult.goles_a_favor)as goles_totales,sum(StatisticResult.goles_en_contra)as goles_contra_totales
+,count(case when resultado= 'victoria' then 1 end)as total_victorias,count(case when resultado= 'derrota' then 1 end)as total_derrotas,count(case when resultado= 'empate' then 1 end)as total_empates
+,sum(StatisticResult.gol_diferencia)gol_diferencia_totales,sum(StatisticResult.puntos_Fairy_play)puntos_Fairy_play__totales
+from team
+inner join(select team.id_team, tempCasaGoles.goles_a_favor, (tempPartido.goles_totales- tempCasaGoles.goles_a_favor)goles_en_contra, if(goles_a_favor=(tempPartido.goles_totales- tempCasaGoles.goles_a_favor),'Empate',if(goles_a_favor>(tempPartido.goles_totales- tempCasaGoles.goles_a_favor),'victoria','derrota'))as resultado
+,(tempCasaGoles.goles_a_favor-(tempPartido.goles_totales- tempCasaGoles.goles_a_favor))gol_diferencia,ifnull(tempSanciones.totalSanciones,0) as puntos_Fairy_play
+   from project2.event 
+	inner join project2.group 
+    on project2.event.id_event = project2.group.id_event and project2.event.id_event= pid_event and ( project2.group.id_group=pid_group or pid_group is null)
+    inner join group_x_team
+    on group_x_team.id_group = project2.group.id_group
+    inner join team 
+    on group_x_team.id_team= team.id_team
+    inner join team_x_match 
+    on team_x_match.id_team =team.id_team
+    inner join (select count(case when play.id_type_play=4 then 1 end)as goles_a_favor, team.id_team,count(team_x_match.id_match)partidos,project2.match.id_match
+					from team
+                    inner join team_x_match
+                    on team.id_team = team_x_match.id_team
+                    inner join project2.match
+                    on project2.match.id_match = team_x_match.id_match
+                    inner join play 
+                    on play.id_match = project2.match.id_match and project2.match.id_event= pid_event
+                    inner join player
+                    on player.id_player = play.id_player and player.id_team= team.id_team
+                 group by team.id_team,project2.match.id_match
+				)tempCasaGoles
+	on  tempCasaGoles.id_team= team.id_team and team_x_match.id_match =tempCasaGoles.id_match
+	
+    inner join(select count(case when play.id_type_play=4 then 1 end)goles_totales, team.id_team,project2.match.id_match
+				from team
+                    inner join team_x_match
+                    on team.id_team = team_x_match.id_team
+                    inner join project2.match
+                    on project2.match.id_match = team_x_match.id_match
+                    inner join play 
+                    on play.id_match = project2.match.id_match and project2.match.id_event= pid_event
+                     group by team.id_team,project2.match.id_match
+    )tempPartido
+  on tempPartido.id_team = team.id_team and  team_x_match.id_match =tempPartido.id_match
+  left join(SELECT team.id_team,project2.match.id_match, count(sanction.id_sanction)totalSanciones
+	FROM team 
+	inner join team_x_match
+	on team_x_match.id_team= team.id_team
+	inner join project2.match
+	on project2.match.id_match = team_x_match.id_match
+	left join sanction
+	on sanction.id_match = project2.match.id_match and project2.match.id_event= pid_event
+	inner join player
+	on sanction.id_player= player.id_player and player.id_team = team.id_team 
+	group by team.id_team,project2.match.id_match
+    )tempSanciones
+on tempSanciones.id_team= team.id_team and team_x_match.id_match = tempSanciones.id_match)
+StatisticResult
+on StatisticResult.id_team= team.id_team
+group by team.id_team
+    ;
+    
+    end$$
+
+DELIMITER ;
