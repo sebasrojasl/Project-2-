@@ -1,0 +1,10 @@
+ALTER TABLE `project2`.`event` 
+ADD COLUMN `id_winner` INT NULL AFTER `id_type_event`,
+ADD UNIQUE INDEX `id_winner_UNIQUE` (`id_winner` ASC) VISIBLE;
+;
+ALTER TABLE `project2`.`event` 
+ADD CONSTRAINT `id_winner_fk`
+  FOREIGN KEY (`id_winner`)
+  REFERENCES `project2`.`team` (`id_team`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
