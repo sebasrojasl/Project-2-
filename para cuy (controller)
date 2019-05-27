@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package project2;
 
 import Connection.Connect;
@@ -104,7 +109,7 @@ public class Controller {
     
     //FIN PROCEDIMIENTOS PARA USUARIO
     
-    
+    //INICIO EDITAR ALIGMENT UDAE E INSERT
     
     
     public static int createAlignment(String name ){
@@ -119,6 +124,22 @@ public class Controller {
         return 0;
         
     }
+    
+    public static void updateAligment(){
+        try{
+       CallableStatement stmt= Connect.getInstance().getStmt("{call insert_alignment(?)}");
+       //  stmt.setString(1, name);
+         stmt.execute();
+      }catch(SQLException ex){
+      System.out.println(ex.getMessage());
+      }     
+        
+         
+        
+    }
+    
+    //FIN EDITAR ALIGMENT UpDAtE E INSERT
+    
     //      GETS DE  NOMBRES DE LOCALIZACIONES
     public static ArrayList<String> getContinentsName(){
        ArrayList<String>Continents= new ArrayList<String>();
@@ -526,6 +547,30 @@ public class Controller {
         }
          return  rowsResult;
     }    
+    
+    
+     public static ArrayList<String> getTopNPlayer(String Year,String eventType,int Ntop){
+        ArrayList<String> TopNPlayer = new ArrayList<String>();
+        try{
+          int id_event=getIdEvent(Year,eventType);
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getTopNPlayer(?,?)}");
+          stmt.setInt(1,id_event);
+          stmt.setInt(2,Ntop);
+
+          ResultSet myRs = stmt.executeQuery();
+           while(myRs.next()){
+               TopNPlayer.add(myRs.getString("player_name"));
+               TopNPlayer.add(myRs.getString("logo_team"));
+               TopNPlayer.add(myRs.getString("goles"));
+           }
+        
+       }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return TopNPlayer;
+        
+    }
+    
     //FIN CONSULTAS PRINCIPALES   
     
  
