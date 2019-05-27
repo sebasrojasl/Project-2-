@@ -1,0 +1,14 @@
+USE `project2`;
+DROP procedure IF EXISTS `getIdTeam`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getIdTeam`(in pteamName varchar(70))
+BEGIN
+ select team.id_team
+ from team
+ where team.team_name= pteamName;
+ 
+END$$
+
+DELIMITER ;
