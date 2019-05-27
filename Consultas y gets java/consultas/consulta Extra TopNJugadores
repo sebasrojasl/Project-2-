@@ -1,0 +1,27 @@
+USE `project2`;
+DROP procedure IF EXISTS `getTopNPlayer`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getTopNPlayer`(in pidEvent int,in Nplayers int)
+BEGIN
+select player.player_name,team.logo_team, TempGoles.goles/*,  concat(TempGoles.minuto_goles,'"')*/
+from player
+inner join (select count(play.id_type_play)goles, player.id_player, GROUP_CONCAT(play.minute SEPARATOR '", ' )minuto_goles
+			from play
+            inner join player
+            on play.id_player= player.id_player 
+            inner join project2.match
+            on play.id_match= project2.match.id_match and project2.match.id_event = pidEvent
+            where play.id_type_play=4
+			group by player.id_player
+)TempGoles
+on player.id_player = TempGoles.id_player
+inner join team
+on player.id_team = team.id_team
+order by  TempGoles.goles desc
+limit Nplayers
+;
+END$$
+
+DELIMITER ;
