@@ -1,0 +1,46 @@
+USE `project2`;
+DROP procedure IF EXISTS `getGroupsByEvent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getGroupsByEvent`(in pidEvent int)
+BEGIN
+	select project2.group.group_name
+    from project2.group
+    where project2.group.id_event= pidEvent;
+END$$
+
+DELIMITER ;
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getEventsYear`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getEventsYear` ()
+BEGIN
+	select project2.event.year
+    from project2.event;
+END$$
+
+DELIMITER ;
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getEventTypeByYear`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getEventTypeByYear` (in pyear int)
+BEGIN
+	select type_event.name_type_event
+    from project2.event 
+    inner join type_event
+    on project2.event.id_type_event= type_event.id_type_event
+    where project2.event.year= pyear;
+END$$
+
+DELIMITER ;
