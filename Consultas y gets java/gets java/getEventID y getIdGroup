@@ -15,3 +15,20 @@ END$$
 
 DELIMITER ;
 ;
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getIdGroup`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getIdGroup`(in pgroupName varchar(70),in pidevent int)
+BEGIN
+	select project2.group.id_group
+    from project2.group
+    where project2.group.id_event=pidevent and project2.group.group_name= pgroupName
+    ;
+    
+END$$
+
+DELIMITER ;
