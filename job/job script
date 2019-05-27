@@ -7,6 +7,6 @@ DO
 begin
   call insertStatistic();
   end |
-  delimiter |;
+  delimiter ;
 
 cuando ejecuten el script deben actualizar la fecha de inicio para un dia despues
