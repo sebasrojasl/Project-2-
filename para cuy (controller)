@@ -1,0 +1,592 @@
+package project2;
+
+import Connection.Connect;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import  project2.Encrypter;
+import static project2.Encrypter.encryptPassword;
+/**
+ *
+ * @author andre
+ */
+public class Controller {
+    private static Controller Controller;
+    public static Controller getInstance(){
+        if(Controller==null){
+            Controller= new Controller();
+        }
+        return Controller;
+    }
+    // PROCEDIMIENTOS PARA USUUARIO
+       public static boolean validatePasssword(String nickname,String password){ 
+           try{
+              password = Encrypter.encryptPassword(password);
+            CallableStatement stmt= Connect.getInstance().getStmt("{call getUserPassword(?)}");
+            stmt.setString(1, nickname);
+            ResultSet myRs = stmt.executeQuery();
+            String ResultPassword = null;
+            while (myRs.next()) {
+                ResultPassword = myRs.getString("password");
+            }
+         if( password.equals(ResultPassword)){
+             return true;                     
+         }else{
+             return false;
+         }
+      }catch(SQLException ex){
+      System.out.println(ex.getMessage());
+      }     
+           
+           return false;
+       }
+    public static void createUser(String nickname, String password){
+         try{
+       CallableStatement stmt= Connect.getInstance().getStmt("{call insert_user(?,?,?)}");
+        password = Encrypter.encryptPassword(password);
+         stmt.setString(1,nickname);
+         stmt.setString(2, password);
+         stmt.setInt(3, 2);
+         
+          stmt.execute();
+      }catch(SQLException ex){
+      System.out.println(ex.getMessage());
+      }
+    
+    }
+    
+    
+    
+    public static void updateUser(String nickname,String newNickname,String newpassword,String newUserType){
+         try{
+       CallableStatement stmt= Connect.getInstance().getStmt("{call updateUser(?,?,?,?)}");
+       if(newpassword!=null){
+        newpassword = Encrypter.encryptPassword(newpassword);
+       }
+         stmt.setString(1,nickname);
+         stmt.setString(2, newNickname);
+         stmt.setString(3, newpassword);
+         stmt.setString(4, newUserType);
+         stmt.execute();
+      }catch(SQLException ex){
+         System.out.println(ex.getMessage());
+      }
+    
+    }
+    
+    public  static boolean  isAdmin(String nickname){
+         try{
+              
+            
+            CallableStatement stmt= Connect.getInstance().getStmt("{call isAdmin(?)}");
+            stmt.setString(1, nickname);
+            ResultSet myRs = stmt.executeQuery();
+            String result = "";
+            while (myRs.next()) {
+                result = myRs.getString("result");
+            
+            }
+         if( result.equals("true")){
+                          System.out.println("admin");
+
+             return true;           
+         }else{
+             return false;
+         }
+      }catch(SQLException ex){
+      System.out.println(ex.getMessage());
+      }     
+           
+           return false;
+    
+    }
+    
+    //FIN PROCEDIMIENTOS PARA USUARIO
+    
+    
+    
+    
+    public static int createAlignment(String name ){
+       try{
+       CallableStatement stmt= Connect.getInstance().getStmt("{call insert_alignment(?)}");
+         stmt.setString(1, name);
+         stmt.execute();
+      }catch(SQLException ex){
+      System.out.println(ex.getMessage());
+      }     
+        
+        return 0;
+        
+    }
+    //      GETS DE  NOMBRES DE LOCALIZACIONES
+    public static ArrayList<String> getContinentsName(){
+       ArrayList<String>Continents= new ArrayList<String>();
+       try{
+        CallableStatement stmt= Connect.getInstance().getStmt("{call getContinentsName()}");
+        ResultSet myRs = stmt.executeQuery();
+        while(myRs.next()){
+            Continents.add(myRs.getString("continent_name"));
+        }
+       }catch(SQLException ex){
+      System.out.println(ex.getMessage());
+      }     
+        return Continents;
+    }
+  
+    
+    public static ArrayList<String> getCountryNames(String continentName){
+       ArrayList<String>countries= new ArrayList<String>();
+       try{
+        CallableStatement stmt= Connect.getInstance().getStmt("{call getCountryNames(?)}");
+        stmt.setString(1, continentName);
+        ResultSet myRs = stmt.executeQuery();
+        while(myRs.next()){
+            countries.add(myRs.getString("country_name"));
+        }
+       }catch(SQLException ex){
+      System.out.println(ex.getMessage());
+      }     
+        return countries;
+    }
+        
+   public static ArrayList<String> getProvinceNames(String CountryName){
+       ArrayList<String>provinces= new ArrayList<String>();
+       try{
+        CallableStatement stmt= Connect.getInstance().getStmt("{call getProvinceNames(?)}");
+        stmt.setString(1, CountryName);
+        ResultSet myRs = stmt.executeQuery();
+        while(myRs.next()){
+            provinces.add(myRs.getString("province_name"));
+        }
+       }catch(SQLException ex){
+      System.out.println(ex.getMessage());
+      }     
+        return provinces;
+   
+   }
+   
+   public static ArrayList<String> getCantonNames(String ProvinceName){
+        ArrayList<String>Cantons= new ArrayList<String>();
+       try{
+        CallableStatement stmt= Connect.getInstance().getStmt("{call getCantonNames(?)}");
+        stmt.setString(1, ProvinceName);
+        ResultSet myRs = stmt.executeQuery();
+        while(myRs.next()){
+            Cantons.add(myRs.getString("canton_name"));
+       }
+       }catch(SQLException ex){
+      System.out.println(ex.getMessage());
+      }     
+        return Cantons;
+   
+   }
+   
+   
+   public static ArrayList<String> getDistrictNames(String ProvinceName){
+       ArrayList<String>Districts= new ArrayList<String>();
+       try{
+       CallableStatement stmt= Connect.getInstance().getStmt("{call getDistrictNames(?)}");
+       stmt.setString(1, ProvinceName);
+       ResultSet myRs = stmt.executeQuery();
+       while(myRs.next()){
+           Districts.add(myRs.getString("district_name"));
+       }
+       }catch(SQLException ex){
+      System.out.println(ex.getMessage());
+      }     
+        return Districts;
+   }
+    // FINAL GETS NOMBRES LOCALIZACIONES
+    
+   //INICIO GETS ID LOCALIZACIONES
+   public static int getIdContinent(String NameContinent){
+    int idContinent=-1;
+    try{
+      CallableStatement stmt= Connect.getInstance().getStmt("{call getIdContinent(?)}");
+      stmt.setString(1,NameContinent);
+      ResultSet myRs = stmt.executeQuery();
+      while(myRs.next()){
+            idContinent= myRs.getInt("id_continent");
+        }
+    }catch(SQLException ex){
+        System.out.println(ex.getMessage());
+    }
+        return idContinent;
+   }
+   
+   
+   
+   public static int getIdCountry(String NameCountry){
+    int idCountry=-1;
+    try{
+      CallableStatement stmt= Connect.getInstance().getStmt("{call getIdCountry(?)}");
+      stmt.setString(1,NameCountry);
+      ResultSet myRs = stmt.executeQuery();
+      while(myRs.next()){
+            idCountry= myRs.getInt("id_country");
+        }
+    }catch(SQLException ex){
+        System.out.println(ex.getMessage());
+    }
+        return idCountry;
+   }
+   
+   
+    public static int getIdProvince(String NameProvince){
+    int idProvince=-1;
+    try{
+      CallableStatement stmt= Connect.getInstance().getStmt("{call getIdProvince(?)}");
+      stmt.setString(1,NameProvince);
+      ResultSet myRs = stmt.executeQuery();
+      while(myRs.next()){
+            idProvince= myRs.getInt("id_province");
+        }
+    }catch(SQLException ex){
+        System.out.println(ex.getMessage());
+    }
+        return idProvince;
+   }
+    
+    
+    public static int getIdCanton(String NameCanton){
+    int idCanton=-1;
+    try{
+      CallableStatement stmt= Connect.getInstance().getStmt("{call getIdCanton(?)}");
+      stmt.setString(1,NameCanton);
+      ResultSet myRs = stmt.executeQuery();
+      while(myRs.next()){
+            idCanton= myRs.getInt("id_canton");
+        }
+    }catch(SQLException ex){
+        System.out.println(ex.getMessage());
+    }
+        return idCanton;
+   }
+    
+    
+    
+     public static int getIdDistrict(String NameDistrict){
+    int idDistrict=-1;
+    try{
+      CallableStatement stmt= Connect.getInstance().getStmt("{call getIdDistrict(?)}");
+      stmt.setString(1,NameDistrict);
+      ResultSet myRs = stmt.executeQuery();
+      while(myRs.next()){
+            idDistrict= myRs.getInt("id_District");
+        }
+    }catch(SQLException ex){
+        System.out.println(ex.getMessage());
+    }
+        return idDistrict;
+   }
+   //FIN GETS ID LOCALIZACIONES
+     
+    
+     
+     
+   //INICIO INSERTS LOCALIZACIONES
+     public static void insertContinent(String ContinentName){
+        try{
+            CallableStatement stmt= Connect.getInstance().getStmt("{call insert_Continent(?)}");
+            stmt.setString(1,ContinentName);
+            stmt.execute();
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }    
+     }
+     
+     
+     public static void insertCountry(String CountryName,String ContinentName){
+        try{
+            CallableStatement stmt= Connect.getInstance().getStmt("{call insert_Country(?,?)}");
+            stmt.setString(1,CountryName);
+            
+            stmt.setInt(2, getIdContinent(ContinentName));
+            stmt.execute();
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }    
+     }
+     
+      public static void insertProvince(String ProvinceName,String CountryName){
+        try{
+            CallableStatement stmt= Connect.getInstance().getStmt("{call insert_Province(?,?)}");
+            stmt.setString(1,ProvinceName);
+            stmt.setInt(2, getIdCountry(CountryName));
+            stmt.execute();
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }    
+     }
+      
+      public static void insertCanton (String CantonName,String ProvinceName){
+          try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call insert_Canton(?,?)}");
+               stmt.setString(1, CantonName);
+               stmt.setInt(2,getIdProvince(ProvinceName));
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }  
+      }
+     
+      
+       public static void insertDistrict (String DistrictName,String CantonName){
+          try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call insert_District(?,?)}");
+               stmt.setString(1, DistrictName);
+               stmt.setInt(2,getIdCanton(CantonName));
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }  
+      }
+   //FIN  INSERTS LOCALIZACIONES
+       
+       
+        //INICIO UPDATES LOCALIZACIONES
+       //
+       public static void updateContinent(String ContinentName, String newName){
+           try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call updateContinent(?,?)}");
+               stmt.setInt(1,getIdContinent(ContinentName));
+               stmt.setString(2,newName);
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }  
+       
+       }
+       
+       public static void updateCountry(String CountryName,String newName, String ContinentName){
+           try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call updateCountry(?,?,?)}");
+               stmt.setInt(1,getIdCountry(CountryName));
+               stmt.setString(2,newName);
+               if(ContinentName==null){
+                stmt.setString(3,ContinentName);
+               }else{
+                stmt.setString(3,String.valueOf(getIdContinent(ContinentName)));
+               }
+              
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }  
+       }
+       
+       
+       public static void updateProvince(String ProvinceName,String newName, String CountryName){
+           try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call updateProvince(?,?,?)}");
+               stmt.setInt(1,getIdProvince(ProvinceName));
+               stmt.setString(2,newName);
+               if(CountryName==null){
+                stmt.setString(3,CountryName);
+               }else{
+                stmt.setString(3,String.valueOf(getIdCountry(CountryName)));
+               }
+              
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+       }
+       
+       
+       public static void updateCanton(String CantonName,String newName,String ProvinceName){
+           try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call updateCanton(?,?,?)}");
+               stmt.setInt(1,getIdCanton(CantonName));
+               stmt.setString(2,newName);
+               if(ProvinceName==null){
+                stmt.setString(3,ProvinceName);
+               }else{
+                stmt.setString(3,String.valueOf(getIdProvince(ProvinceName)));
+               }
+              
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+       }
+       
+       public static void updateDistrict(String DistrictName,String newName,String CantonName){
+           try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call updateDistrict(?,?,?)}");
+               stmt.setInt(1,getIdDistrict(DistrictName));
+               stmt.setString(2,newName);
+               if(CantonName==null){
+                stmt.setString(3,CantonName);
+               }else{
+                stmt.setString(3,String.valueOf(getIdCanton(CantonName)));
+               }
+              
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+       }
+       
+       
+       
+   //FIN UPDATES LOCALIZACIONES
+       
+       
+       
+   //INICIO CONSULTAS PRINCIPALES CON SUS GETS 
+    public static int getIdEvent(String Year,String eventType){
+        int idEvent=-1;
+        try{
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getEventID(?,?)}");
+          stmt.setString(1,Year);
+          stmt.setString(2,eventType);
+          ResultSet myRs = stmt.executeQuery();
+          while(myRs.next()){
+                idEvent= myRs.getInt("id_event");
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return idEvent;
+   }
+    
+    
+    
+    public static int getIdGroup(String Year,String eventType,String groupName ){
+        int idEvent=-1;
+        try{
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getIdGroup(?,?)}");
+          
+          stmt.setString(1,groupName);
+          stmt.setInt(2,getIdEvent(Year,eventType));
+          ResultSet myRs = stmt.executeQuery();
+          while(myRs.next()){
+                idEvent= myRs.getInt("id_event");
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return idEvent;
+   }
+    
+    public static ArrayList<ArrayList<String>> getResultbyEventAndGroup(String Year,String eventType,String groupName){
+         ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
+         try{
+             int id_event=getIdEvent(Year,eventType);
+             int id_group= getIdGroup(Year,eventType,groupName);
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getStatitisticForjava(?,?)}");
+          stmt.setInt(1,id_event);
+          if(groupName==null){
+            stmt.setString(2,groupName);
+          }else{
+              stmt.setInt(2,id_group);
+          }
+          ResultSet myRs = stmt.executeQuery();
+          while(myRs.next()){
+              ArrayList<String> tempRow= new ArrayList<String>();
+            tempRow.add(myRs.getString("logo_team"));
+            tempRow.add(myRs.getString("team_name"));
+            tempRow.add(myRs.getString("goles_totales"));
+            tempRow.add(myRs.getString("goles_contra_totales"));
+            tempRow.add(myRs.getString("total_victorias"));
+            tempRow.add(myRs.getString("total_derrotas"));
+            tempRow.add(myRs.getString("total_empates"));
+            tempRow.add(myRs.getString("gol_diferencia_totales"));
+            tempRow.add(myRs.getString("puntos_Fairy_play__totales"));
+            
+            rowsResult.add(tempRow);
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+         
+         return rowsResult;
+     }
+     
+    public static ArrayList<ArrayList<String>> getStatisticbyEvent(String Year,String eventType){
+        ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
+        double tempNumber;
+        try{
+          int id_event=getIdEvent(Year,eventType);
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getStatisticbyEvent(?)}");
+          stmt.setInt(1,id_event);
+          ResultSet myRs = stmt.executeQuery();
+          while(myRs.next()){
+              ArrayList<String> tempRow= new ArrayList<String>();
+              tempRow.add(myRs.getString("PorcentajeGoles"));
+              tempRow.add(myRs.getString("PorcentajeAmarillas"));
+              tempRow.add(myRs.getString("PorcentajeRojas"));
+              tempRow.add(myRs.getString("Promediotiros"));
+              rowsResult.add(tempRow);
+          }  
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+         return  rowsResult;
+    }    
+    //FIN CONSULTAS PRINCIPALES   
+    
+ 
+    //INICIO CONSULTAS EVENTOS Y GRUPOS
+    public static ArrayList<String> getGroupsByEvent(String Year,String eventType){
+        ArrayList<String> groups = new ArrayList<String>();
+        try{
+          int id_event=getIdEvent(Year,eventType);
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getGroupsByEvent(?)}");
+          stmt.setInt(1,id_event);
+          ResultSet myRs = stmt.executeQuery();
+           while(myRs.next()){
+               groups.add(myRs.getString("group_name"));
+               
+           }
+        
+       }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return groups;
+        
+    }
+                        //gets del evento
+    
+    
+    public static ArrayList<String> getEventsYear(){
+        ArrayList<String> events = new ArrayList<String>();
+        try{
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getEventsYear()}");
+          
+          ResultSet myRs = stmt.executeQuery();
+           while(myRs.next()){
+               events.add(myRs.getString("year"));
+               
+           }
+        
+       }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return events;
+        
+    }
+    public static ArrayList<String> getEventTypeByYear(String Year){
+        ArrayList<String> events = new ArrayList<String>();
+        try{
+         
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getEventTypeByYear(?)}");
+          stmt.setString(1,Year);
+          ResultSet myRs = stmt.executeQuery();
+           while(myRs.next()){
+               events.add(myRs.getString("name_type_event"));
+           }
+        
+       }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return events;
+        
+    }
+    
+    
+    //FIN CONSULTAS EVENTOS Y GRUPOS
+
+}
