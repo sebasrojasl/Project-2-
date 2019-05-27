@@ -6,8 +6,8 @@ USE `project2`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getStatisticbyEvent`(in pid_event int)
 BEGIN
 
-    select ifnull(tempGoles.goles/TempMatch.TotalPartidos,0) as PorcentajeGoles,ifnull(tempSancionesAmarillas.Amarillas/TempMatch.TotalPartidos,0)  as PorcentajeAmarillas
-    ,ifnull(tempSancionesRojas.Rojas/tempMatch.TotalPartidos,0)as PorcentajeRojas, ifnull(TempTiros.Totaltiros/TempEquipos.TotalEquipos,0) as Promediotiros
+    select ifnull(round(tempGoles.goles/TempMatch.TotalPartidos,1),0) as PorcentajeGoles,ifnull(round(tempSancionesAmarillas.Amarillas/TempMatch.TotalPartidos,1),0)  as PorcentajeAmarillas
+    ,ifnull(round(tempSancionesRojas.Rojas/tempMatch.TotalPartidos,1),0)as PorcentajeRojas, ifnull(round(TempTiros.Totaltiros/TempEquipos.TotalEquipos,1),0) as Promediotiros
     from project2.event
     left join( select count(case when play.id_type_play=4 then 1 end) as goles,project2.match.id_event
 		from play
