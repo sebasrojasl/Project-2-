@@ -1,5 +1,13 @@
+USE `project2`;
+DROP procedure IF EXISTS `getContinentsName`;
+
+DELIMITER $$
+USE `project2`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getContinentsName`()
 begin 
 	select continent.continent_name
     from continent;
-end
+    
+end$$
+
+DELIMITER ;
