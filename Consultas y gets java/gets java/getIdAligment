@@ -1,0 +1,15 @@
+USE `project2`;
+DROP procedure IF EXISTS `getIdAlignment`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getIdAlignment`(in palignmentName varchar(70))
+BEGIN
+	select alignment.id_alignment
+    from  alignment
+	where alignment.alignment_name =palignmentName
+;
+
+END$$
+
+DELIMITER ;
