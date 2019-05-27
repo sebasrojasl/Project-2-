@@ -3,14 +3,15 @@ DROP procedure IF EXISTS `getEventID`;
 
 DELIMITER $$
 USE `project2`$$
-CREATE PROCEDURE `getEventID` (in pYear int,in eventName varchar (70) )
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getEventID`(in pYear int,in eventName varchar (70) )
 BEGIN
 	select project2.event.id_event
     from project2.event
-    inner join  type.event
+    inner join  type_event
     on project2.type_event.name_type_event=eventName
     where project2.event.year= pYear
 	;
 END$$
 
 DELIMITER ;
+;
