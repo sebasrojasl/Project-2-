@@ -1,0 +1,14 @@
+USE `project2`;
+DROP procedure IF EXISTS `getIdNacionality`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getIdNacionality` (in pnameNationality varchar(70))
+BEGIN
+	select Nationality.id_Nationality
+    from Nationality
+    where Nationality.Nationality_name = pnameNationality;
+
+END$$
+
+DELIMITER ;
