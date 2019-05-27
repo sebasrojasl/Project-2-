@@ -1,0 +1,11 @@
+ALTER TABLE `project2`.`stadium` 
+DROP FOREIGN KEY `id_district_fk`;
+ALTER TABLE `project2`.`stadium` 
+CHANGE COLUMN `id_district` `id_province` INT(11) NULL DEFAULT NULL COMMENT 'Unique identifier of the district. ' ,
+ADD INDEX `id_provinceST_fk_idx` (`id_province` ASC) VISIBLE,
+DROP INDEX `id_district_fk_idx` ;
+;
+ALTER TABLE `project2`.`stadium` 
+ADD CONSTRAINT `id_provinceST_fk`
+  FOREIGN KEY (`id_province`)
+  REFERENCES `project2`.`province` (`id_province`);
