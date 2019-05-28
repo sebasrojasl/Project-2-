@@ -1,0 +1,12 @@
+INSERT INTO `project2`.`team` (`id_country`, `id_alignment`, `team_name`) VALUES ('1', '5', 'Argentina');
+INSERT INTO `project2`.`team` (`id_country`, `id_alignment`, `team_name`) VALUES ('6', '1', 'Brasil');
+INSERT INTO `project2`.`team` (`id_country`, `id_alignment`, `team_name`) VALUES ('7', '3', 'Canadá');
+INSERT INTO `project2`.`team` (`id_country`, `id_alignment`, `team_name`) VALUES ('8', '2', 'Chile');
+INSERT INTO `project2`.`team` (`id_country`, `id_alignment`, `team_name`) VALUES ('10', '10', 'Costa Rica');
+INSERT INTO `project2`.`team` (`id_country`, `id_alignment`, `team_name`) VALUES ('9', '2', 'Colombia');
+INSERT INTO `project2`.`team` (`id_country`, `id_alignment`, `team_name`) VALUES ('15', '8', 'El Salvador');
+INSERT INTO `project2`.`team` (`id_country`, `id_alignment`, `team_name`) VALUES ('16', '7', 'Estados Unidos');
+INSERT INTO `project2`.`team` (`id_country`, `id_alignment`, `team_name`) VALUES ('21', '5', 'Honduras');
+INSERT INTO `project2`.`team` (`id_country`, `id_alignment`, `team_name`) VALUES ('23', '4', 'México');
+INSERT INTO `project2`.`team` (`id_country`, `id_alignment`, `team_name`) VALUES ('25', '3', 'Panamá');
+INSERT INTO `project2`.`team` (`id_country`, `id_alignment`, `team_name`) VALUES ('27', '9', 'Perú');
