@@ -1,0 +1,13 @@
+USE `project2`;
+DROP procedure IF EXISTS `getTeamNames`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getTeamNames` ()
+BEGIN
+select team.team_name
+from team;
+END$$
+
+DELIMITER ;
+
