@@ -898,6 +898,27 @@ public class Controller {
      }
     
     
+    public static void createtypeEvent(String typeEvent){
+        try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call insert_typevent(?)}");
+               stmt.setString(1, typeEvent);
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    public static void updateTypeEvent(String typeEvent,String newName){
+        try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call updatetypeEvent(?,?)}");
+               stmt.setInt(1,getIdTypeEvent( typeEvent));
+               stmt.setString(2,newName);
+        
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }  
+    }
+    
     public static void createEvent(String year,String TypeeventName){
         try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_event(?,?)}");
