@@ -326,6 +326,24 @@ DELIMITER ;
 
 
 
+USE `project2`;
+DROP procedure IF EXISTS `updatetypeEvent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updatetypeEvent`(pid_event int ,newName varchar(70))
+BEGIN
+    update event
+    set
+    `name_type_event` = ifnull(`name_type_event`, newName) 
+    where id_type_event = pid_type_event ;
+    commit;
+    
+END$$
+
+DELIMITER ;
+
+
 
 USE `project2`;
 DROP procedure IF EXISTS `updateTypePlay`;
