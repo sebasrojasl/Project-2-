@@ -8,3 +8,12 @@ INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Porto
 INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Recife', '6');
 INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Natal', '6');
 INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Brasilia', '6');
+
+
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('San José', '10');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Cartago', '10');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Alajuela', '10');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Guanacaste', '10');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Puntarenas', '10');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Limón', '10');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Heredia', '10');
