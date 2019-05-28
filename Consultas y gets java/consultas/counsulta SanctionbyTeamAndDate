@@ -1,0 +1,25 @@
+USE `project2`;
+DROP procedure IF EXISTS `getSanctionsbyTeamAndDate`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSanctionsbyTeamAndDate`(in pidEvent int,in pidTeam int,in pDate Date)
+BEGIN
+select team.team_name,player.player_name, sanction_type.sanction_name, concat(sanction.minute,'"')as minute
+from   team_x_match
+inner join project2.match
+on team_x_match.id_match = project2.match.id_match and project2.match.date=pDate and project2.match.id_event = pidEvent
+inner join sanction
+on sanction.id_match = project2.match.id_match
+inner join sanction_type
+on sanction.id_sanction_type =   sanction_type.id_sanction_type
+inner join player
+on player.id_player  =sanction.id_player
+inner join team
+on player.id_team= team.id_team
+where team_x_match.id_team = pidTeam
+order by  sanction.minute
+;
+END$$
+
+DELIMITER ;
