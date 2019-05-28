@@ -3,7 +3,7 @@ DROP procedure IF EXISTS `getStadiumByTeamAndDate`;
 
 DELIMITER $$
 USE `project2`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getStadiumByTeamAndDate`(in pidEvent int,in pidTeam int,in pDate Date)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getStadiumByTeamAndDate`(in pidEvent int,in pidTeam int,in pDate DateTime)
 BEGIN
 select stadium.stadium_name, project2.match.date
 from team_x_match
@@ -17,3 +17,4 @@ where team_x_match.id_team = pidTeam
 END$$
 
 DELIMITER ;
+
