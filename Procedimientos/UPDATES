@@ -331,18 +331,17 @@ DROP procedure IF EXISTS `updatetypeEvent`;
 
 DELIMITER $$
 USE `project2`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updatetypeEvent`(pid_event int ,newName varchar(70))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updatetypeEvent`(pid_type_event int ,newName varchar(70))
 BEGIN
-    update event
+    update type_event
     set
-    `name_type_event` = ifnull(`name_type_event`, newName) 
+    name_type_event = ifnull(newName,`name_type_event`) 
     where id_type_event = pid_type_event ;
     commit;
     
 END$$
 
 DELIMITER ;
-
 
 
 USE `project2`;
