@@ -1,3 +1,8 @@
+USE `project2`;
+DROP procedure IF EXISTS `insertStatistic`;
+
+DELIMITER $$
+USE `project2`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertStatistic`()
 BEGIN
 insert into statistict(id_event,goals_per_match,Averague_Cautions,Averague_Expulsions,Average_Shots)
@@ -22,7 +27,6 @@ select project2.event.id_event,ifnull(tempGoles.goles/TempMatch.TotalPartidos,0)
     )tempSancionesAmarillas
     on project2.event.id_event=tempSancionesAmarillas.id_event
     
-    
     left join( select count(case when sanction.id_sanction_type=2 then 1 end)as Rojas, project2.match.id_event
 		from sanction 
         inner join project2.match
@@ -42,4 +46,6 @@ select project2.event.id_event,ifnull(tempGoles.goles/TempMatch.TotalPartidos,0)
    on TempEquipos.id_event = project2.event.id_event
 
 ;
-END
+END$$
+
+DELIMITER ;
