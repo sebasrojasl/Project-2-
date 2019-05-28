@@ -1,0 +1,16 @@
+USE `project2`;
+DROP procedure IF EXISTS `getPlayerNamesbyTeam`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getPlayerNamesbyTeam`(in pTeamName varchar(70))
+BEGIN
+	select player.player_name
+	from player
+    inner join team
+    on player.id_team = team.id_team
+    where team.team_name= pTeamName;
+    
+END$$
+
+DELIMITER ;
