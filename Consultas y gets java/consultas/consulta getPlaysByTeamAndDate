@@ -3,7 +3,7 @@ DROP procedure IF EXISTS `getPlaysbyTeamAndDate`;
 
 DELIMITER $$
 USE `project2`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getPlaysbyTeamAndDate`(in pidEvent int,in pidTeam int,in pDate Date)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getPlaysbyTeamAndDate`(in pidEvent int,in pidTeam int,in pDate DateTime)
 BEGIN
 select team.team_name,player.player_name, type_play.play_name, concat(play.minute,'"')as minute
 from team_x_match
