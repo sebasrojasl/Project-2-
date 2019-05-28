@@ -33,5 +33,16 @@ INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification
 /* Costa Rica */
 
 
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Keylor Navas', '1', '726770536', '5', '15');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Giancarlo González', '5', '818501424', '5', '15');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Bryan Oviedo', '16', '104093424', '5', '15');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Francisco Calvo', '14', '822390460', '5', '15');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Bryan Ruiz', '10', '609606356', '5', '15');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Michael Umaña', '25', '686880245', '5', '15');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Marco Ureña', '18', '992849105', '5', '15');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Kendall Waston', '20', '592127235', '5', '15');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Celso Borges', '11', '209025030', '5', '15');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Christian Bolaños', '19', '116328287', '5', '15');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Joel Cambell', '12', '431779339', '5', '15');
 
 
