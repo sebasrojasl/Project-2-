@@ -1,12 +1,13 @@
 delimiter |
-CREATE EVENT IF NOT EXISTS `Statistic_save_event`
+CREATE EVENT  `Statistic_save_event`
 ON SCHEDULE EVERY 1 day 
-starts '2019-05-28 11:00:00'
-ends '2019-06-28 11:00:00' 
+starts '2019-05-29 11:00'
+ 
 DO 
 begin
   call insertStatistic();
   end |
   delimiter ;
+
 
 cuando ejecuten el script deben actualizar la fecha de inicio para un dia despues
