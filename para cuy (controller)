@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package project2;
-
 import Connection.Connect;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -109,9 +108,7 @@ public class Controller {
     
     //FIN PROCEDIMIENTOS PARA USUARIO
     
-    //INICIO EDITAR ALIGMENT UDAE E INSERT
-    
-    
+    //INICIO  ALIGNMENT 
     public static int createAlignment(String name ){
        try{
        CallableStatement stmt= Connect.getInstance().getStmt("{call insert_alignment(?)}");
@@ -124,21 +121,102 @@ public class Controller {
         return 0;
         
     }
+    //terminar
+    public static void updateAlignment(String aligmentName,String newName){
+       try{
+            CallableStatement stmt= Connect.getInstance().getStmt("{call updateAlignment(?,?)}");
+            stmt.setInt(1, getIdAlignment(aligmentName));
+            stmt.setString(2, newName);
+            stmt.execute();
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+      }                              
+    }
     
-    public static void updateAligment(){
+    public static int getIdAlignment(String aligmentName){
+        int idAlignment= -1;
+       try{
+        CallableStatement stmt= Connect.getInstance().getStmt("{call getIdAlignment(?)}");
+        stmt.setString(1, aligmentName);
+        ResultSet myRs = stmt.executeQuery();     
+        while(myRs.next()){
+        idAlignment= myRs.getInt("id_alignment");
+        }
+      }catch(SQLException ex){
+        System.out.println(ex.getMessage());
+      }                              
+       return idAlignment;
+    }
+    
+    public static ArrayList<String> getAlignmentNames(){
+        ArrayList<String> alignments =new ArrayList<String>();
         try{
-       CallableStatement stmt= Connect.getInstance().getStmt("{call insert_alignment(?)}");
-       //  stmt.setString(1, name);
+        CallableStatement stmt= Connect.getInstance().getStmt("{call getAlignmentNames()}");
+        ResultSet myRs = stmt.executeQuery();
+        while(myRs.next()){
+            alignments.add(myRs.getString("alignment_name"));
+        }
+       }catch(SQLException ex){
+      System.out.println(ex.getMessage());
+      }     
+        return alignments;
+    }
+    //FIN ALIGNMENT
+    //INICIO NACIONALIDAD
+        public static void insertNationality(String nacionalityName){
+       try{
+       CallableStatement stmt= Connect.getInstance().getStmt("{call insert_nationality(?)}");
+         stmt.setString(1, nacionalityName);
          stmt.execute();
       }catch(SQLException ex){
       System.out.println(ex.getMessage());
       }     
+     }
         
-         
         
+      public static void updateNationality(String NationalitytName,String newName){
+       try{
+            CallableStatement stmt= Connect.getInstance().getStmt("{call updateNationality(?,?)}");
+            stmt.setInt(1, getIdNationality(NationalitytName));
+            stmt.setString(2, newName);
+            stmt.execute();
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+      }                              
+    }   
+      
+     public static int getIdNationality(String NationalityName){
+        int idAlignment= -1;
+       try{
+        CallableStatement stmt= Connect.getInstance().getStmt("{call getIdNacionality(?)}");
+        stmt.setString(1, NationalityName);
+        ResultSet myRs = stmt.executeQuery();     
+        while(myRs.next()){
+        idAlignment= myRs.getInt("id_Nationality");
+        }
+      }catch(SQLException ex){
+        System.out.println(ex.getMessage());
+      }                              
+       return idAlignment;
     }
-    
-    //FIN EDITAR ALIGMENT UpDAtE E INSERT
+     
+     
+     public static ArrayList<String> getNationalityNames(){
+       ArrayList<String>Nationality= new ArrayList<String>();
+       try{
+        CallableStatement stmt= Connect.getInstance().getStmt("{call getNationalityNames()}");
+        ResultSet myRs = stmt.executeQuery();
+        while(myRs.next()){
+            Nationality.add(myRs.getString("Nationality_name"));
+        }
+       }catch(SQLException ex){
+      System.out.println(ex.getMessage());
+      }     
+        return Nationality;
+    }
+     
+      
+    //FIN NACIONALIDAD
     
     //      GETS DE  NOMBRES DE LOCALIZACIONES
     public static ArrayList<String> getContinentsName(){
@@ -634,5 +712,218 @@ public class Controller {
     
     
     //FIN CONSULTAS EVENTOS Y GRUPOS
-
+    
+    
+    //INICIO INSERTAR TEAM Y PERSONAS
+     public static int getIdTeam(String teamName){
+          int idAlignment= -1;
+       try{
+        CallableStatement stmt= Connect.getInstance().getStmt("{call getIdTeam(?)}");
+        stmt.setString(1, teamName);
+        ResultSet myRs = stmt.executeQuery();     
+        while(myRs.next()){
+        idAlignment= myRs.getInt("id_team");
+        }
+      }catch(SQLException ex){
+        System.out.println(ex.getMessage());
+      }                              
+       return idAlignment;
+     }
+    
+    public static void createTeam(String countryName,String aligmentName,String idCaptain, String teamName){
+       try{
+         CallableStatement stmt= Connect.getInstance().getStmt("{call insert_team(?,?,?,?)}");
+         stmt.setInt(1,getIdCountry(countryName));
+         stmt.setInt(2, getIdAlignment(aligmentName));
+         stmt.setString(3, idCaptain);
+         stmt.setString(4, teamName);
+         
+          stmt.execute();
+      }catch(SQLException ex){
+      System.out.println(ex.getMessage());
+      }
+    }
+    
+    public static void updateTeam(String teamName,String newName,String CountryName,String alignmentName,String captainName){
+        try{
+         CallableStatement stmt= Connect.getInstance().getStmt("{call updateTeam(?,?,?,?,?)}");
+         stmt.setInt(1,getIdTeam(teamName));
+         stmt.setString(2, newName);
+         if(CountryName==null){
+            stmt.setString(3,CountryName);
+         }else{
+            stmt.setInt(3, getIdCountry(CountryName));
+         }
+         if(alignmentName==null){
+            stmt.setString(4, alignmentName);
+         }else{
+            stmt.setInt(4,getIdAlignment(alignmentName));
+         }
+          if(captainName==null){
+            stmt.setString(5, captainName);
+         }else{
+            stmt.setInt(5,getIdPlayer(captainName));
+         }
+          stmt.execute();
+      }catch(SQLException ex){
+      System.out.println(ex.getMessage());
+      }
+    }
+    
+    
+    public static int getIdPlayer(String playerName){
+          int idplayer= -1;
+       try{
+        CallableStatement stmt= Connect.getInstance().getStmt("{call getIdPlayer(?)}");
+        stmt.setString(1, playerName);
+        ResultSet myRs = stmt.executeQuery();     
+        while(myRs.next()){
+        idplayer= myRs.getInt("id_player");
+        }
+      }catch(SQLException ex){
+        System.out.println(ex.getMessage());
+      }                              
+       return idplayer;
+     }
+    
+    
+    
+    public static void insertPlayer(String PlayerName,int number,int identificacition,String picture,String teamName,String nationality){
+        try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call insert_player(?,?,?,?,?,?)}");
+               stmt.setString(1, PlayerName);
+               stmt.setInt(2,number);
+               stmt.setInt(3,identificacition);
+               stmt.setString(4, picture);
+               stmt.setInt(5, getIdTeam(teamName));
+               stmt.setInt(6, getIdNationality(nationality));
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }  
+    }
+    
+    
+    
+    
+    public static void updatePlayer(String PlayerName,String newName,String newNumber,String newIdentificacition,String newPicture,String newTeamName,String newNationality){
+        try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call updatePlayer(?,?,?,?,?,?,?)}");
+               stmt.setInt(1, getIdPlayer(PlayerName));
+               stmt.setString(2,newName);
+               stmt.setString(3,newNumber);
+               stmt.setString(4, newIdentificacition);
+               stmt.setInt(5, getIdTeam(newPicture));
+               if(newTeamName==null){
+                    stmt.setString(6, newTeamName);
+               }else{
+                    stmt.setInt(6, getIdTeam(newTeamName));
+               }
+               if(newNationality==null){
+                   stmt.setString(7, newNationality);
+               }else{
+                   stmt.setInt(7,getIdNationality(newNationality));
+               }
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }        
+    }
+    
+    public static  ArrayList<String> getPlayerNamesbyTeam(String TeamName){
+        ArrayList<String> players = new ArrayList<String>();
+        try{
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getPlayerNamesbyTeam(?)}");
+          stmt.setString(1,TeamName);
+          ResultSet myRs = stmt.executeQuery();
+           while(myRs.next()){
+               players.add(myRs.getString("player_name"));
+           }
+        
+       }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return players;
+    }
+    
+    
+    public static ArrayList<String> getTeamNames(){
+        ArrayList<String> teams = new ArrayList<String>();
+        try{
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getTeamNames()}");
+          ResultSet myRs = stmt.executeQuery();
+           while(myRs.next()){
+               teams.add(myRs.getString("team_name"));
+           }
+        
+       }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return teams;
+    }
+    //FIN INSERTAR TEAM Y PERSONAS
+    
+    
+    
+    
+    // INICIO EVENTOS INSERT EVENT Y GROUP, GET LISTA tYPOS EVENTOS Y GETIDTIPOEVENTO
+    //CREAR EVENTO Y GRUPO
+    public static ArrayList<String> getTypeEvents(){
+        ArrayList<String> players = new ArrayList<String>();
+        try{
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getTypeEvents()}");
+          ResultSet myRs = stmt.executeQuery();
+           while(myRs.next()){
+               players.add(myRs.getString("name_type_event"));
+           }
+       }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return players;
+    }
+    
+    public static int getIdTypeEvent(String typeEventName){
+          int idplayer= -1;
+       try{
+        CallableStatement stmt= Connect.getInstance().getStmt("{call getIdTypeEvent(?)}");
+        stmt.setString(1, typeEventName);
+        ResultSet myRs = stmt.executeQuery();     
+        while(myRs.next()){
+        idplayer= myRs.getInt("id_type_event");
+        }
+      }catch(SQLException ex){
+        System.out.println(ex.getMessage());
+      }                              
+       return idplayer;
+     }
+    
+    
+    public static void createEvent(String year,String TypeeventName){
+        try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call insert_event(?,?)}");
+               stmt.setString(1, year);
+               stmt.setInt(2,getIdTypeEvent(TypeeventName));
+        
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }  
+    }
+    
+    
+    public static void createGroup(String groupName,String year,String typeEvent){
+        try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call insert_group(?,?)}");
+               stmt.setString(1, groupName);
+               
+               stmt.setInt(2,getIdEvent(year,typeEvent));
+        
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }  
+    }
+    
+    
+    
 }
