@@ -1,0 +1,13 @@
+USE `project2`;
+DROP procedure IF EXISTS `getTypeEvents`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getTypeEvents` ()
+BEGIN
+select Type_event.name_type_event
+from type_event;
+END$$
+
+DELIMITER ;
+
