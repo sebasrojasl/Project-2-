@@ -1,0 +1,371 @@
+USE `project2`;
+DROP procedure IF EXISTS `getIdContinent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getIdContinent`(in nameContinent varchar(70))
+BEGIN
+select continent.id_continent
+from continent
+where continent.continent_name= nameContinent;
+END$$
+
+DELIMITER ;
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getIdCountry`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getIdCountry`(in nameCountry varchar(70))
+BEGIN
+select  country.id_country
+from country 
+where country.country_name= nameCountry;
+END$$
+
+DELIMITER ;
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getIdProvince`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getIdProvince` (in NameProvince varchar(70))
+BEGIN
+select province.id_province
+from province
+where province.province_name= NameProvince;
+END$$
+
+DELIMITER ;
+
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getIdCanton`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getIdCanton`(in NameCanton varchar(70))
+BEGIN
+select canton.id_canton
+from canton 
+where canton.canton_name= NameCanton;
+
+END$$
+
+DELIMITER ;
+
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getIdDistrict`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getIdDistrict` (in NameDistrict varchar (70))
+BEGIN
+select district.id_district
+from district
+where district.district_name= NameDistrict;
+END$$
+
+DELIMITER ;
+
+
+USE `project2`;
+DROP procedure IF EXISTS `isAdmin`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `isAdmin`(in pnickname varchar(50))
+begin 
+	select (case when project2.user.id_user_type=1 then "true"else "false" end)result
+    from project2.user
+    where project2.user.user_name =pnickname;
+    
+end$$
+
+DELIMITER ;
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAlignmentNames`()
+BEGIN
+select alignment.alignment_name
+from alignment;
+END
+
+
+USE `project2`;
+DROP procedure IF EXISTS `project2`.`getCantonName`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getCantonNames`(in pprovince_Name varchar(50))
+begin 
+	select canton.canton_name
+    from canton
+    inner join province
+    on canton.id_province = province.id_province and province.province_name =pprovince_Name;
+end$$
+
+DELIMITER ;
+;
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getContinentsName`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getContinentsName`()
+begin 
+	select continent.continent_name
+    from continent;
+    
+end$$
+
+DELIMITER ;
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getCountrytNames`;
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getCountryNames`(in pcontinent_Name varchar(50))
+begin 
+	select country.country_name
+    from country
+    inner join continent
+    on country.id_continent= continent.id_continent
+    where  continent.continent_name= pcontinent_Name;
+end$$
+
+DELIMITER ;
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `project2`.`getDistrictName`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getDistrictNames`(in pCanton_Name varchar(50))
+begin 
+		select district.district_name
+        from district
+        inner join canton
+        on district.id_canton = canton.id_canton and canton.canton_name=pCanton_Name;
+end$$
+
+DELIMITER ;
+;
+
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getEventID`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getEventID`(in pYear int,in eventName varchar (70) )
+BEGIN
+	select project2.event.id_event
+    from project2.event
+    inner join  type_event
+    on project2.type_event.name_type_event=eventName
+    where project2.event.year= pYear
+	;
+END$$
+
+DELIMITER ;
+;
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getIdGroup`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getIdGroup`(in pgroupName varchar(70),in pidevent int)
+BEGIN
+	select project2.group.id_group
+    from project2.group
+    where project2.group.id_event=pidevent and project2.group.group_name= pgroupName
+    ;
+    
+END$$
+
+DELIMITER ;
+
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getGroupsByEvent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getGroupsByEvent`(in pidEvent int)
+BEGIN
+	select project2.group.group_name
+    from project2.group
+    where project2.group.id_event= pidEvent;
+END$$
+
+DELIMITER ;
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getEventsYear`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getEventsYear` ()
+BEGIN
+	select project2.event.year
+    from project2.event;
+END$$
+
+DELIMITER ;
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getEventTypeByYear`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getEventTypeByYear` (in pyear int)
+BEGIN
+	select type_event.name_type_event
+    from project2.event 
+    inner join type_event
+    on project2.event.id_type_event= type_event.id_type_event
+    where project2.event.year= pyear;
+END$$
+
+DELIMITER ;
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getIdAlignment`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getIdAlignment`(in palignmentName varchar(70))
+BEGIN
+	select alignment.id_alignment
+    from  alignment
+	where alignment.alignment_name =palignmentName
+;
+
+END$$
+
+DELIMITER ;
+
+
+	
+USE `project2`;
+DROP procedure IF EXISTS `getIdNacionality`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getIdNacionality` (in pnameNationality varchar(70))
+BEGIN
+	select Nationality.id_Nationality
+    from Nationality
+    where Nationality.Nationality_name = pnameNationality;
+
+END$$
+
+DELIMITER ;
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getIdPlayer`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getIdPlayer`(in playerName varchar(50))
+BEGIN
+	select player.id_player
+    from player
+    where player.player_name= playerName;
+END$$
+
+DELIMITER ;
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getIdTeam`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getIdTeam`(in pteamName varchar(70))
+BEGIN
+ select team.id_team
+ from team
+ where team.team_name= pteamName;
+ 
+END$$
+
+DELIMITER ;
+
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getIdTeam`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getIdTeam`(in pteamName varchar(70))
+BEGIN
+ select team.id_team
+ from team
+ where team.team_name= pteamName;
+ 
+END$$
+
+DELIMITER ;
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getIdTypeEvent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getIdTypeEvent`(in pnameTypeEvent varchar(70))
+BEGIN
+	select type_event.id_type_event
+    from type_event
+    where type_event.name_type_event = pnameTypeEvent;
+END$$
+
+DELIMITER ;
+
+
+
+DELIMITER //
+CREATE PROCEDURE `getUserPassword` (in pnickname varchar(50))
+begin
+select user.password
+	from user
+    where user.user_name = pnickname
+    ;
+end //
+DELIMITER ;
