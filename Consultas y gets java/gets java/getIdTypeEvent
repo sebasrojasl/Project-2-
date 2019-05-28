@@ -1,0 +1,13 @@
+USE `project2`;
+DROP procedure IF EXISTS `getIdTypeEvent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getIdTypeEvent`(in pnameTypeEvent varchar(70))
+BEGIN
+	select type_event.id_type_event
+    from type_event
+    where type_event.name_type_event = pnameTypeEvent;
+END$$
+
+DELIMITER ;
