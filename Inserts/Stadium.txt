@@ -17,4 +17,6 @@ INSERT INTO `project2`.`stadium` (`stadium_name`, `id_province`) VALUES ('El Cam
 
 INSERT INTO `project2`.`stadium` (`stadium_name`, `id_province`) VALUES ('Mercedes-Benz Stadium', '33');
 INSERT INTO `project2`.`stadium` (`stadium_name`, `id_province`) VALUES ('Estadio BBVA Compass', '21');
+INSERT INTO `project2`.`stadium` (`stadium_name`, `id_province`) VALUES ('Century Link Field', '22');
+INSERT INTO `project2`.`stadium` (`stadium_name`, `id_province`) VALUES ('RedBull Arena', '23');
 
