@@ -5,14 +5,12 @@ CREATE TABLE `statistict` (
    `Averague_Expulsions` int(11) DEFAULT NULL COMMENT 'Averague_Expulsions per match',
    `Average_Shots` int(11) DEFAULT NULL COMMENT 'Average_Shots',
    PRIMARY KEY (`id_Statistict`)
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='table that stores event statistics\n'
+ )COMMENT='table that stores event statistics\n'
  
  
  ;
 
-
- 
  ALTER TABLE `project2`.`statistict` 
 ADD COLUMN `creation_date` DATE ,
-ADD COLUMN `id_event` INT NULL AFTER `id_Statistict',
+ADD COLUMN `id_event` INT NULL AFTER `id_Statistict`,
 ADD COLUMN `creation_user` VARCHAR(45);
