@@ -17,3 +17,17 @@ INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Guana
 INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Puntarenas', '10');
 INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Limón', '10');
 INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Heredia', '10');
+
+
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('California', '16');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Florida', '16');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Nueva York ', '16');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Texas', '16');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Washington', '16');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('New Jersey', '16');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Ohio', '16');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Minnesota', '16');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Indiana', '16');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Louisiana', '16');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Utah', '16');
+
