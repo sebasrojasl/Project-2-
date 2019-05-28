@@ -1,0 +1,2 @@
+ALTER TABLE `project2`.`match` 
+CHANGE COLUMN `date` `date` DATETIME NOT NULL COMMENT 'date of the match' ;
