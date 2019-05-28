@@ -1,0 +1,26 @@
+USE `project2`;
+DROP procedure IF EXISTS `getPlaysbyTeamAndDate`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getPlaysbyTeamAndDate`(in pidEvent int,in pidTeam int,in pDate Date)
+BEGIN
+select team.team_name,player.player_name, type_play.play_name, concat(play.minute,'"')as minute
+from team_x_match
+inner join project2.match
+on team_x_match.id_match = project2.match.id_match and project2.match.date=pDate and project2.match.id_event = pidEvent
+inner join play
+on play.id_match = project2.match.id_match
+inner join type_play
+on play.id_type_play =   type_play.id_type_play
+inner join player
+on player.id_player  =play.id_player
+inner join team
+on player.id_team= team.id_team
+where team_x_match.id_team = pidTeam
+order by  play.minute
+;
+
+END$$
+
+DELIMITER ;
