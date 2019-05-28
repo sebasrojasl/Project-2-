@@ -30,6 +30,8 @@ INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Minne
 INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Indiana', '16');
 INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Louisiana', '16');
 INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Utah', '16');
+INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Georgia', '16');
+
 
 
 INSERT INTO `project2`.`province` (`province_name`, `id_country`) VALUES ('Barranquilla', '9');
