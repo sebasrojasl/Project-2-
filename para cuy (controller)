@@ -626,29 +626,6 @@ public class Controller {
          return  rowsResult;
     }    
     
-    
-     public static ArrayList<String> getTopNPlayer(String Year,String eventType,int Ntop){
-        ArrayList<String> TopNPlayer = new ArrayList<String>();
-        try{
-          int id_event=getIdEvent(Year,eventType);
-          CallableStatement stmt= Connect.getInstance().getStmt("{call getTopNPlayer(?,?)}");
-          stmt.setInt(1,id_event);
-          stmt.setInt(2,Ntop);
-
-          ResultSet myRs = stmt.executeQuery();
-           while(myRs.next()){
-               TopNPlayer.add(myRs.getString("picture"));
-               TopNPlayer.add(myRs.getString("player_name"));
-               TopNPlayer.add(myRs.getString("logo_team"));
-               TopNPlayer.add(myRs.getString("goles"));
-           }
-        
-       }catch(SQLException ex){
-            System.out.println(ex.getMessage());
-        }
-        return TopNPlayer;
-        
-    }
     public static ArrayList<ArrayList<String>>  getPlaysbyTeamAndDate(String Year,String eventType,String teamName , String Date){
         ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
          try{
@@ -723,7 +700,57 @@ public class Controller {
     }       
      
     //FIN CONSULTAS PRINCIPALES   
-    
+    //CONSULTAS EXTRA 
+        public static ArrayList<ArrayList<String>> getTopNPlayerExtra(String Year,String eventType,int Ntop){
+       ArrayList<ArrayList<String>> TopNPlayer = new ArrayList<ArrayList<String>>();
+        try{
+          int id_event=getIdEvent(Year,eventType);
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getTopNPlayer(?,?)}");
+          stmt.setInt(1,id_event);
+          stmt.setInt(2,Ntop);
+
+          ResultSet myRs = stmt.executeQuery();
+           while(myRs.next()){
+               ArrayList<String> tempRow= new ArrayList<String>();
+               tempRow.add(myRs.getString("picture"));
+               tempRow.add(myRs.getString("player_name"));
+               tempRow.add(myRs.getString("logo_team"));
+               tempRow.add(myRs.getString("goles"));
+               TopNPlayer.add(tempRow);
+           }
+        
+       }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return TopNPlayer;
+        
+    }
+        
+     public static ArrayList<ArrayList<String>> getTopNWorstPlayer(String Year,String eventType,int Ntop){
+        ArrayList<ArrayList<String>> TopNPlayer = new ArrayList<ArrayList<String>>();
+        try{
+          int id_event=getIdEvent(Year,eventType);
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getTopNWorstPlayer(?,?)}");
+          stmt.setInt(1,id_event);
+          stmt.setInt(2,Ntop);
+          ResultSet myRs = stmt.executeQuery();
+           while(myRs.next()){
+               ArrayList<String> tempRow= new ArrayList<String>();
+               tempRow.add(myRs.getString("picture"));
+               tempRow.add(myRs.getString("player_name"));
+               tempRow.add(myRs.getString("logo_team"));
+               tempRow.add(myRs.getString("sanciones"));
+               TopNPlayer.add(tempRow);
+           }
+        
+       }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return TopNPlayer;
+        
+    }    
+        
+      //FIN CONSULTAS EXTRA
  
     //INICIO CONSULTAS EVENTOS Y GRUPOS
     public static ArrayList<String> getGroupsByEvent(String Year,String eventType){
