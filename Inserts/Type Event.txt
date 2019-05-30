@@ -1,0 +1,2 @@
+INSERT INTO `project2`.`type_event` (`name_type_event`) VALUES ('Mundial');
+INSERT INTO `project2`.`type_event` (`name_type_event`) VALUES ('Copa Oro');
