@@ -1,0 +1,5 @@
+INSERT INTO `project2`.`type_play` (`play_name`) VALUES ('Corner');
+INSERT INTO `project2`.`type_play` (`play_name`) VALUES ('Saver');
+INSERT INTO `project2`.`type_play` (`play_name`) VALUES ('Fuera de Juego');
+INSERT INTO `project2`.`type_play` (`play_name`) VALUES ('Gol');
+INSERT INTO `project2`.`type_play` (`play_name`) VALUES ('Tiro a Puerta');
