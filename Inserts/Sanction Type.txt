@@ -1,0 +1,2 @@
+INSERT INTO `project2`.`sanction_type` (`sanction_name`) VALUES ('Amarilla');
+INSERT INTO `project2`.`sanction_type` (`sanction_name`) VALUES ('Roja');
