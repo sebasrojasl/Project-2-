@@ -46,3 +46,20 @@ INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Joel Cambell', '12', '431779339', '5', '15');
 
 
+/* Perú */
+
+
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Guerrero', '34', '457896123', '12', '29');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Beto Cuevas', '10', '674590128', '12', '29');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Cristian Benavente', '4', '123456789', '12', '29');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Luis Advíncula', '7', '097643190', '12', '29');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('André Carrillo', '1', '178536701', '12', '29');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Raúl Ruidíaz', '8', '116980657', '12', '29');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Edison Flores', '11', '117380606', '12', '29');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Carlos Cáceda', '9', '117560781', '12', '29');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Andy Polo', '15', '105410733', '12', '29');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Hurtado', '18', '107170305', '12', '29');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Aldo Corzo', '12', '114240896', '12', '29');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Yordy Reina', '2', '236346877', '12', '29');
+
+
