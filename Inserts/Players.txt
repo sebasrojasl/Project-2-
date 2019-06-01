@@ -63,3 +63,19 @@ INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Yordy Reina', '2', '236346877', '12', '29');
 
 
+
+/* Estados Unidos */
+
+
+
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Michael Brady', '1', '147852369', '8', '21');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Tyler Adams', '2', '789654123', '8', '21');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Matt Miazga', '3', '251478961', '8', '21');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Josh Sargent', '4', '554484529', '8', '21');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Brad Guzan', '5', '556418451', '8', '21');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Bobby Wood', '6', '123478988', '8', '21');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('John Brooks', '7', '558779454', '8', '21');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Paul Arriola ', '8', '879896489', '8', '21');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Julian Green ', '9', '977998465', '8', '21');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES (' Omar González', '10', '787845631', '8', '21');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Keilyn Acosta', '11', '457889562', '8', '21');
