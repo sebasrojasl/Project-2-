@@ -1,7 +1,7 @@
 delimiter |
 CREATE EVENT  `Statistic_save_event`
 ON SCHEDULE EVERY 1 day 
-starts '2019-05-29 11:00'
+starts concat(date(now() + interval 1 day), ' 11:00:00')
  
 DO 
 begin
