@@ -1,0 +1,17 @@
+USE `project2`;
+DROP procedure IF EXISTS `getTeambyMatch`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getTeambyMatch` (in pfecha datetime)
+BEGIN
+select team.team_name
+from team 
+inner join team_x_match
+on team.id_team = team_x_match.id_team 
+inner join project2.match
+on project2.match.id_match= team_x_match.id_match and project2.match.date = pfecha
+;
+END$$
+
+DELIMITER ;
