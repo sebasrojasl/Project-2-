@@ -96,3 +96,23 @@ INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Oribe Peralta', '9', '554584185', '10', '26');
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES (' Edson Álvarez', '10', '265969854', '10', '26');
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Jonathan Dos Santos', '11', '133066984', '10', '26');
+
+
+/* México */
+
+
+
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('James Rodríguez', '1', '142697446', '6', '13');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Radamel Falcao', '2', '255884188', '6', '13');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Juan Cuadrado', '3', '369854841', '6', '13');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('David Ospina', '4', '265985548', '6', '13');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Yerri Mina', '5', '788454216', '6', '13');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Carlos Sánchez', '6', '884899649', '6', '13');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Carlos Bacca', '7', '210556645', '6', '13');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Luis Díaz', '8', '985965265', '6', '13');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Edwin Cardona ', '9', '458418544', '6', '13');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Jeison Murillo', '10', '856748661', '6', '13');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Wilmar Barrios', '11', '014579635', '6', '13');
+UPDATE `project2`.`player` SET `identification` = '258749614' WHERE (`id_player` = '62');
+UPDATE `project2`.`player` SET `identification` = '976431904' WHERE (`id_player` = '37');
+
