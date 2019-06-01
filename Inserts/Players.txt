@@ -5,7 +5,7 @@ INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Gabrile Mercado', '3', '851208136', '1', '4');
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Federico Fazio', '8', '545612391', '1', '4');
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Javier Mscherano', '11', '131393329', '1', '4');
-INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Marcos Rojo', '26', '234792598', '1', '4');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Marcos Rojas', '26', '234792598', '1', '4');
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Ángel Di María', '49', '744770530', '1', '4');
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Lionel Messi', '10', '268095951', '1', '4');
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Sergio Aguero', '1', '443817397', '1', '4');
@@ -24,7 +24,7 @@ INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('William', '6', '258610054', '2', '8');
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Pulinho', '2', '318671409', '2', '8');
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Fernandinho', '7', '785120192', '2', '8');
-INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `picture`, `id_team`, `id_nationality`) VALUES ('Casemiro', '5', '863670385', '', '2', '8');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `picture`, `id_team`, `id_nationality`) VALUES ('Carliño', '5', '863670385', '', '2', '8');
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Neymar Jr', '3', '378475816', '2', '8');
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Miranda', '1', '810760110', '2', '8');
 INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Casemiro', '5', '636872859', '2', '8');
