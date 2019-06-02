@@ -1,0 +1,29 @@
+USE `project2`;
+DROP procedure IF EXISTS `getTypeEvents`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getTypeEvents`()
+BEGIN
+select Type_event.name_type_event
+from type_event;
+
+END$$
+
+DELIMITER ;
+
+
+USE `project2`;
+DROP procedure IF EXISTS `getYearByTypeEvent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getYearByTypeEvent` (in pIdTypeEvent int)
+BEGIN
+	select project2.event.date
+    from  project2.event
+    where project2.event.id_type_event=pIdTypeEvent
+    ;
+END$$
+
+DELIMITER ;
