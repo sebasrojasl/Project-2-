@@ -9,6 +9,7 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import static javax.swing.JOptionPane.showMessageDialog;
 import  project2.Encrypter;
 import static project2.Encrypter.encryptPassword;
 /**
@@ -420,7 +421,7 @@ public class Controller {
             stmt.setString(1,ContinentName);
             stmt.execute();
         }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+           showMessageDialog(null,"El continente ya se encuentra insertado,pruebe con otro. ");
         }    
      }
      
@@ -433,7 +434,7 @@ public class Controller {
             stmt.setInt(2, getIdContinent(ContinentName));
             stmt.execute();
         }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+           showMessageDialog(null,"El país ya se encuentra insertado,pruebe con otro.");
         }    
      }
      
@@ -444,7 +445,7 @@ public class Controller {
             stmt.setInt(2, getIdCountry(CountryName));
             stmt.execute();
         }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+           showMessageDialog(null,"La provincia ya se encuentra insertada,pruebe con otra.");
         }    
      }
       
@@ -557,6 +558,38 @@ public class Controller {
         }
        }
        
+       
+       
+       public int getIdStadium(String nameStadium){
+           int idStadium=-1;
+    try{
+      CallableStatement stmt= Connect.getInstance().getStmt("{call getIdStadium(?)}");
+      stmt.setString(1,nameStadium);
+      ResultSet myRs = stmt.executeQuery();
+      while(myRs.next()){
+            idStadium= myRs.getInt("id_Stadium");
+        }
+    }catch(SQLException ex){
+        System.out.println(ex.getMessage());
+    }
+        return idStadium;
+       }
+       public void updateStadium(String StadiumName,String newName,String ProvinceName){
+           try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call updateStadium(?,?,?)}");
+               stmt.setInt(1,getIdStadium(StadiumName));
+               stmt.setString(2,newName);
+               if(ProvinceName==null){
+                stmt.setString(3,ProvinceName);
+               }else{
+                stmt.setString(3,String.valueOf(getIdProvince(ProvinceName)));
+               }
+              
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+       }
        
        
    //FIN UPDATES LOCALIZACIONES
