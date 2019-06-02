@@ -1,0 +1,13 @@
+USE `project2`;
+DROP procedure IF EXISTS `getSatdiumNames`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getSatdiumNames` (in idProvince int)
+BEGIN
+select stadium.stadium_name
+from stadium
+where stadium.id_province= idProvince;
+END$$
+
+DELIMITER ;
