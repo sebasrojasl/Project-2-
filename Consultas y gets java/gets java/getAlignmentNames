@@ -1,5 +1,13 @@
+USE `project2`;
+DROP procedure IF EXISTS `getAlignmentNames`;
+
+DELIMITER $$
+USE `project2`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getAlignmentNames`()
 BEGIN
 select alignment.alignment_name
 from alignment;
-END
+
+END$$
+
+DELIMITER ;
