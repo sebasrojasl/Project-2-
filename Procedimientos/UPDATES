@@ -24,17 +24,19 @@ DROP procedure IF EXISTS `updateStadium`;
 
 DELIMITER $$
 USE `project2`$$
-CREATE PROCEDURE `updateStadium` (pid_stadium int, pstadium_name varchar(70), pid_district int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStadium`(pid_stadium int, pstadium_name varchar(70), pid_Province int)
 BEGIN
     update stadium
     set
     stadium_name = ifnull(pstadium_name, stadium_name),
-    id_district = ifnull(pid_district, id_district)
+    id_province = ifnull(pid_Province, id_province)
     where id_stadium = pid_stadium;
     commit;
+    
 END$$
 
 DELIMITER ;
+
 
 
 
