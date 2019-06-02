@@ -17,14 +17,27 @@ import static project2.Encrypter.encryptPassword;
  */
 public class Controller {
     private static Controller Controller;
-    public static Controller getInstance(){
+    public  static Controller getInstance(){
         if(Controller==null){
             Controller= new Controller();
         }
         return Controller;
     }
     // PROCEDIMIENTOS PARA USUUARIO
-       public static boolean validatePasssword(String nickname,String password){ 
+    private String user;
+    
+    public void setUser(String newUser){
+        user = newUser;
+    }   
+    
+    public String getUser(){
+        return user;
+    }
+    
+    public void changePassword(String user, String oldPassword, String newPassword){
+       updateUser(user, null, newPassword, null);  
+    }
+       public  boolean validatePasssword(String nickname,String password){ 
            try{
               password = Encrypter.encryptPassword(password);
             CallableStatement stmt= Connect.getInstance().getStmt("{call getUserPassword(?)}");
@@ -45,7 +58,7 @@ public class Controller {
            
            return false;
        }
-    public static void createUser(String nickname, String password){
+    public  void createUser(String nickname, String password){
          try{
        CallableStatement stmt= Connect.getInstance().getStmt("{call insert_user(?,?,?)}");
         password = Encrypter.encryptPassword(password);
@@ -62,7 +75,7 @@ public class Controller {
     
     
     
-    public static void updateUser(String nickname,String newNickname,String newpassword,String newUserType){
+    public  void updateUser(String nickname,String newNickname,String newpassword,String newUserType){
          try{
        CallableStatement stmt= Connect.getInstance().getStmt("{call updateUser(?,?,?,?)}");
        if(newpassword!=null){
@@ -79,7 +92,7 @@ public class Controller {
     
     }
     
-    public  static boolean  isAdmin(String nickname){
+    public   boolean  isAdmin(String nickname){
          try{
               
             
@@ -109,7 +122,7 @@ public class Controller {
     //FIN PROCEDIMIENTOS PARA USUARIO
     
     //INICIO  ALIGNMENT 
-    public static int createAlignment(String name ){
+    public  int createAlignment(String name ){
        try{
        CallableStatement stmt= Connect.getInstance().getStmt("{call insert_alignment(?)}");
          stmt.setString(1, name);
@@ -122,7 +135,7 @@ public class Controller {
         
     }
     //terminar
-    public static void updateAlignment(String aligmentName,String newName){
+    public  void updateAlignment(String aligmentName,String newName){
        try{
             CallableStatement stmt= Connect.getInstance().getStmt("{call updateAlignment(?,?)}");
             stmt.setInt(1, getIdAlignment(aligmentName));
@@ -133,7 +146,7 @@ public class Controller {
       }                              
     }
     
-    public static int getIdAlignment(String aligmentName){
+    public  int getIdAlignment(String aligmentName){
         int idAlignment= -1;
        try{
         CallableStatement stmt= Connect.getInstance().getStmt("{call getIdAlignment(?)}");
@@ -148,7 +161,7 @@ public class Controller {
        return idAlignment;
     }
     
-    public static ArrayList<String> getAlignmentNames(){
+    public  ArrayList<String> getAlignmentNames(){
         ArrayList<String> alignments =new ArrayList<String>();
         try{
         CallableStatement stmt= Connect.getInstance().getStmt("{call getAlignmentNames()}");
@@ -163,7 +176,7 @@ public class Controller {
     }
     //FIN ALIGNMENT
     //INICIO NACIONALIDAD
-        public static void insertNationality(String nacionalityName){
+        public  void insertNationality(String nacionalityName){
        try{
        CallableStatement stmt= Connect.getInstance().getStmt("{call insert_nationality(?)}");
          stmt.setString(1, nacionalityName);
@@ -174,7 +187,7 @@ public class Controller {
      }
         
         
-      public static void updateNationality(String NationalitytName,String newName){
+      public  void updateNationality(String NationalitytName,String newName){
        try{
             CallableStatement stmt= Connect.getInstance().getStmt("{call updateNationality(?,?)}");
             stmt.setInt(1, getIdNationality(NationalitytName));
@@ -185,7 +198,7 @@ public class Controller {
       }                              
     }   
       
-     public static int getIdNationality(String NationalityName){
+     public  int getIdNationality(String NationalityName){
         int idAlignment= -1;
        try{
         CallableStatement stmt= Connect.getInstance().getStmt("{call getIdNacionality(?)}");
@@ -201,7 +214,7 @@ public class Controller {
     }
      
      
-     public static ArrayList<String> getNationalityNames(){
+     public  ArrayList<String> getNationalityNames(){
        ArrayList<String>Nationality= new ArrayList<String>();
        try{
         CallableStatement stmt= Connect.getInstance().getStmt("{call getNationalityNames()}");
@@ -219,7 +232,7 @@ public class Controller {
     //FIN NACIONALIDAD
     
     //      GETS DE  NOMBRES DE LOCALIZACIONES
-    public static ArrayList<String> getContinentsName(){
+    public  ArrayList<String> getContinentsName(){
        ArrayList<String>Continents= new ArrayList<String>();
        try{
         CallableStatement stmt= Connect.getInstance().getStmt("{call getContinentsName()}");
@@ -234,7 +247,7 @@ public class Controller {
     }
   
     
-    public static ArrayList<String> getCountryNames(String continentName){
+    public  ArrayList<String> getCountryNames(String continentName){
        ArrayList<String>countries= new ArrayList<String>();
        try{
         CallableStatement stmt= Connect.getInstance().getStmt("{call getCountryNames(?)}");
@@ -249,7 +262,7 @@ public class Controller {
         return countries;
     }
         
-   public static ArrayList<String> getProvinceNames(String CountryName){
+   public  ArrayList<String> getProvinceNames(String CountryName){
        ArrayList<String>provinces= new ArrayList<String>();
        try{
         CallableStatement stmt= Connect.getInstance().getStmt("{call getProvinceNames(?)}");
@@ -265,7 +278,7 @@ public class Controller {
    
    }
    
-   public static ArrayList<String> getCantonNames(String ProvinceName){
+   public  ArrayList<String> getCantonNames(String ProvinceName){
         ArrayList<String>Cantons= new ArrayList<String>();
        try{
         CallableStatement stmt= Connect.getInstance().getStmt("{call getCantonNames(?)}");
@@ -282,7 +295,7 @@ public class Controller {
    }
    
    
-   public static ArrayList<String> getDistrictNames(String ProvinceName){
+   public  ArrayList<String> getDistrictNames(String ProvinceName){
        ArrayList<String>Districts= new ArrayList<String>();
        try{
        CallableStatement stmt= Connect.getInstance().getStmt("{call getDistrictNames(?)}");
@@ -296,10 +309,26 @@ public class Controller {
       }     
         return Districts;
    }
+   
+   
+   public ArrayList<String> getStadiumNames(String ProvinceName){
+       ArrayList<String> Stadium = new ArrayList<String>();
+       try{
+        CallableStatement stmt= Connect.getInstance().getStmt("{call getStadiumNames(?)}");
+        stmt.setInt(1,getIdProvince(ProvinceName));
+        ResultSet myRs = stmt.executeQuery();
+        while(myRs.next()){
+            Stadium.add(myRs.getString("stadium_name"));
+        }
+       }catch(SQLException ex){
+      System.out.println(ex.getMessage());
+      }     
+        return Stadium;
+   }
     // FINAL GETS NOMBRES LOCALIZACIONES
     
    //INICIO GETS ID LOCALIZACIONES
-   public static int getIdContinent(String NameContinent){
+   public  int getIdContinent(String NameContinent){
     int idContinent=-1;
     try{
       CallableStatement stmt= Connect.getInstance().getStmt("{call getIdContinent(?)}");
@@ -316,7 +345,7 @@ public class Controller {
    
    
    
-   public static int getIdCountry(String NameCountry){
+   public  int getIdCountry(String NameCountry){
     int idCountry=-1;
     try{
       CallableStatement stmt= Connect.getInstance().getStmt("{call getIdCountry(?)}");
@@ -332,7 +361,7 @@ public class Controller {
    }
    
    
-    public static int getIdProvince(String NameProvince){
+    public  int getIdProvince(String NameProvince){
     int idProvince=-1;
     try{
       CallableStatement stmt= Connect.getInstance().getStmt("{call getIdProvince(?)}");
@@ -348,7 +377,7 @@ public class Controller {
    }
     
     
-    public static int getIdCanton(String NameCanton){
+    public  int getIdCanton(String NameCanton){
     int idCanton=-1;
     try{
       CallableStatement stmt= Connect.getInstance().getStmt("{call getIdCanton(?)}");
@@ -365,7 +394,7 @@ public class Controller {
     
     
     
-     public static int getIdDistrict(String NameDistrict){
+     public  int getIdDistrict(String NameDistrict){
     int idDistrict=-1;
     try{
       CallableStatement stmt= Connect.getInstance().getStmt("{call getIdDistrict(?)}");
@@ -385,7 +414,7 @@ public class Controller {
      
      
    //INICIO INSERTS LOCALIZACIONES
-     public static void insertContinent(String ContinentName){
+     public  void insertContinent(String ContinentName){
         try{
             CallableStatement stmt= Connect.getInstance().getStmt("{call insert_Continent(?)}");
             stmt.setString(1,ContinentName);
@@ -396,7 +425,7 @@ public class Controller {
      }
      
      
-     public static void insertCountry(String CountryName,String ContinentName){
+     public  void insertCountry(String CountryName,String ContinentName){
         try{
             CallableStatement stmt= Connect.getInstance().getStmt("{call insert_Country(?,?)}");
             stmt.setString(1,CountryName);
@@ -408,7 +437,7 @@ public class Controller {
         }    
      }
      
-      public static void insertProvince(String ProvinceName,String CountryName){
+      public  void insertProvince(String ProvinceName,String CountryName){
         try{
             CallableStatement stmt= Connect.getInstance().getStmt("{call insert_Province(?,?)}");
             stmt.setString(1,ProvinceName);
@@ -419,7 +448,7 @@ public class Controller {
         }    
      }
       
-      public static void insertCanton (String CantonName,String ProvinceName){
+      public  void insertCanton (String CantonName,String ProvinceName){
           try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_Canton(?,?)}");
                stmt.setString(1, CantonName);
@@ -431,7 +460,7 @@ public class Controller {
       }
      
       
-       public static void insertDistrict (String DistrictName,String CantonName){
+       public  void insertDistrict (String DistrictName,String CantonName){
           try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_District(?,?)}");
                stmt.setString(1, DistrictName);
@@ -446,7 +475,7 @@ public class Controller {
        
         //INICIO UPDATES LOCALIZACIONES
        //
-       public static void updateContinent(String ContinentName, String newName){
+       public  void updateContinent(String ContinentName, String newName){
            try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call updateContinent(?,?)}");
                stmt.setInt(1,getIdContinent(ContinentName));
@@ -458,7 +487,7 @@ public class Controller {
        
        }
        
-       public static void updateCountry(String CountryName,String newName, String ContinentName){
+       public  void updateCountry(String CountryName,String newName, String ContinentName){
            try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call updateCountry(?,?,?)}");
                stmt.setInt(1,getIdCountry(CountryName));
@@ -476,7 +505,7 @@ public class Controller {
        }
        
        
-       public static void updateProvince(String ProvinceName,String newName, String CountryName){
+       public  void updateProvince(String ProvinceName,String newName, String CountryName){
            try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call updateProvince(?,?,?)}");
                stmt.setInt(1,getIdProvince(ProvinceName));
@@ -494,7 +523,7 @@ public class Controller {
        }
        
        
-       public static void updateCanton(String CantonName,String newName,String ProvinceName){
+       public  void updateCanton(String CantonName,String newName,String ProvinceName){
            try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call updateCanton(?,?,?)}");
                stmt.setInt(1,getIdCanton(CantonName));
@@ -511,7 +540,7 @@ public class Controller {
         }
        }
        
-       public static void updateDistrict(String DistrictName,String newName,String CantonName){
+       public  void updateDistrict(String DistrictName,String newName,String CantonName){
            try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call updateDistrict(?,?,?)}");
                stmt.setInt(1,getIdDistrict(DistrictName));
@@ -535,7 +564,7 @@ public class Controller {
        
        
    //INICIO CONSULTAS PRINCIPALES CON SUS GETS 
-    public static int getIdEvent(String Year,String eventType){
+    public  int getIdEvent(String Year,String eventType){
         int idEvent=-1;
         try{
           CallableStatement stmt= Connect.getInstance().getStmt("{call getEventID(?,?)}");
@@ -553,7 +582,7 @@ public class Controller {
     
     
     
-    public static int getIdGroup(String Year,String eventType,String groupName ){
+    public  int getIdGroup(String Year,String eventType,String groupName ){
         int idEvent=-1;
         try{
           CallableStatement stmt= Connect.getInstance().getStmt("{call getIdGroup(?,?)}");
@@ -570,7 +599,7 @@ public class Controller {
         return idEvent;
    }
                                 //todas las consultas
-    public static ArrayList<ArrayList<String>> getResultbyEventAndGroup(String Year,String eventType,String groupName){
+    public  ArrayList<ArrayList<String>> getResultbyEventAndGroup(String Year,String eventType,String groupName){
          ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
          try{
              int id_event=getIdEvent(Year,eventType);
@@ -604,7 +633,7 @@ public class Controller {
          return rowsResult;
      }
      
-    public static ArrayList<ArrayList<String>> getStatisticbyEvent(String Year,String eventType){
+    public  ArrayList<ArrayList<String>> getStatisticbyEvent(String Year,String eventType){
         ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
         double tempNumber;
         try{
@@ -626,7 +655,7 @@ public class Controller {
          return  rowsResult;
     }    
     
-    public static ArrayList<ArrayList<String>>  getPlaysbyTeamAndDate(String Year,String eventType,String teamName , String Date){
+    public  ArrayList<ArrayList<String>>  getPlaysbyTeamAndDate(String Year,String eventType,String teamName , String Date){
         ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
          try{
           int id_event=getIdEvent(Year,eventType);
@@ -654,7 +683,7 @@ public class Controller {
     }
     
     
-    public static ArrayList<ArrayList<String>>  getStadiumByTeamAndDate(String Year,String eventType,String teamName , String Date){
+    public  ArrayList<ArrayList<String>>  getStadiumByTeamAndDate(String Year,String eventType,String teamName , String Date){
         ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
          try{
           int id_event=getIdEvent(Year,eventType);
@@ -676,7 +705,7 @@ public class Controller {
     }
      
              
-      public static ArrayList<ArrayList<String>>  getSanctionsbyTeamAndDate(String Year,String eventType,String teamName , String Date){
+      public  ArrayList<ArrayList<String>>  getSanctionsbyTeamAndDate(String Year,String eventType,String teamName , String Date){
         ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
          try{
           int id_event=getIdEvent(Year,eventType);
@@ -701,7 +730,7 @@ public class Controller {
      
     //FIN CONSULTAS PRINCIPALES   
     //CONSULTAS EXTRA 
-        public static ArrayList<ArrayList<String>> getTopNPlayerExtra(String Year,String eventType,int Ntop){
+        public  ArrayList<ArrayList<String>> getTopNPlayerExtra(String Year,String eventType,int Ntop){
        ArrayList<ArrayList<String>> TopNPlayer = new ArrayList<ArrayList<String>>();
         try{
           int id_event=getIdEvent(Year,eventType);
@@ -726,7 +755,7 @@ public class Controller {
         
     }
         
-     public static ArrayList<ArrayList<String>> getTopNWorstPlayer(String Year,String eventType,int Ntop){
+     public  ArrayList<ArrayList<String>> getTopNWorstPlayer(String Year,String eventType,int Ntop){
         ArrayList<ArrayList<String>> TopNPlayer = new ArrayList<ArrayList<String>>();
         try{
           int id_event=getIdEvent(Year,eventType);
@@ -753,7 +782,7 @@ public class Controller {
       //FIN CONSULTAS EXTRA
  
     //INICIO CONSULTAS EVENTOS Y GRUPOS
-    public static ArrayList<String> getGroupsByEvent(String Year,String eventType){
+    public  ArrayList<String> getGroupsByEvent(String Year,String eventType){
         ArrayList<String> groups = new ArrayList<String>();
         try{
           int id_event=getIdEvent(Year,eventType);
@@ -774,7 +803,7 @@ public class Controller {
                         //gets del evento
     
     
-    public static ArrayList<String> getEventsYear(){
+    public  ArrayList<String> getEventsYear(){
         ArrayList<String> events = new ArrayList<String>();
         try{
           CallableStatement stmt= Connect.getInstance().getStmt("{call getEventsYear()}");
@@ -791,7 +820,7 @@ public class Controller {
         return events;
         
     }
-    public static ArrayList<String> getEventTypeByYear(String Year){
+    public  ArrayList<String> getEventTypeByYear(String Year){
         ArrayList<String> events = new ArrayList<String>();
         try{
          
@@ -814,7 +843,7 @@ public class Controller {
     
     
     //INICIO INSERTAR TEAM Y PERSONAS
-     public static int getIdTeam(String teamName){
+     public  int getIdTeam(String teamName){
           int idAlignment= -1;
        try{
         CallableStatement stmt= Connect.getInstance().getStmt("{call getIdTeam(?)}");
@@ -829,7 +858,7 @@ public class Controller {
        return idAlignment;
      }
     
-    public static void createTeam(String countryName,String aligmentName,String idCaptain, String teamName){
+    public  void createTeam(String countryName,String aligmentName,String idCaptain, String teamName){
        try{
          CallableStatement stmt= Connect.getInstance().getStmt("{call insert_team(?,?,?,?)}");
          stmt.setInt(1,getIdCountry(countryName));
@@ -843,7 +872,7 @@ public class Controller {
       }
     }
     
-    public static void updateTeam(String teamName,String newName,String CountryName,String alignmentName,String captainName){
+    public  void updateTeam(String teamName,String newName,String CountryName,String alignmentName,String captainName){
         try{
          CallableStatement stmt= Connect.getInstance().getStmt("{call updateTeam(?,?,?,?,?)}");
          stmt.setInt(1,getIdTeam(teamName));
@@ -870,7 +899,7 @@ public class Controller {
     }
     
     
-    public static int getIdPlayer(String playerName){
+    public  int getIdPlayer(String playerName){
           int idplayer= -1;
        try{
         CallableStatement stmt= Connect.getInstance().getStmt("{call getIdPlayer(?)}");
@@ -887,7 +916,7 @@ public class Controller {
     
     
     
-    public static void insertPlayer(String PlayerName,int number,int identificacition,String picture,String teamName,String nationality){
+    public  void insertPlayer(String PlayerName,int number,int identificacition,String picture,String teamName,String nationality){
         try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_player(?,?,?,?,?,?)}");
                stmt.setString(1, PlayerName);
@@ -905,7 +934,7 @@ public class Controller {
     
     
     
-    public static void updatePlayer(String PlayerName,String newName,String newNumber,String newIdentificacition,String newPicture,String newTeamName,String newNationality){
+    public  void updatePlayer(String PlayerName,String newName,String newNumber,String newIdentificacition,String newPicture,String newTeamName,String newNationality){
         try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call updatePlayer(?,?,?,?,?,?,?)}");
                stmt.setInt(1, getIdPlayer(PlayerName));
@@ -929,7 +958,7 @@ public class Controller {
         }        
     }
     
-    public static  ArrayList<String> getPlayerNamesbyTeam(String TeamName){
+    public   ArrayList<String> getPlayerNamesbyTeam(String TeamName){
         ArrayList<String> players = new ArrayList<String>();
         try{
           CallableStatement stmt= Connect.getInstance().getStmt("{call getPlayerNamesbyTeam(?)}");
@@ -946,7 +975,7 @@ public class Controller {
     }
     
     
-    public static ArrayList<String> getTeamNames(){
+    public  ArrayList<String> getTeamNames(){
         ArrayList<String> teams = new ArrayList<String>();
         try{
           CallableStatement stmt= Connect.getInstance().getStmt("{call getTeamNames()}");
@@ -967,7 +996,7 @@ public class Controller {
     
     // INICIO EVENTOS INSERT EVENT Y GROUP, GET LISTA tYPOS EVENTOS Y GETIDTIPOEVENTO
     //CREAR EVENTO Y GRUPO
-    public static ArrayList<String> getTypeEvents(){
+    public  ArrayList<String> getTypeEvents(){
         ArrayList<String> players = new ArrayList<String>();
         try{
           CallableStatement stmt= Connect.getInstance().getStmt("{call getTypeEvents()}");
@@ -981,7 +1010,7 @@ public class Controller {
         return players;
     }
     
-    public static int getIdTypeEvent(String typeEventName){
+    public  int getIdTypeEvent(String typeEventName){
           int idplayer= -1;
        try{
         CallableStatement stmt= Connect.getInstance().getStmt("{call getIdTypeEvent(?)}");
@@ -997,7 +1026,7 @@ public class Controller {
      }
     
     
-    public static void createtypeEvent(String typeEvent){
+    public  void createtypeEvent(String typeEvent){
         try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_typevent(?)}");
                stmt.setString(1, typeEvent);
@@ -1006,7 +1035,7 @@ public class Controller {
             System.out.println(ex.getMessage());
         }
     }
-    public static void updateTypeEvent(String typeEvent,String newName){
+    public  void updateTypeEvent(String typeEvent,String newName){
         try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call updatetypeEvent(?,?)}");
                stmt.setInt(1,getIdTypeEvent( typeEvent));
@@ -1018,7 +1047,7 @@ public class Controller {
         }  
     }
     
-    public static void createEvent(String year,String TypeeventName){
+    public  void createEvent(String year,String TypeeventName){
         try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_event(?,?)}");
                stmt.setString(1, year);
@@ -1031,7 +1060,7 @@ public class Controller {
     }
     
     
-    public static void createGroup(String groupName,String year,String typeEvent){
+    public  void createGroup(String groupName,String year,String typeEvent){
         try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_group(?,?)}");
                stmt.setString(1, groupName);
@@ -1043,6 +1072,8 @@ public class Controller {
             System.out.println(ex.getMessage());
         }  
     }
+    
+    
      // FIN EVENTOS INSERT EVENT Y GROUP, GET LISTA tYPOS EVENTOS Y GETIDTIPOEVENTO
     //CREAR EVENTO Y GRUPO
     
