@@ -134,3 +134,24 @@ INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification
 UPDATE `project2`.`player` SET `identification` = '145796355' WHERE (`id_player` = '78');
 
 
+/* Chile */
+
+
+
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Alexis Sánchez', '1', '851548942', '4', '11');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Arturo Vidal', '2', '784885961', '4', '11');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Gary Medel', '3', '565265622', '4', '11');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Gabriel Arias', '4', '848415841', '4', '11');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Charles Araguiz', '5', '859662610', '4', '11');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Diego Valdés', '6', '145185950', '4', '11');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Gonzalo Jara', '8', '014854846', '4', '11');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Nicolás Castillo', '9', '096458944', '4', '11');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Mauricio Isla', '10', '878574106', '4', '11');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Eugenio Mena', '11', '874895656', '4', '11');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Jhonny Herrera', '7', '541541510', '4', '11');
+
+
+
+
+
+
