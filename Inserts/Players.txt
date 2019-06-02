@@ -116,3 +116,21 @@ INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification
 UPDATE `project2`.`player` SET `identification` = '258749614' WHERE (`id_player` = '62');
 UPDATE `project2`.`player` SET `identification` = '976431904' WHERE (`id_player` = '37');
 
+
+/* Canada */
+
+
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Cyle Larin ', '1', '154848548', '3', '10');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Alphonso Davies', '2', '484665656', '3', '10');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Jonathan Osorio', '3', '489877878', '3', '10');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Scott Artfield', '4', '596263594', '3', '10');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Junior Hoilett', '5', '215689743', '3', '10');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Tosaint Ricketts', '6', '021017489', '3', '10');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Milan Borjan', '7', '515545452', '3', '10');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Samuel Piette', '8', '897497459', '3', '10');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Marcel de Jong', '9', '965496526', '3', '10');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Lucas Caballini', '10', '985965662', '3', '10');
+INSERT INTO `project2`.`player` (`player_name`, `player_number`, `identification`, `id_team`, `id_nationality`) VALUES ('Russel Teibert', '11', '885214104', '3', '10');
+UPDATE `project2`.`player` SET `identification` = '145796355' WHERE (`id_player` = '78');
+
+
