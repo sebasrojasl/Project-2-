@@ -803,32 +803,16 @@ public class Controller {
                         //gets del evento
     
     
-    public  ArrayList<String> getEventsYear(){
-        ArrayList<String> events = new ArrayList<String>();
-        try{
-          CallableStatement stmt= Connect.getInstance().getStmt("{call getEventsYear()}");
-          
-          ResultSet myRs = stmt.executeQuery();
-           while(myRs.next()){
-               events.add(myRs.getString("year"));
-               
-           }
-        
-       }catch(SQLException ex){
-            System.out.println(ex.getMessage());
-        }
-        return events;
-        
-    }
-    public  ArrayList<String> getEventTypeByYear(String Year){
+  
+    public  ArrayList<String> getYearByTypeEvent(String nameTypeEvent){
         ArrayList<String> events = new ArrayList<String>();
         try{
          
-          CallableStatement stmt= Connect.getInstance().getStmt("{call getEventTypeByYear(?)}");
-          stmt.setString(1,Year);
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getYearByTypeEvent(?)}");
+          stmt.setInt(1,getIdTypeEvent(nameTypeEvent));
           ResultSet myRs = stmt.executeQuery();
            while(myRs.next()){
-               events.add(myRs.getString("name_type_event"));
+               events.add(myRs.getString("date"));
            }
         
        }catch(SQLException ex){
@@ -1047,10 +1031,10 @@ public class Controller {
         }  
     }
     
-    public  void createEvent(String year,String TypeeventName){
+    public  void createEvent(String Date,String TypeeventName){
         try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_event(?,?)}");
-               stmt.setString(1, year);
+               stmt.setString(1, Date);
                stmt.setInt(2,getIdTypeEvent(TypeeventName));
         
                stmt.execute();
