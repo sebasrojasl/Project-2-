@@ -1,0 +1,18 @@
+USE `project2`;
+DROP procedure IF EXISTS `getGroupsByEvent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getGroupsByEvent`(in pidEvent int)
+BEGIN
+	select project2.group.group_name
+    from project2.group
+    where project2.group.id_event= pidEvent;
+END$$
+
+DELIMITER ;
+
+
+
+
+
