@@ -1,0 +1,15 @@
+USE `project2`;
+DROP procedure IF EXISTS `getIdStadium`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getIdStadium` (in stadiumName varchar(70))
+BEGIN
+select stadium.id_stadium
+from stadium
+where stadium.stadium_name=StadiumName
+;
+
+END$$
+
+DELIMITER ;
