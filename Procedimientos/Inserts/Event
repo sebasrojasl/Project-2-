@@ -3,14 +3,15 @@ DROP procedure IF EXISTS `insert_event`;
 
 DELIMITER $$
 USE `project2`$$
-CREATE PROCEDURE `insert_event` (IN pyear int, IN ptypeevent int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_event`(IN pdate datetime, IN ptypeevent int)
 BEGIN
 
-	INSERT INTO project2.event(year, id_type_event)
-	VALUES(pyear, ptypeevent);
+	INSERT INTO project2.event(date, id_type_event)
+	VALUES(pdate, ptypeevent);
 	commit;
     
 END$$
 
 DELIMITER ;
+
 
