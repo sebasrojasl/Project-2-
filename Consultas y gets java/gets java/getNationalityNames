@@ -1,0 +1,13 @@
+USE `project2`;
+DROP procedure IF EXISTS `getNationalityNames`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getNationalityNames`()
+BEGIN
+select nationality.nationality_name
+from nationality;
+
+END$$
+
+DELIMITER ;
