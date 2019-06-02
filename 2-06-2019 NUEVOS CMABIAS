@@ -2,5 +2,5 @@
 +volver a correr insert de event 
 +hacer drop a getEventsYear y getEventTypeByYear
  
-+correr los nuevos gets getEventsYear y getYearByTypeEvent
++correr los nuevos gets getTypeEvents y getYearByTypeEvent
 
