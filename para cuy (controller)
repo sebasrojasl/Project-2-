@@ -700,14 +700,14 @@ public class Controller {
          return  rowsResult;
     }    
     
-    public  ArrayList<ArrayList<String>>  getPlaysbyTeamAndDate(String Year,String eventType,String teamName , String Date){
+    public  ArrayList<ArrayList<String>>  getPlaysByEventAndDate(String Year,String eventType, String Date){
         ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
          try{
           int id_event=getIdEvent(Year,eventType);
-          CallableStatement stmt= Connect.getInstance().getStmt("{call getPlaysbyTeamAndDate(?,?,?)}");
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getPlaysByEventAndDate(?,?)}");
           stmt.setInt(1,id_event);
-          stmt.setInt(2,getIdTeam(teamName));
-          stmt.setString(3,Date);
+        
+          stmt.setString(2,Date);
 
           ResultSet myRs = stmt.executeQuery();
            while(myRs.next()){
@@ -728,14 +728,13 @@ public class Controller {
     }
     
     
-    public  ArrayList<ArrayList<String>>  getStadiumByTeamAndDate(String Year,String eventType,String teamName , String Date){
+    public  ArrayList<ArrayList<String>>  getStadiumbyEventAndDate(String Year,String eventType , String Date){
         ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
          try{
           int id_event=getIdEvent(Year,eventType);
-          CallableStatement stmt= Connect.getInstance().getStmt("{call getStadiumByTeamAndDate(?,?,?)}");
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getStadiumbyEventAndDate(?,?)}");
           stmt.setInt(1,id_event);
-          stmt.setInt(2,getIdTeam(teamName));
-          stmt.setString(3,Date);
+          stmt.setString(2,Date);
           ResultSet myRs = stmt.executeQuery();
            while(myRs.next()){
             ArrayList<String> tempRow= new ArrayList<String>();
@@ -750,14 +749,13 @@ public class Controller {
     }
      
              
-      public  ArrayList<ArrayList<String>>  getSanctionsbyTeamAndDate(String Year,String eventType,String teamName , String Date){
+      public  ArrayList<ArrayList<String>>  getSanctionsbyEventAndDate(String Year,String eventType , String Date){
         ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
          try{
           int id_event=getIdEvent(Year,eventType);
-          CallableStatement stmt= Connect.getInstance().getStmt("{call getSanctionsbyTeamAndDate(?,?,?)}");
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getSanctionsbyEventAndDate(?,?)}");
           stmt.setInt(1,id_event);
-          stmt.setInt(2,getIdTeam(teamName));
-          stmt.setString(3,Date);
+          stmt.setString(2,Date);
           ResultSet myRs = stmt.executeQuery();
            while(myRs.next()){
             ArrayList<String> tempRow= new ArrayList<String>();
@@ -887,13 +885,14 @@ public class Controller {
        return idAlignment;
      }
     
-    public  void createTeam(String countryName,String aligmentName,String idCaptain, String teamName){
+    public  void createTeam(String countryName,String aligmentName,String idCaptain, String teamName,String Logo){
        try{
-         CallableStatement stmt= Connect.getInstance().getStmt("{call insert_team(?,?,?,?)}");
+         CallableStatement stmt= Connect.getInstance().getStmt("{call insert_team(?,?,?,?,?)}");
          stmt.setInt(1,getIdCountry(countryName));
          stmt.setInt(2, getIdAlignment(aligmentName));
          stmt.setString(3, idCaptain);
          stmt.setString(4, teamName);
+         stmt.setString(5, Logo);
          
           stmt.execute();
       }catch(SQLException ex){
@@ -901,9 +900,9 @@ public class Controller {
       }
     }
     
-    public  void updateTeam(String teamName,String newName,String CountryName,String alignmentName,String captainName){
+    public  void updateTeam(String teamName,String newName,String CountryName,String alignmentName,String captainName,String Logo){
         try{
-         CallableStatement stmt= Connect.getInstance().getStmt("{call updateTeam(?,?,?,?,?)}");
+         CallableStatement stmt= Connect.getInstance().getStmt("{call updateTeam(?,?,?,?,?,?)}");
          stmt.setInt(1,getIdTeam(teamName));
          stmt.setString(2, newName);
          if(CountryName==null){
@@ -921,6 +920,7 @@ public class Controller {
          }else{
             stmt.setInt(5,getIdPlayer(captainName));
          }
+          stmt.setString(6, Logo);
           stmt.execute();
       }catch(SQLException ex){
       System.out.println(ex.getMessage());
