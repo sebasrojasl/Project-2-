@@ -3,14 +3,15 @@ DROP procedure IF EXISTS `updateTeam`;
 
 DELIMITER $$
 USE `project2`$$
-CREATE PROCEDURE `updateTeam` (pid_team int, pteam_name varchar(70), pid_country int, pid_alignment int, pid_captain int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateTeam`(pid_team int, pteam_name varchar(70), pid_country int, pid_alignment int, pid_captain int,plogo varchar(300))
 BEGIN
     update team
     set
     team_name = ifnull(pteam_name, team_name),
     id_country = ifnull(pid_country, id_country),
     id_alignment = ifnull(pid_alignment, id_alignment), 
-    id_captain = ifnull(pid_captain, id_captain)
+    id_captain = ifnull(pid_captain, id_captain),
+    logo_team = ifnull(pLogo,logo_team)
     where id_team = pid_team;
     commit;
 END$$
