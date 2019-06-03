@@ -1,9 +1,9 @@
 USE `project2`;
-DROP procedure IF EXISTS `getSanctionsbyTeamAndDate`;
+DROP procedure IF EXISTS `getSanctionsbyEventAndDate`;
 
 DELIMITER $$
 USE `project2`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getSanctionsbyTeamAndDate`(in pidEvent int,in pidTeam int,in pDate DateTime)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSanctionsbyEventAndDate`(in pidEvent int ,in pDate DateTime)
 BEGIN
 select team.team_name,player.player_name, sanction_type.sanction_name, concat(sanction.minute,'"')as minute
 from   team_x_match
@@ -17,9 +17,10 @@ inner join player
 on player.id_player  =sanction.id_player
 inner join team
 on player.id_team= team.id_team
-where team_x_match.id_team = pidTeam
+group by team.team_name,player.player_name, sanction_type.sanction_name, concat(sanction.minute,'"')
 order by  sanction.minute
 ;
+
 END$$
 
 DELIMITER ;
