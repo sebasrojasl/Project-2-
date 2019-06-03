@@ -3,11 +3,11 @@ DROP procedure IF EXISTS `insert_team`;
 
 DELIMITER $$
 USE `project2`$$
-CREATE PROCEDURE `insert_team` (IN pcountry int, IN palignment int, IN pcaptain int, IN pname VARCHAR(50))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_team`(IN pcountry int, IN palignment int, IN pcaptain int, IN pname VARCHAR(50), in pLogo varchar(300))
 BEGIN
 	
-    INSERT INTO team(id_country, id_alignment, id_captain, team_name)
-	VALUES(pcountry, palignment, pacaptain, pname);
+    INSERT INTO team(id_country, id_alignment, id_captain, team_name,logo_team)
+	VALUES(pcountry, palignment, pcaptain, pname,pLogo);
 	commit;
 
 END$$
