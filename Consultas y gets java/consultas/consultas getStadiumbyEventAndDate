@@ -1,20 +1,19 @@
 USE `project2`;
-DROP procedure IF EXISTS `getStadiumByTeamAndDate`;
+DROP procedure IF EXISTS `getStadiumByEventAndDate`;
 
 DELIMITER $$
 USE `project2`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getStadiumByTeamAndDate`(in pidEvent int,in pidTeam int,in pDate DateTime)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getStadiumByEventAndDate`(in pidEvent int,in pDate DateTime)
 BEGIN
-select stadium.stadium_name, project2.match.date
+select stadium.stadium_name
 from team_x_match
 inner join project2.match
 on team_x_match.id_match = project2.match.id_match and project2.match.date=pDate and project2.match.id_event = pidEvent
 inner join stadium
 on  project2.match.id_stadium =stadium.id_stadium
-where team_x_match.id_team = pidTeam
+group by stadium.stadium_name
 ;
 
 END$$
 
 DELIMITER ;
-
