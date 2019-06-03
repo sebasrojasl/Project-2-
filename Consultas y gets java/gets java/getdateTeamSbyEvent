@@ -1,0 +1,14 @@
+USE `project2`;
+DROP procedure IF EXISTS `getdateTeamSbyEvent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getdateTeamSbyEvent`(in pIdEvent int)
+BEGIN
+select project2.match.date
+from project2.match
+where project2.match.id_event= pIdEvent;
+
+END$$
+
+DELIMITER ;
