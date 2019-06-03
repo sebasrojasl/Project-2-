@@ -183,7 +183,8 @@ public class Controller {
          stmt.setString(1, nacionalityName);
          stmt.execute();
       }catch(SQLException ex){
-      System.out.println(ex.getMessage());
+                 showMessageDialog(null,"La nacionalidad ingresada ya se encuentra insertada.");
+
       }     
      }
         
@@ -471,6 +472,17 @@ public class Controller {
             System.out.println(ex.getMessage());
         }  
       }
+       public void insertStadium(String stadiumName,String ProvinceName){
+            try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call insert_Stadium(?,?)}");
+               stmt.setString(1, stadiumName);
+               stmt.setInt(2,getIdProvince(ProvinceName));
+               stmt.execute();
+          }catch(SQLException ex){
+             showMessageDialog(null,"El estadio ya se encuentra insertado,pruebe con otro.");
+        }  
+           
+       }
    //FIN  INSERTS LOCALIZACIONES
        
        
@@ -483,7 +495,7 @@ public class Controller {
                stmt.setString(2,newName);
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+             showMessageDialog(null,"El continente ya se encuentra insertado,pruebe con otro.");
         }  
        
        }
@@ -554,7 +566,7 @@ public class Controller {
               
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+             showMessageDialog(null,"El distrito ya se encuentra insertado,pruebe con otro.");
         }
        }
        
@@ -587,7 +599,7 @@ public class Controller {
               
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"El estadio ya se encuentra insertado,pruebe con otro.");
         }
        }
        
