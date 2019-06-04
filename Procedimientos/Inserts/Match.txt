@@ -3,12 +3,12 @@ DROP procedure IF EXISTS `insert_match`;
 
 DELIMITER $$
 USE `project2`$$
-CREATE PROCEDURE `insert_match` (IN pevent int, IN pstadium int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_match`(IN pevent int, IN pstadium int,in pDate datetime)
 BEGIN
-	INSERT INTO project2.match(id_event, id_stadium)
-    VALUES(pevent, pstadium);
+	INSERT INTO project2.match(id_event, id_stadium,date)
+    VALUES(pevent, pstadium,pDate);
     commit;
-	
 END$$
 
 DELIMITER ;
+
