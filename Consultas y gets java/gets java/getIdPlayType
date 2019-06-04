@@ -1,0 +1,13 @@
+USE `project2`;
+DROP procedure IF EXISTS `getIdPlayType`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getIdPlayType`(in pname varchar(70))
+BEGIN
+select type_play.id_type_play
+from type_play
+where type_play.play_name =pname;
+END$$
+
+DELIMITER ;
