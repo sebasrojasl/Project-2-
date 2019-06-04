@@ -4,4 +4,5 @@
 4) ejecutar consulta getStadiumbyEventAndDate
 5) hacer drop a getPlaysbyTeamAndDate
 6) ejecutar consulta getPlaysByEventAndDate
-7)volver a correr el controller de git
+7)ejecutar getdateTeamSbyEvent
+8)volver a correr el controller de git
