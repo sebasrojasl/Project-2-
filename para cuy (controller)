@@ -728,8 +728,8 @@ public class Controller {
     }
     
     
-    public  ArrayList<ArrayList<String>>  getStadiumbyEventAndDate(String Year,String eventType , String Date){
-        ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
+    public  String  getStadiumbyEventAndDate(String Year,String eventType , String Date){
+        String Stadium="";
          try{
           int id_event=getIdEvent(Year,eventType);
           CallableStatement stmt= Connect.getInstance().getStmt("{call getStadiumbyEventAndDate(?,?)}");
@@ -737,15 +737,15 @@ public class Controller {
           stmt.setString(2,Date);
           ResultSet myRs = stmt.executeQuery();
            while(myRs.next()){
-            ArrayList<String> tempRow= new ArrayList<String>();
-            tempRow.add(myRs.getString("stadium_name"));
-            tempRow.add(myRs.getString("date"));
-            rowsResult.add(tempRow);
+           
+           Stadium= myRs.getString("stadium_name");
+            
+         
            }
        }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
-         return rowsResult;
+         return Stadium;
     }
      
              
@@ -864,7 +864,22 @@ public class Controller {
         return events;
         
     }
-    
+    public ArrayList<String> getdateTeamSbyEvent(String Date,String TypeEvent){
+        ArrayList<String> years = new ArrayList<String>();
+        try{
+         
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getdateTeamSbyEvent(?)}");
+          stmt.setInt(1,getIdEvent(Date,TypeEvent));
+          ResultSet myRs = stmt.executeQuery();
+           while(myRs.next()){
+               years.add(myRs.getString("date"));
+           }
+        
+       }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return years;
+    }
     
     //FIN CONSULTAS EVENTOS Y GRUPOS
     
