@@ -6,8 +6,8 @@ USE `project2`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getStatisticbyEvent`(in pid_event int)
 BEGIN
 
-    select ifnull(round(tempGoles.goles/TempMatch.TotalPartidos,1),0) as PorcentajeGoles,ifnull(round(tempSancionesAmarillas.Amarillas/TempMatch.TotalPartidos,1),0)  as PorcentajeAmarillas
-    ,ifnull(round(tempSancionesRojas.Rojas/tempMatch.TotalPartidos,1),0)as PorcentajeRojas, ifnull(round(TempTiros.Totaltiros/TempEquipos.TotalEquipos,1),0) as Promediotiros,TempMatch.TotalPartidos
+    select ifnull(round(tempGoles.goles/TotalMatch.TotalPartidos,1),0) as PorcentajeGoles,ifnull(round(tempSancionesAmarillas.Amarillas/TotalMatch.TotalPartidos,1),0)  as PorcentajeAmarillas
+    ,ifnull(round(tempSancionesRojas.Rojas/TotalMatch.TotalPartidos,1),0)as PorcentajeRojas, ifnull(round(TempTiros.Totaltiros/TempEquipos.TotalEquipos,1),0) as Promediotiros,TotalMatch.TotalPartidos
     from project2.event
     left join( select count(case when play.id_type_play=4 then 1 end) as goles,project2.match.id_event
 		from play
@@ -15,10 +15,8 @@ BEGIN
 		on play.id_match= project2.match.id_match and project2.match.id_event=pid_event
 	)tempGoles
     on project2.event.id_event= tempGoles.id_event
-    
-    
-    left join(select count(project2.match.id_event)as TotalPartidos,project2.match.id_event from project2.match where project2.match.id_event=pid_event)TempMatch
-    on project2.event.id_event = TempMatch.id_event
+    left join(select count(project2.match.id_event)as TotalPartidos,project2.match.id_event from project2.match where project2.match.id_event=pid_event)TotalMatch
+    on project2.event.id_event = TotalMatch.id_event
     
     left join( select count(case when sanction.id_sanction_type=1 then 1 end)as Amarillas, project2.match.id_event
 		from sanction 
@@ -27,7 +25,6 @@ BEGIN
     )tempSancionesAmarillas
     on project2.event.id_event=tempSancionesAmarillas.id_event
     
-    
     left join( select count(case when sanction.id_sanction_type=2 then 1 end)as Rojas, project2.match.id_event
 		from sanction 
         inner join project2.match
@@ -35,16 +32,20 @@ BEGIN
     )tempSancionesRojas
     on project2.event.id_event=tempSancionesRojas.id_event
     
-   left join (select count(play.id_play)as totalTiros,project2.match.id_event
+     left join (select count(case when play.id_type_play=5 then 1 end)as totalTiros,project2.match.id_event
 	   from project2.match
 	   inner join play 
-	   on play.id_match= project2.match.id_match and play.id_type_play=5
-       where project2.match.id_event = pid_event
+	   on play.id_match= project2.match.id_match and project2.match.id_event = pid_event
    )TempTiros
    on TempTiros.id_event= project2.event.id_event
-   inner join(select count(case when project2.match.id_event=2 then 2 end)TotalEquipos, project2.match.id_event from project2.match
-   )TempEquipos
-   on TempEquipos.id_event = project2.event.id_event
+  left join( select count(Distinct team.id_team)TotalEquipos, project2.match.id_event
+	from team 
+	inner join team_x_match
+	on team.id_team = team_x_match.id_team
+	inner join project2.match
+	on project2.match.id_match= team_x_match.id_match  and project2.match.id_event = pid_event)TempEquipos
+	on TempEquipos.id_event = project2.event.id_event
+	where project2.event.id_event= pid_event
     ;
 end$$
 
