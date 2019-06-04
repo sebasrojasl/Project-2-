@@ -12,3 +12,4 @@
 12)correr insert_team_x_match
 13)volver a correr insert_eventtype
 14) correr getIdSanctionType
+15) correr getIdPlayType
