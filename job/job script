@@ -9,8 +9,4 @@ begin
   end |
   delimiter ;
 
-set global event_scheduler = on; /*
-correr el set luego del job para iniciar los eventos
-
-cuando ejecuten el script deben actualizar la fecha de inicio para un dia despues
-*/
+set global event_scheduler = on;
