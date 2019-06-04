@@ -3,10 +3,11 @@ DROP procedure IF EXISTS `insert_team_x_match`;
 
 DELIMITER $$
 USE `project2`$$
-CREATE PROCEDURE `insert_team_x_match` (in pIdTeam int,in pIdmatch int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_team_x_match`(in pIdTeam int,in pIdmatch int)
 BEGIN
-INSERT INTO team_xmatch(id_team, id_match) 
+INSERT INTO team_x_match(id_team, id_match) 
     VALUES(pIdTeam, pIdmatch);
 END$$
 
 DELIMITER ;
+
