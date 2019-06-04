@@ -3,10 +3,10 @@ DROP procedure IF EXISTS `insert_sanctiontype`;
 
 DELIMITER $$
 USE `project2`$$
-CREATE PROCEDURE `insert_sanctiontype` (IN pname VARCHAR(50))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_sanctiontype`(IN pname VARCHAR(50))
 BEGIN
 
-	INSERT INTO sanction(sanction_name)
+	INSERT INTO sanction_type(sanction_name)
 	VALUES(pname);
 	commit;
 END$$
