@@ -112,20 +112,16 @@ public class Controller {
     
     }
     
-    public   boolean  isAdmin(String nickname){
-         try{
-              
-            
+    public   boolean  isAdmin(){
+         try{          
             CallableStatement stmt= Connect.getInstance().getStmt("{call isAdmin(?)}");
-            stmt.setString(1, nickname);
+            stmt.setString(1, user);
             ResultSet myRs = stmt.executeQuery();
             String result = "";
             while (myRs.next()) {
                 result = myRs.getString("result");
-            
             }
          if( result.equals("true")){
-                          System.out.println("admin");
 
              return true;           
          }else{
@@ -1295,6 +1291,8 @@ public class Controller {
             System.out.println(ex.getMessage());
         }  
     }
+    
+  
     // FIN CREAR PARTIDO,SANCIONES  Y JUGADAS
     
 }
