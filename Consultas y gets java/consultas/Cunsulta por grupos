@@ -7,7 +7,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `getStatitisticForjava`(in pid_event
 BEGIN 
 select team.logo_team,team.team_name,sum(StatisticResult.goles_a_favor)as goles_totales,sum(StatisticResult.goles_en_contra)as goles_contra_totales
 ,count(case when resultado= 'victoria' then 1 end)as total_victorias,count(case when resultado= 'derrota' then 1 end)as total_derrotas,count(case when resultado= 'empate' then 1 end)as total_empates
-,sum(StatisticResult.gol_diferencia)gol_diferencia_totales,sum(StatisticResult.puntos_Fairy_play)puntos_Fairy_play__totales
+,sum(StatisticResult.gol_diferencia)gol_diferencia_totales,sum(StatisticResult.puntos_Fairy_play)puntos_Fairy_play__totales, (count(case when resultado= 'victoria' then 1 end)*3+count(case when resultado= 'empate' then 1 end))
 from team
 inner join(select team.id_team, tempCasaGoles.goles_a_favor, (tempPartido.goles_totales- tempCasaGoles.goles_a_favor)goles_en_contra, if(goles_a_favor=(tempPartido.goles_totales- tempCasaGoles.goles_a_favor),'Empate',if(goles_a_favor>(tempPartido.goles_totales- tempCasaGoles.goles_a_favor),'victoria','derrota'))as resultado
 ,(tempCasaGoles.goles_a_favor-(tempPartido.goles_totales- tempCasaGoles.goles_a_favor))gol_diferencia,ifnull(tempSanciones.totalSanciones,0) as puntos_Fairy_play
