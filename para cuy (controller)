@@ -1002,7 +1002,7 @@ public class Controller {
                stmt.setString(2,newName);
                stmt.setString(3,newNumber);
                stmt.setString(4, newIdentificacition);
-               stmt.setInt(5, getIdTeam(newPicture));
+               stmt.setString(5, newPicture);
                if(newTeamName==null){
                     stmt.setString(6, newTeamName);
                }else{
@@ -1291,8 +1291,26 @@ public class Controller {
             System.out.println(ex.getMessage());
         }  
     }
-    
   
     // FIN CREAR PARTIDO,SANCIONES  Y JUGADAS
     
+    
+    //GET LOGO Y NOMBRE EQUIPOS POR PARTIDO
+    public ArrayList<String> getLogoAndName(String Year,String eventType , String Date){
+        ArrayList<String> result = new ArrayList<String>();
+          try{
+            CallableStatement stmt= Connect.getInstance().getStmt("{call getLogoAndName(?,?)}");
+            stmt.setInt(1, getIdEvent(Year,eventType));
+            stmt.setString(2,Date);
+            ResultSet myRs = stmt.executeQuery();
+             while(myRs.next()){
+             result.add(myRs.getString("logo_team"));  
+             result.add(myRs.getString("team_name"));
+           }
+           }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+          return result;
+                
+    }
 }
