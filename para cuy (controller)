@@ -662,11 +662,11 @@ public class Controller {
             tempRow.add(myRs.getString("logo_team"));
             tempRow.add(myRs.getString("team_name"));
             tempRow.add(myRs.getString("juegos"));
+            tempRow.add(myRs.getString("total_victorias"));
+            tempRow.add(myRs.getString("total_empates"));
+            tempRow.add(myRs.getString("total_derrotas"));
             tempRow.add(myRs.getString("goles_totales"));
             tempRow.add(myRs.getString("goles_contra_totales"));
-            tempRow.add(myRs.getString("total_victorias"));
-            tempRow.add(myRs.getString("total_derrotas"));
-            tempRow.add(myRs.getString("total_empates"));
             tempRow.add(myRs.getString("gol_diferencia_totales"));
             tempRow.add(myRs.getString("puntos_Fairy_play__totales"));
             tempRow.add(myRs.getString("Puntos_totales"));
@@ -1119,8 +1119,162 @@ public class Controller {
     }
     
     
-     // FIN EVENTOS INSERT EVENT Y GROUP, GET LISTA tYPOS EVENTOS Y GETIDTIPOEVENTO
-    //CREAR EVENTO Y GRUPO
+     // FIN EVENTOS INSERT EVENT Y GROUP, GET LISTA tYPOS EVENTOS Y GETIDTIPOEVENTO CREAR EVENTO Y GRUPO
     
+    //CREAR PARTIDO,SANCIONES  Y JUGADAS
+    public int getIdMatch(String DateMatch){
+        int IDMatch=-1;
+        try{
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getIDMatch(?)}");
+          stmt.setString(1,DateMatch);
+          ResultSet myRs = stmt.executeQuery();
+          while(myRs.next()){
+                IDMatch= myRs.getInt("id_match");
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+            return IDMatch;
+        
+    }
+    
+    
+    
+    public void createMatch(String dateEvent,String typeEvent,String stadiumName,String date){
+         try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call insert_match(?,?,?)}");
+               stmt.setInt(1,getIdEvent(dateEvent,typeEvent) );
+               stmt.setInt(2,getIdStadium(stadiumName));
+               stmt.setString(3, date);    
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }  
+    }
+    
+    public void createMatchXTeam(String DateMatch, String TeamName){
+         try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call insert_team_x_match(?,?)}");
+               stmt.setInt(1,getIdTeam(TeamName) );
+               stmt.setInt(2,getIdMatch(DateMatch));
+                 
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }  
+    }
+    
+    public void createSanctionType(String sanctionTypeName){
+         try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call insert_sanctiontype(?)}");
+               stmt.setString(1,sanctionTypeName);
+
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }  
+    }
+    
+     public void createPlayType(String playTypeName){
+         try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call insert_typeplay(?)}");
+               stmt.setString(1,playTypeName);
+
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }  
+    }
+     public int getIdSanctionType(String typeName){
+        int idsanction=-1;
+        try{
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getIdSanctionType(?)}");
+          stmt.setString(1,typeName);
+          ResultSet myRs = stmt.executeQuery();
+          while(myRs.next()){
+                idsanction= myRs.getInt("id_sanction_type");
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+            return idsanction;
+     }
+            
+     
+        public int getIdPlayType(String typeName){
+            int idplay=-1;
+            try{
+              CallableStatement stmt= Connect.getInstance().getStmt("{call getIdPlayType(?)}");
+              stmt.setString(1,typeName);
+              ResultSet myRs = stmt.executeQuery();
+              while(myRs.next()){
+                    idplay= myRs.getInt("id_type_play");
+                }
+            }catch(SQLException ex){
+                System.out.println(ex.getMessage());
+            }
+                return idplay;        
+        }
+        
+        
+    public ArrayList<String> getTypeSanction(){   
+            ArrayList<String> typeSanction = new ArrayList<String>();
+        try{
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getTypeSanction()}");
+          ResultSet myRs = stmt.executeQuery();
+           while(myRs.next()){
+               typeSanction.add(myRs.getString("sanction_name"));
+           }
+        
+       }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return typeSanction;
+    }
+        
+    
+    
+    public ArrayList<String> getTypePlay(){   
+            ArrayList<String> typelay = new ArrayList<String>();
+        try{
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getTypePlay()}");
+          ResultSet myRs = stmt.executeQuery();
+           while(myRs.next()){
+               typelay.add(myRs.getString("play_name"));
+           }
+        
+       }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return typelay;
+    }
+    
+    
+    public void createSanction(String sanctionTypeName,String playerName,String minute,String MatchDate){
+         try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call insert_sanction(?,?,?,?)}");
+               stmt.setInt(1,getIdSanctionType(sanctionTypeName));
+               stmt.setInt(2, getIdPlayer(playerName));
+               stmt.setString(3, minute);
+               stmt.setString(4,MatchDate );
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }  
+    }
+    
+    public void createPlay(String minute,String MatchDate,String playerName,String playTypeName){
+         try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call insert_play(?,?,?,?)}");
+               stmt.setString(1,minute);
+               stmt.setInt(2,getIdMatch(MatchDate));
+               stmt.setInt(3,getIdPlayer(playerName) );
+               stmt.setInt(4,getIdPlayType(playTypeName));
+               stmt.execute();
+          }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }  
+    }
+    // FIN CREAR PARTIDO,SANCIONES  Y JUGADAS
     
 }
