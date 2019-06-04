@@ -1,0 +1,13 @@
+USE `project2`;
+DROP procedure IF EXISTS `getTypePlay`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getTypePlay` ()
+BEGIN
+SELECT play_name
+FROM `project2`.`type_play`;
+
+END$$
+
+DELIMITER ;
