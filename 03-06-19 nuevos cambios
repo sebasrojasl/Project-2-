@@ -13,3 +13,5 @@
 13)volver a correr insert_eventtype
 14) correr getIdSanctionType
 15) correr getIdPlayType
+16) correr getTypeSanction
+17)correr getTypePlay
