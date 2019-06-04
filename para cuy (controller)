@@ -27,6 +27,25 @@ public class Controller {
     // PROCEDIMIENTOS PARA USUUARIO
     private String user;
     
+    private String typeEventStatistic;
+    private String dateEventStatisitc;
+    public void settypeEventStatistic(String newEvent){
+        typeEventStatistic = newEvent;
+    }
+
+    public void setdateEventStatisitcFechEvento(String newDate){
+        dateEventStatisitc = newDate;
+    }
+
+    public String gettypeEventStatistic(){
+        return typeEventStatistic;
+    }
+
+    public String getdateEventStatisitcFechaEvento(){
+        return dateEventStatisitc;
+    }
+
+    
     public void setUser(String newUser){
         user = newUser;
     }   
@@ -679,8 +698,8 @@ public class Controller {
          return rowsResult;
      }
      
-    public  ArrayList<ArrayList<String>> getStatisticbyEvent(String Year,String eventType){
-        ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
+    public  ArrayList<String> getStatisticbyEvent(String Year,String eventType){
+        ArrayList<String>rowsResult= new ArrayList<String>();
         double tempNumber;
         try{
           int id_event=getIdEvent(Year,eventType);
@@ -688,12 +707,13 @@ public class Controller {
           stmt.setInt(1,id_event);
           ResultSet myRs = stmt.executeQuery();
           while(myRs.next()){
-              ArrayList<String> tempRow= new ArrayList<String>();
-              tempRow.add(myRs.getString("PorcentajeGoles"));
-              tempRow.add(myRs.getString("PorcentajeAmarillas"));
-              tempRow.add(myRs.getString("PorcentajeRojas"));
-              tempRow.add(myRs.getString("Promediotiros"));
-              rowsResult.add(tempRow);
+              
+              rowsResult.add(myRs.getString("PorcentajeGoles"));
+              rowsResult.add(myRs.getString("PorcentajeAmarillas"));
+              rowsResult.add(myRs.getString("PorcentajeRojas"));
+              rowsResult.add(myRs.getString("Promediotiros"));
+              rowsResult.add(myRs.getString("TotalPartidos"));
+              
           }  
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
