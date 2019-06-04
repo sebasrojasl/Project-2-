@@ -1,0 +1,13 @@
+USE `project2`;
+DROP procedure IF EXISTS `getIdSanctionType`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getIdSanctionType` (in pname varchar(70))
+BEGIN
+select sanction_type.id_sanction_type
+from sanction_type
+where sanction_type.sanction_name=pname;
+END$$
+
+DELIMITER ;
