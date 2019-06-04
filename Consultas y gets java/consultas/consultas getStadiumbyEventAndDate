@@ -5,12 +5,16 @@ DELIMITER $$
 USE `project2`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getStadiumByEventAndDate`(in pidEvent int,in pDate DateTime)
 BEGIN
-select stadium.stadium_name
+select concat(stadium.stadium_name,', ',province.province_name,', ',country.country_name)as 'stadium_name'
 from team_x_match
 inner join project2.match
 on team_x_match.id_match = project2.match.id_match and project2.match.date=pDate and project2.match.id_event = pidEvent
 inner join stadium
 on  project2.match.id_stadium =stadium.id_stadium
+inner join province
+on province.id_province = stadium.id_province
+inner join country
+on country.id_country = province.id_country
 group by stadium.stadium_name
 ;
 
