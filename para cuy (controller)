@@ -33,7 +33,7 @@ public class Controller {
         typeEventStatistic = newEvent;
     }
 
-    public void setdateEventStatisitcFechEvento(String newDate){
+    public void setdateEventStatisitc(String newDate){
         dateEventStatisitc = newDate;
     }
 
@@ -41,7 +41,7 @@ public class Controller {
         return typeEventStatistic;
     }
 
-    public String getdateEventStatisitcFechaEvento(){
+    public String getdateEventStatistic(){
         return dateEventStatisitc;
     }
 
@@ -805,9 +805,9 @@ public class Controller {
           ResultSet myRs = stmt.executeQuery();
            while(myRs.next()){
                ArrayList<String> tempRow= new ArrayList<String>();
-               tempRow.add(myRs.getString("picture"));
+               
                tempRow.add(myRs.getString("player_name"));
-               tempRow.add(myRs.getString("logo_team"));
+               tempRow.add(myRs.getString("team_name"));
                tempRow.add(myRs.getString("goles"));
                TopNPlayer.add(tempRow);
            }
@@ -829,9 +829,9 @@ public class Controller {
           ResultSet myRs = stmt.executeQuery();
            while(myRs.next()){
                ArrayList<String> tempRow= new ArrayList<String>();
-               tempRow.add(myRs.getString("picture"));
+               
                tempRow.add(myRs.getString("player_name"));
-               tempRow.add(myRs.getString("logo_team"));
+               tempRow.add(myRs.getString("team_name"));
                tempRow.add(myRs.getString("sanciones"));
                TopNPlayer.add(tempRow);
            }
