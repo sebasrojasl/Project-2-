@@ -636,7 +636,7 @@ public class Controller {
           stmt.setInt(2,getIdEvent(Year,eventType));
           ResultSet myRs = stmt.executeQuery();
           while(myRs.next()){
-                idEvent= myRs.getInt("id_event");
+                idEvent= myRs.getInt("id_group");
             }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -658,9 +658,10 @@ public class Controller {
           }
           ResultSet myRs = stmt.executeQuery();
           while(myRs.next()){
-              ArrayList<String> tempRow= new ArrayList<String>();
+            ArrayList<String> tempRow= new ArrayList<String>();
             tempRow.add(myRs.getString("logo_team"));
             tempRow.add(myRs.getString("team_name"));
+            tempRow.add(myRs.getString("juegos"));
             tempRow.add(myRs.getString("goles_totales"));
             tempRow.add(myRs.getString("goles_contra_totales"));
             tempRow.add(myRs.getString("total_victorias"));
@@ -668,7 +669,7 @@ public class Controller {
             tempRow.add(myRs.getString("total_empates"));
             tempRow.add(myRs.getString("gol_diferencia_totales"));
             tempRow.add(myRs.getString("puntos_Fairy_play__totales"));
-            
+            tempRow.add(myRs.getString("Puntos_totales"));
             rowsResult.add(tempRow);
             }
         }catch(SQLException ex){
