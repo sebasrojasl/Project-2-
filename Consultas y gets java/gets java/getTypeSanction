@@ -1,0 +1,13 @@
+USE `project2`;
+DROP procedure IF EXISTS `getTypeSanction`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getTypeSanction` ()
+BEGIN
+SELECT sanction_name
+FROM `project2`.`sanction_type`;
+
+END$$
+
+DELIMITER ;
