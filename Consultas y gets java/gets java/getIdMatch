@@ -1,0 +1,13 @@
+USE `project2`;
+DROP procedure IF EXISTS `getIDMatch`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getIDMatch` (in Pdate datetime)
+BEGIN
+select project2.match.id_match
+from  project2.match
+where  project2.match.date=Pdate;
+END$$
+
+DELIMITER ;
