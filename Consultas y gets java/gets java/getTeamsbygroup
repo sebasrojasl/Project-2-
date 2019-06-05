@@ -1,0 +1,17 @@
+USE `project2`;
+DROP procedure IF EXISTS `getTeamsbygroup`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getTeamsbygroup` (in gname varchar(70),in pid_event int)
+BEGIN
+select team.team_name
+from team
+inner join group_x_team 
+on team.id_team= group_x_team.id_team
+inner join project2.group
+on project2.group.id_group = group_x_team.id_group and project2.group.group_name= gname and project2.group.id_event=pid_event
+;
+END$$
+
+DELIMITER ;
