@@ -1358,7 +1358,7 @@ public class Controller {
                stmt.setInt(1,getIdSanctionType(sanctionTypeName));
                stmt.setInt(2, getIdPlayer(playerName));
                stmt.setString(3, minute);
-               stmt.setString(4,MatchDate );
+               stmt.setInt(4,getIdMatch(MatchDate) );
                stmt.execute();
           }catch(SQLException ex){
             showMessageDialog(null,"Hay un error en los datos");
@@ -1414,5 +1414,21 @@ public class Controller {
         }
           return result;
                 
+    }
+    
+    public ArrayList<String> getTeamsbygroup(String groupName,String dateEvent, String TypeeEvent){       
+      ArrayList<String> teams = new ArrayList<String>();
+        try{
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getTeamsbygroup(?,?)}");
+          stmt.setString(1,groupName);
+          stmt.setInt(2, getIdEvent(dateEvent,TypeeEvent));
+          ResultSet myRs = stmt.executeQuery();
+           while(myRs.next()){
+               teams.add(myRs.getString("team_name"));
+           }
+       }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return teams;
     }
 }
