@@ -1,8 +1,14 @@
-/*
+*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+/*
+Importacion de paquetes utilizados en el controlador.
+
+*/
+
 package project2;
 import Connection.Connect;
 import java.sql.CallableStatement;
@@ -10,12 +16,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import static javax.swing.JOptionPane.showMessageDialog;
-import  project2.Encrypter;
-import static project2.Encrypter.encryptPassword;
+
 /**
  *
  * @author andre
  */
+
+//COnstructor del controlador, utiliza un singleton para la primera vez que se llame se genere la instancia
 public class Controller {
     private static Controller Controller;
     public  static Controller getInstance(){
@@ -25,8 +32,9 @@ public class Controller {
         return Controller;
     }
     // PROCEDIMIENTOS PARA USUUARIO
+    //Atributo que almacena el nickname del usuario  actual
     private String user;
-    
+    //Variables con sus sets y gets para ventana de estadisticas
     private String typeEventStatistic;
     private String dateEventStatisitc;
     public void settypeEventStatistic(String newEvent){
@@ -54,9 +62,11 @@ public class Controller {
         return user;
     }
     
+    //Procedimiento para cambiar la contrasena de un usuario
     public void changePassword(String user, String oldPassword, String newPassword){
        updateUser(user, null, newPassword, null);  
     }
+    //Procedimiento que returna true si la contrasena del nickname ingresado coincide con la contrasena
        public  boolean validatePasssword(String nickname,String password){ 
            try{
               password = Encrypter.encryptPassword(password);
@@ -80,6 +90,7 @@ public class Controller {
            return false;
        }
        
+    //Procedimiento que cre un nuevo usuario   
     public  void createUser(String nickname, String password){
          try{
        CallableStatement stmt= Connect.getInstance().getStmt("{call insert_user(?,?,?)}");
@@ -97,7 +108,7 @@ public class Controller {
     }
     
     
-    
+    //Procedimiento para actualizar la información de un usuario, si recibe nulls 
     public  void updateUser(String nickname,String newNickname,String newpassword,String newUserType){
          try{
        CallableStatement stmt= Connect.getInstance().getStmt("{call updateUser(?,?,?,?)}");
@@ -115,7 +126,7 @@ public class Controller {
       }
     
     }
-    
+    //Booleano que regresa true un usuario es admin
     public   boolean  isAdmin(){
          try{          
             CallableStatement stmt= Connect.getInstance().getStmt("{call isAdmin(?)}");
@@ -142,6 +153,7 @@ public class Controller {
     //FIN PROCEDIMIENTOS PARA USUARIO
     
     //INICIO  ALIGNMENT 
+    //Procedimiento para crear alineaciones. recibe el nombre
     public  int createAlignment(String name ){
        try{
        CallableStatement stmt= Connect.getInstance().getStmt("{call insert_alignment(?)}");
@@ -155,6 +167,7 @@ public class Controller {
         
     }
     //terminar
+    //Procedimiento que actualiza una alineacione, recibe la alineacion a cambiar y el nuevo nombre
     public  void updateAlignment(String aligmentName,String newName){
        try{
             CallableStatement stmt= Connect.getInstance().getStmt("{call updateAlignment(?,?)}");
@@ -166,7 +179,7 @@ public class Controller {
       showMessageDialog(null,"La alineación ya se encuentra registrada");
       }                              
     }
-    
+    //Procedimiento que regresa el id de la alineacion a partir del nombre
     public  int getIdAlignment(String aligmentName){
         int idAlignment= -1;
        try{
@@ -182,6 +195,7 @@ public class Controller {
        return idAlignment;
     }
     
+    //Procedimiento que regresa la lista de todas las alineaciones existentes
     public  ArrayList<String> getAlignmentNames(){
         ArrayList<String> alignments =new ArrayList<String>();
         try{
@@ -199,6 +213,7 @@ public class Controller {
   
     
     //INICIO NACIONALIDAD
+    //Procedimiento que inserta una nueva nacionalidad
         public  void insertNationality(String nacionalityName){
        try{
        CallableStatement stmt= Connect.getInstance().getStmt("{call insert_nationality(?)}");
@@ -210,7 +225,7 @@ public class Controller {
       }     
      }
         
-        
+      //Procedimiento que actualiza la nacionalidad a apartir de que se le envie el nombre de la nacionalidad a cambiar y el nuevo nombre
       public  void updateNationality(String NationalitytName,String newName){
        try{
             CallableStatement stmt= Connect.getInstance().getStmt("{call updateNationality(?,?)}");
@@ -221,7 +236,7 @@ public class Controller {
             showMessageDialog(null,"La nacionalidad ingresada ya se encuentra insertada.");
       }                              
     }   
-      
+      //Procedimiento que devuelve el id de la nacionalidad a partir del nombre
      public  int getIdNationality(String NationalityName){
         int idAlignment= -1;
        try{
@@ -237,7 +252,7 @@ public class Controller {
        return idAlignment;
     }
      
-     
+     //Procedimiento que devuelve una lista con todas la nacionalidades
      public  ArrayList<String> getNationalityNames(){
        ArrayList<String>Nationality= new ArrayList<String>();
        try{
@@ -256,6 +271,7 @@ public class Controller {
     //FIN NACIONALIDAD
     
     //      GETS DE  NOMBRES DE LOCALIZACIONES
+     //Procedimiento que devuelve una lista con todos los nombres de los continentes
     public  ArrayList<String> getContinentsName(){
        ArrayList<String>Continents= new ArrayList<String>();
        try{
@@ -270,7 +286,7 @@ public class Controller {
         return Continents;
     }
   
-    
+    //Procedimiento que devuelve todos los nombres de los paises a partir de un continente
     public  ArrayList<String> getCountryNames(String continentName){
        ArrayList<String>countries= new ArrayList<String>();
        try{
@@ -286,6 +302,8 @@ public class Controller {
         return countries;
     }
         
+   //Procedimiento que devuelve una lista con todas las provincias a partir del pais 
+    
    public  ArrayList<String> getProvinceNames(String CountryName){
        ArrayList<String>provinces= new ArrayList<String>();
        try{
@@ -302,6 +320,7 @@ public class Controller {
    
    }
    
+   //Procedimiento que devuelve los nombres de los cantones a parit de la provincia
    public  ArrayList<String> getCantonNames(String ProvinceName){
         ArrayList<String>Cantons= new ArrayList<String>();
        try{
@@ -318,7 +337,7 @@ public class Controller {
    
    }
    
-   
+   //Procedimiento que devuelve los distritos a partir de un canton
    public  ArrayList<String> getDistrictNames(String ProvinceName){
        ArrayList<String>Districts= new ArrayList<String>();
        try{
@@ -334,6 +353,7 @@ public class Controller {
         return Districts;
    }
    
+   //Procedimiento que devuelve una lista con todos los estadios
    public ArrayList<String> getAllStadium(){
        
        ArrayList<String>stadium= new ArrayList<String>();
@@ -349,6 +369,8 @@ public class Controller {
       }     
         return stadium;
    }
+   
+   //Procedimiento que devuelve una lista con todos los nombres de estadios
    public ArrayList<String> getStadiumNames(String ProvinceName){
        ArrayList<String> Stadium = new ArrayList<String>();
        try{
@@ -366,6 +388,7 @@ public class Controller {
     // FINAL GETS NOMBRES LOCALIZACIONES
     
    //INICIO GETS ID LOCALIZACIONES
+   //Get del id de un contienente a partir del nombre
    public  int getIdContinent(String NameContinent){
     int idContinent=-1;
     try{
@@ -382,7 +405,7 @@ public class Controller {
    }
    
    
-   
+    //Get del id de un pais a partir del nombre
    public  int getIdCountry(String NameCountry){
     int idCountry=-1;
     try{
@@ -398,7 +421,7 @@ public class Controller {
         return idCountry;
    }
    
-   
+    //Get del id de un provincia a partir del nombre
     public  int getIdProvince(String NameProvince){
     int idProvince=-1;
     try{
@@ -414,7 +437,7 @@ public class Controller {
         return idProvince;
    }
     
-    
+     //Get del id de un canton a partir del nombre
     public  int getIdCanton(String NameCanton){
     int idCanton=-1;
     try{
@@ -431,7 +454,7 @@ public class Controller {
    }
     
     
-    
+     //Get del id de un distrito a partir del nombre
      public  int getIdDistrict(String NameDistrict){
     int idDistrict=-1;
     try{
@@ -452,6 +475,7 @@ public class Controller {
      
      
    //INICIO INSERTS LOCALIZACIONES
+     //Procedimiento que inserta un nuevo contienente
      public  void insertContinent(String ContinentName){
         try{
             CallableStatement stmt= Connect.getInstance().getStmt("{call insert_Continent(?)}");
@@ -462,7 +486,7 @@ public class Controller {
         }    
      }
      
-     
+     //Procedimiento que inserta un nuevo pais
      public  void insertCountry(String CountryName,String ContinentName){
         try{
             CallableStatement stmt= Connect.getInstance().getStmt("{call insert_Country(?,?)}");
@@ -474,7 +498,7 @@ public class Controller {
            showMessageDialog(null,"El país ya se encuentra insertado,pruebe con otro.");
         }    
      }
-     
+     //Procedimiento que inserta una nueva provincia
       public  void insertProvince(String ProvinceName,String CountryName){
         try{
             CallableStatement stmt= Connect.getInstance().getStmt("{call insert_Province(?,?)}");
@@ -485,7 +509,7 @@ public class Controller {
            showMessageDialog(null,"La provincia ya se encuentra insertada,pruebe con otra.");
         }    
      }
-      
+      //Procedimiento que inserta un nuevo canton
       public  void insertCanton (String CantonName,String ProvinceName){
           try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_Canton(?,?)}");
@@ -496,7 +520,7 @@ public class Controller {
             showMessageDialog(null,"El cantón ingresado ya se encuentra insertado.");
         }  
       }
-     
+     //Procedimiento que inserta un nuevo distrito
       
        public  void insertDistrict (String DistrictName,String CantonName){
           try{
@@ -508,6 +532,7 @@ public class Controller {
             showMessageDialog(null,"El distrito ya se encuentra insertado.");
         }  
       }
+       //Procedimiento que inserta un nuevo estadio
        public void insertStadium(String stadiumName,String ProvinceName){
             try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_Stadium(?,?)}");
@@ -524,6 +549,8 @@ public class Controller {
        
         //INICIO UPDATES LOCALIZACIONES
        //
+       
+       //Procedimiento que actualiza un contienente a partir del nombre
        public  void updateContinent(String ContinentName, String newName){
            try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call updateContinent(?,?)}");
@@ -535,7 +562,7 @@ public class Controller {
         }  
        
        }
-       
+       //Procedimiento que actualiza un pais a partir del nombre
        public  void updateCountry(String CountryName,String newName, String ContinentName){
            try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call updateCountry(?,?,?)}");
@@ -553,7 +580,7 @@ public class Controller {
         }  
        }
        
-       
+       //Procedimiento que actualiza una provincia a partir del nombre
        public  void updateProvince(String ProvinceName,String newName, String CountryName){
            try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call updateProvince(?,?,?)}");
@@ -570,7 +597,7 @@ public class Controller {
             showMessageDialog(null,"La provincia ya se encuentra insertada.");
         }
        }
-       
+       //Procedimiento que actualiza un canton a partir del nombre
        
        public  void updateCanton(String CantonName,String newName,String ProvinceName){
            try{
@@ -588,7 +615,7 @@ public class Controller {
             showMessageDialog(null,"El cantón ya se encuentra insertado,pruebe con otro.");
         }
        }
-       
+       //Procedimiento que actualiza un distrito a partir del nombre
        public  void updateDistrict(String DistrictName,String newName,String CantonName){
            try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call updateDistrict(?,?,?)}");
@@ -607,7 +634,7 @@ public class Controller {
        }
        
        
-       
+       //Get del estadio a partir del nombre
        public int getIdStadium(String nameStadium){
            int idStadium=-1;
     try{
@@ -622,7 +649,7 @@ public class Controller {
     }
         return idStadium;
        }
-       
+       //Procedimiento que actualiza un estadio a partir del nombre
        
        public void updateStadium(String StadiumName,String newName,String ProvinceName){
            try{
@@ -647,6 +674,7 @@ public class Controller {
        
        
    //INICIO CONSULTAS PRINCIPALES CON SUS GETS 
+       //get de el id del evento a partir de una fecha y tipo
     public  int getIdEvent(String Year,String eventType){
         int idEvent=-1;
         try{
@@ -663,7 +691,7 @@ public class Controller {
         return idEvent;
    }
     
-    
+    //get del id del grupo a partir de la fecha del evento y el nombre del grupo
     
     public  int getIdGroup(String Year,String eventType,String groupName ){
         int idEvent=-1;
@@ -684,6 +712,8 @@ public class Controller {
     
     
                                 //todas las consultas
+    
+    //COnsulta que regresa los resultados por evento y por grupo, recibe la fecha, el tipo de evento y el nombre del grupo
     public  ArrayList<ArrayList<String>> getResultbyEventAndGroup(String Year,String eventType,String groupName){
          ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
          try{
@@ -719,6 +749,7 @@ public class Controller {
          return rowsResult;
      }
      
+    //Consulta que regresa las estadisitricas de un evento, reciben, fecha y tipo de evento.
     public  ArrayList<String> getStatisticbyEvent(String Year,String eventType){
         ArrayList<String>rowsResult= new ArrayList<String>();
         double tempNumber;
@@ -742,6 +773,7 @@ public class Controller {
          return  rowsResult;
     }    
     
+    //Consulta que regresa una matriz con las jugadas por eventos y fecha, recibe fecha, tipo de evento y fecha del partido
     public  ArrayList<ArrayList<String>>  getPlaysByEventAndDate(String Year,String eventType, String Date){
         ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
          try{
@@ -769,7 +801,7 @@ public class Controller {
          return rowsResult;
     }
     
-    
+    //Consulta que regresa el estadio de un partido de un evento.
     public  String  getStadiumbyEventAndDate(String Year,String eventType , String Date){
         String Stadium="";
          try{
@@ -790,7 +822,7 @@ public class Controller {
          return Stadium;
     }
      
-             
+             //Consulta que regresa una matriz con las sanciones por evento y fecha, recibe fecha, tipo de evento y fecha de partido
       public  ArrayList<ArrayList<String>>  getSanctionsbyEventAndDate(String Year,String eventType , String Date){
         ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
          try{
@@ -814,7 +846,8 @@ public class Controller {
     }       
      
     //FIN CONSULTAS PRINCIPALES   
-    //CONSULTAS EXTRA 
+    //CONSULTAS EXTRA //
+      //Consulta que regrea un top N de jugadores, dependiendo de los goles que realizo en el evento
         public  ArrayList<ArrayList<String>> getTopNPlayerExtra(String Year,String eventType,int Ntop){
        ArrayList<ArrayList<String>> TopNPlayer = new ArrayList<ArrayList<String>>();
         try{
@@ -839,7 +872,8 @@ public class Controller {
         return TopNPlayer;
         
     }
-        
+    // Consulta que regresa una matriz con los peores jugadores, depende del los puntos de fair play, recibe la fecha, tipo de evento y el nummero
+        //de jugadores que se quiera desplega
      public  ArrayList<ArrayList<String>> getTopNWorstPlayer(String Year,String eventType,int Ntop){
         ArrayList<ArrayList<String>> TopNPlayer = new ArrayList<ArrayList<String>>();
         try{
@@ -867,6 +901,7 @@ public class Controller {
       //FIN CONSULTAS EXTRA
  
     //INICIO CONSULTAS EVENTOS Y GRUPOS
+     //COnsulta que regresa los grupos que existen en un evento
     public  ArrayList<String> getGroupsByEvent(String Year,String eventType){
         ArrayList<String> groups = new ArrayList<String>();
         try{
@@ -888,7 +923,7 @@ public class Controller {
                         //gets del evento
     
     
-  
+    //Consulta que regresa las fechas dependiendo del tipo de eventos, recibe el tipo de evento
     public  ArrayList<String> getYearByTypeEvent(String nameTypeEvent){
         ArrayList<String> events = new ArrayList<String>();
         try{
@@ -906,6 +941,7 @@ public class Controller {
         return events;
         
     }
+    //Consulta que regrsa los equipos que jugaron por un evento
     public ArrayList<String> getdateTeamSbyEvent(String Date,String TypeEvent){
         ArrayList<String> years = new ArrayList<String>();
         try{
@@ -927,6 +963,8 @@ public class Controller {
     
     
     //INICIO INSERTAR TEAM Y PERSONAS
+    
+    //Get que regresa el id de un equipo a partir del nombre
      public  int getIdTeam(String teamName){
           int idAlignment= -1;
        try{
@@ -942,6 +980,8 @@ public class Controller {
        return idAlignment;
      }
     
+    //Procedimiento que crea un nuevo equipo, recibe el nombre del pais, la alineacion por defecto
+     //el capitam, nombre y logo
     public  void createTeam(String countryName,String aligmentName,String idCaptain, String teamName,String Logo){
        try{
          CallableStatement stmt= Connect.getInstance().getStmt("{call insert_team(?,?,?,?,?)}");
@@ -956,7 +996,7 @@ public class Controller {
       showMessageDialog(null,"El equipo ya se encuentra insertado, o hay un error en los datos.");
       }
     }
-    
+    //Procedimiento que actualiza la informacion de una equipo, si envia null no realiza cambios.
     public  void updateTeam(String teamName,String newName,String CountryName,String alignmentName,String captainName,String Logo){
         try{
          CallableStatement stmt= Connect.getInstance().getStmt("{call updateTeam(?,?,?,?,?,?)}");
@@ -984,7 +1024,7 @@ public class Controller {
       }
     }
     
-    
+    //Get que retorna el id del jugador a partir del nom re
     public  int getIdPlayer(String playerName){
           int idplayer= -1;
        try{
@@ -1001,7 +1041,7 @@ public class Controller {
      }
     
     
-    
+    //Procedimiento que crea un nuevo jugador
     public  void insertPlayer(String PlayerName,int number,int identificacition,String picture,String teamName,String nationality){
         try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_player(?,?,?,?,?,?)}");
@@ -1018,7 +1058,7 @@ public class Controller {
     }
     
     
-    
+    //Procedimiento que actualiza la informacion de un juegador
     
     public  void updatePlayer(String PlayerName,String newName,String newNumber,String newIdentificacition,String newPicture,String newTeamName,String newNationality){
         try{
@@ -1043,7 +1083,7 @@ public class Controller {
             showMessageDialog(null,"El jugador ya se encuentra insertado, o hay un error en los datos.");
         }        
     }
-    
+    //Consulta que regresa los nombres de los jugadores en un equipo, recibe el nombre del equipo
     public   ArrayList<String> getPlayerNamesbyTeam(String TeamName){
         ArrayList<String> players = new ArrayList<String>();
         try{
@@ -1060,7 +1100,7 @@ public class Controller {
         return players;
     }
     
-    
+    //Consulta que regresa todos los nombres de los equipos existentes.
     public  ArrayList<String> getTeamNames(){
         ArrayList<String> teams = new ArrayList<String>();
         try{
@@ -1082,6 +1122,7 @@ public class Controller {
     
     // INICIO EVENTOS INSERT EVENT Y GROUP, GET LISTA tYPOS EVENTOS Y GETIDTIPOEVENTO
     //CREAR EVENTO Y GRUPO
+    //Consulta que regresa una lista con los nombres de los tipos de eventos existentes
     public  ArrayList<String> getTypeEvents(){
         ArrayList<String> players = new ArrayList<String>();
         try{
@@ -1096,6 +1137,7 @@ public class Controller {
         return players;
     }
     
+    //Procedimiento que regresa el id del tipo de evento a partir del nombre
     public  int getIdTypeEvent(String typeEventName){
           int idplayer= -1;
        try{
@@ -1111,7 +1153,7 @@ public class Controller {
        return idplayer;
      }
     
-    
+    //Procedimiento que crea un nuevo tipo de evento, recibe un nombre.
     public  void createtypeEvent(String typeEvent){
         try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_typevent(?)}");
@@ -1121,6 +1163,7 @@ public class Controller {
             showMessageDialog(null,"El tipo de evento ya se encuentra insertado");
         }
     }
+    //Procedimiento que actualiza un tipo de evento, recibe el nombre
     public  void updateTypeEvent(String typeEvent,String newName){
         try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call updatetypeEvent(?,?)}");
@@ -1132,7 +1175,7 @@ public class Controller {
             showMessageDialog(null,"El tipo de evento ya se encuentra insertado");
         }  
     }
-    
+    //Procedimiento que crea un nuevo evento, recibe una fecha y ell tipo de evento
     public  void createEvent(String Date,String TypeeventName){
         try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_event(?,?)}");
@@ -1144,7 +1187,7 @@ public class Controller {
             showMessageDialog(null,"El evento ya se encuentra insertado o hay un error en los datos");
         }  
     }
-    
+    //Procedimiento que actualiza la informacion de un evento.
     public void updateEvent(String year,String TypeeventName,String newDate,String newTypeEvent){
         try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call updateEvent(?,?,?)}");
@@ -1160,7 +1203,7 @@ public class Controller {
             showMessageDialog(null,ex.getMessage());
         }  
     }
-    
+    //Procedimiento que crea un nuevo grupo, recibe el nombre y la fecha del evento.
     public  void createGroup(String groupName,String year,String typeEvent){
         try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_group(?,?)}");
@@ -1178,6 +1221,7 @@ public class Controller {
      // FIN EVENTOS INSERT EVENT Y GROUP, GET LISTA tYPOS EVENTOS Y GETIDTIPOEVENTO CREAR EVENTO Y GRUPO
     
     //CREAR PARTIDO,SANCIONES  Y JUGADAS
+    //get que a partir de una fecha retorna el id del partido
     public int getIdMatch(String DateMatch){
         int IDMatch=-1;
         try{
@@ -1195,7 +1239,7 @@ public class Controller {
     }
     
     
-    
+    //Procedimiento que crea un nuevo partido recibe, la fecha del evento, el tipo de evento, el nombre del estadio, la fecha del partido
     public void createMatch(String dateEvent,String typeEvent,String stadiumName,String date){
          try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_match(?,?,?)}");
@@ -1208,6 +1252,7 @@ public class Controller {
         }  
     }
     
+    //Crea un nuevo partido por equipo, recibe la fecha y el nombre del equipo
     public void createMatchXTeam(String DateMatch, String TeamName){
          try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_team_x_match(?,?)}");
@@ -1219,7 +1264,7 @@ public class Controller {
             System.out.println(ex.getMessage());
         }  
     }
-    
+    //Procedimiento que crea un nuevo tipo de sancion, recibe el nombre
     public void createSanctionType(String sanctionTypeName){
          try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_sanctiontype(?)}");
@@ -1230,7 +1275,7 @@ public class Controller {
             showMessageDialog(null,"El tipo de sanción ya se encuentra insertada");
         }  
     }
-    
+    //Procedimiento que ingresa un nuevo tipo de jugada al catologo tipo de jugada
      public void createPlayType(String playTypeName){
          try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_typeplay(?)}");
@@ -1241,6 +1286,7 @@ public class Controller {
             showMessageDialog(null,"El tipo de jugada ya se encuentra insertada");
         }  
     }
+     //Procedimiento que regresa el id del tipo de sancion a partir del nombre
      public int getIdSanctionType(String typeName){
         int idsanction=-1;
         try{
@@ -1256,7 +1302,7 @@ public class Controller {
             return idsanction;
      }
             
-     
+        //Procedimiento que regresa el id del tipo de jugada a parit del nombre
         public int getIdPlayType(String typeName){
             int idplay=-1;
             try{
@@ -1272,7 +1318,7 @@ public class Controller {
                 return idplay;        
         }
         
-        
+    //Procedimiento que regresa la lista de los tipos de sanciones    
     public ArrayList<String> getTypeSanction(){   
             ArrayList<String> typeSanction = new ArrayList<String>();
         try{
@@ -1289,7 +1335,7 @@ public class Controller {
     }
         
     
-    
+    //Procedimiento que regresa la lista de tipo de juegos
     public ArrayList<String> getTypePlay(){   
             ArrayList<String> typelay = new ArrayList<String>();
         try{
@@ -1305,7 +1351,7 @@ public class Controller {
         return typelay;
     }
     
-    
+    //Procedimiento que crea una sancion, ingresa un tipo de sancion, el nombre, minuto y la fecha del partido
     public void createSanction(String sanctionTypeName,String playerName,String minute,String MatchDate){
          try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_sanction(?,?,?,?)}");
@@ -1318,7 +1364,7 @@ public class Controller {
             showMessageDialog(null,"Hay un error en los datos");
         }  
     }
-    
+    //Procedimiento que crea una jugada en un partido, recibe el minuto, la fecha del partido, el nombre del jugador que hizo la jugada y el tipo de  jugada
     public void createPlay(String minute,String MatchDate,String playerName,String playTypeName){
          try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insert_play(?,?,?,?)}");
@@ -1332,7 +1378,7 @@ public class Controller {
         }  
     }
   
-    
+    //Procedimiento que crea grupos rando para un evento, recibe el numeor de equipos, el nombre del grupo la fecha del evento, el tipo
     void insertRandomteamsInGroup(int cantTeams,String groupName,String eventDate,String TypeEvent){
         try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call insertRandom(?,?,?,?)}");
@@ -1349,6 +1395,7 @@ public class Controller {
     
     
     //GET LOGO Y NOMBRE EQUIPOS POR PARTIDO
+    //Procedimiento que regresa los nombre y los logos de dos equipo que se van a enfrentar.
     public ArrayList<ArrayList<String>> getLogoAndName(String Year,String eventType , String Date){
         ArrayList<ArrayList<String>> result = new ArrayList<>();
           try{
