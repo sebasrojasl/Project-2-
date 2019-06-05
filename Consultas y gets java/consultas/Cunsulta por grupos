@@ -71,6 +71,8 @@ group by team.id_team
 on PartidosTotalesEquipo.id_team=team.id_team
 group by team.id_team
     ;
+    
     end$$
 
 DELIMITER ;
+
