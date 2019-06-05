@@ -1,0 +1,13 @@
+USE `project2`;
+DROP procedure IF EXISTS `insert_group_x_team`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `insert_group_x_team` (in pidGroup int, in pidTeam int)
+BEGIN
+ INSERT INTO group_x_team(id_group,id_team)
+ values (pidGroup,pidTeam);
+END$$
+
+DELIMITER ;
+
