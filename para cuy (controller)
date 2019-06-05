@@ -1,4 +1,4 @@
-*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -1286,6 +1286,29 @@ public class Controller {
             showMessageDialog(null,"El tipo de jugada ya se encuentra insertada");
         }  
     }
+     
+     public void updatePlayType(String namePlayType, String  newName){
+          try{
+            CallableStatement stmt= Connect.getInstance().getStmt("{call updateTypePlay(?,?)}");
+            stmt.setInt(1, getIdPlayType(namePlayType));
+            stmt.setString(2, newName);
+            stmt.execute();
+        }catch(SQLException ex){     
+      showMessageDialog(null,"El tipo de jugada ya se encuentra registrada");
+     }
+     }
+     
+     public void updateSanctionType(String nameSanctionType, String  newName){
+          try{
+            CallableStatement stmt= Connect.getInstance().getStmt("{call updateSanctionType(?,?)}");
+            stmt.setInt(1, getIdSanctionType(nameSanctionType));
+            stmt.setString(2, newName);
+            stmt.execute();
+        }catch(SQLException ex){     
+      showMessageDialog(null,"El tipo de sanción ya se encuentra registrada");
+     }
+     }
+     
      //Procedimiento que regresa el id del tipo de sancion a partir del nombre
      public int getIdSanctionType(String typeName){
         int idsanction=-1;
@@ -1431,4 +1454,21 @@ public class Controller {
         }
         return teams;
     }
+    
+    private void updategroup_x_team(String Year,String eventType,String groupName,String teamName){
+        try{
+            CallableStatement stmt= Connect.getInstance().getStmt("{call updategroup_x_team(?,?)}");
+            stmt.setInt(1,getIdGroup(Year,eventType,groupName));
+            stmt.setInt(2, getIdTeam(teamName));
+            stmt.execute();
+        }catch(SQLException ex){
+            
+      showMessageDialog(null,"el equipo ya se encuentra en el grupo ya se encuentra registrada");
+      }               
+    }
+    
+ 
+        
+    
+            
 }
