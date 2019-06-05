@@ -1216,8 +1216,7 @@ public class Controller {
             System.out.println(ex.getMessage());
         }  
     }
-    
-    
+ 
      // FIN EVENTOS INSERT EVENT Y GROUP, GET LISTA tYPOS EVENTOS Y GETIDTIPOEVENTO CREAR EVENTO Y GRUPO
     
     //CREAR PARTIDO,SANCIONES  Y JUGADAS
@@ -1439,6 +1438,8 @@ public class Controller {
                 
     }
     
+    //Función que de vuelve un arraylist con los nombres de los equipos que pertenecen a un grupo
+    //recibe el nombre del grupo, la fheca del evento y el tipo del evento
     public ArrayList<String> getTeamsbygroup(String groupName,String dateEvent, String TypeeEvent){       
       ArrayList<String> teams = new ArrayList<String>();
         try{
@@ -1454,8 +1455,38 @@ public class Controller {
         }
         return teams;
     }
+    //Procedimiento que permite actualizar los dtos de un grupo
+    public void updateGroup(String Year,String eventType,String groupName,String newName){
+         try{
+            CallableStatement stmt= Connect.getInstance().getStmt("{call updateGroup(?,?,?)}");
+              stmt.setInt(1,getIdGroup(Year,eventType,groupName));
+            stmt.setString(2, newName);
+            String event= null;
+            stmt.setString(3,event);
+            stmt.execute();
+        }catch(SQLException ex){     
+      showMessageDialog(null,"El tipo de jugada ya se encuentra registrada");
+     }
+        
+    }
     
-    private void updategroup_x_team(String Year,String eventType,String groupName,String teamName){
+    
+    public void insert_group_x_team(String Year,String eventType,String groupName,String teamName){
+        try{
+            CallableStatement stmt= Connect.getInstance().getStmt("{call insert_group_x_team(?,?)}");
+            stmt.setInt(1,getIdGroup(Year,eventType,groupName));
+            stmt.setInt(2, getIdTeam(teamName));
+            stmt.execute();
+        }catch(SQLException ex){
+            
+      showMessageDialog(null,"el equipo ya se encuentra en el grupo ya se encuentra registrada");
+      }            
+    
+    }
+    
+    
+    //Procedimiento que actualiza la tabla group_x_Team
+    public void updategroup_x_team(String Year,String eventType,String groupName,String teamName){
         try{
             CallableStatement stmt= Connect.getInstance().getStmt("{call updategroup_x_team(?,?)}");
             stmt.setInt(1,getIdGroup(Year,eventType,groupName));
@@ -1466,6 +1497,7 @@ public class Controller {
       showMessageDialog(null,"el equipo ya se encuentra en el grupo ya se encuentra registrada");
       }               
     }
+       
     
     public ArrayList<String> getTeamsNotInEvent(String eventDate,String eventType){
          ArrayList<String> teams = new ArrayList<String>();
