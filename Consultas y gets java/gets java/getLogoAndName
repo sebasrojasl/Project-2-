@@ -3,14 +3,14 @@ DROP procedure IF EXISTS `getLogoAndName`;
 
 DELIMITER $$
 USE `project2`$$
-CREATE PROCEDURE `getLogoAndName` (in pidEvent int,in pDate DateTime )
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getLogoAndName`(in pidEvent int,in pDate DateTime )
 BEGIN
 select team.logo_team,team.team_name
 from team
 inner join team_x_match
 on team.id_team = team_x_match.id_team
 inner join project2.match
-on project2.match.id_match = team_x_match.id_match;
+on project2.match.id_match = team_x_match.id_match and project2.match.date = pDate;
 END$$
 
 DELIMITER ;
