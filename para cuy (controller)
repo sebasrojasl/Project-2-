@@ -1467,8 +1467,21 @@ public class Controller {
       }               
     }
     
- 
-        
+    public ArrayList<String> getTeamsNotInEvent(String eventDate,String eventType){
+         ArrayList<String> teams = new ArrayList<String>();
+        try{
+          CallableStatement stmt= Connect.getInstance().getStmt("{call getTeamsNotInEvent(?)}");
+          stmt.setInt(1,getIdEvent(eventDate,eventType));
+         
+          ResultSet myRs = stmt.executeQuery();
+           while(myRs.next()){
+               teams.add(myRs.getString("team_name"));
+           }
+       }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return teams;
+    }
     
             
 }
