@@ -1318,6 +1318,19 @@ public class Controller {
         }  
     }
   
+    
+    void insertRandomteamsInGroup(int cantTeams,String groupName,String eventDate,String TypeEvent){
+        try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call insertRandom(?,?,?,?)}");
+               stmt.setInt(1,cantTeams);
+               stmt.setInt(2,getIdGroup(eventDate,TypeEvent,groupName));
+               stmt.setInt(3,getIdEvent(eventDate,TypeEvent));
+               
+               stmt.execute();
+          }catch(SQLException ex){
+             showMessageDialog(null,"Hay un error en los datos");
+        }  
+    }
     // FIN CREAR PARTIDO,SANCIONES  Y JUGADAS
     
     
