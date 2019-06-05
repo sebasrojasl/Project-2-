@@ -1,0 +1,15 @@
+USE `project2`;
+DROP procedure IF EXISTS `updategroup_x_team`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updategroup_x_team`(in pidGroup int,in pidteam int,in newTeam int)
+BEGIN
+update  group_x_team
+set
+id_team =ifnull(newTeam,id_team)
+where id_team= pidteam and id_group =pidGroup
+;
+END$$
+
+DELIMITER ;
