@@ -334,7 +334,21 @@ public class Controller {
         return Districts;
    }
    
-   
+   public ArrayList<String> getAllStadium(){
+       
+       ArrayList<String>stadium= new ArrayList<String>();
+       try{
+       CallableStatement stmt= Connect.getInstance().getStmt("{call getAllStadium()}");
+       
+       ResultSet myRs = stmt.executeQuery();
+       while(myRs.next()){
+           stadium.add(myRs.getString("stadium_name"));
+       }
+       }catch(SQLException ex){
+      System.out.println(ex.getMessage());
+      }     
+        return stadium;
+   }
    public ArrayList<String> getStadiumNames(String ProvinceName){
        ArrayList<String> Stadium = new ArrayList<String>();
        try{
