@@ -70,14 +70,16 @@ public class Controller {
          if( password.equals(ResultPassword)){
              return true;                     
          }else{
+             showMessageDialog(null,"La contraseña es incorrecta.");
              return false;
          }
       }catch(SQLException ex){
-      System.out.println(ex.getMessage());
+      
       }     
            
            return false;
        }
+       
     public  void createUser(String nickname, String password){
          try{
        CallableStatement stmt= Connect.getInstance().getStmt("{call insert_user(?,?,?)}");
@@ -87,8 +89,9 @@ public class Controller {
          stmt.setInt(3, 2);
          
           stmt.execute();
+          showMessageDialog(null,"El usuario ha sido creado con éxito.");
       }catch(SQLException ex){
-      System.out.println(ex.getMessage());
+      showMessageDialog(null,"Este usuario ya existe");
       }
     
     }
@@ -106,8 +109,9 @@ public class Controller {
          stmt.setString(3, newpassword);
          stmt.setString(4, newUserType);
          stmt.execute();
+         showMessageDialog(null,"La contraseña ha cambiado con éxito.");
       }catch(SQLException ex){
-         System.out.println(ex.getMessage());
+         showMessageDialog(null,"Laa contraseñas no coinicden.");
       }
     
     }
@@ -144,7 +148,7 @@ public class Controller {
          stmt.setString(1, name);
          stmt.execute();
       }catch(SQLException ex){
-      System.out.println(ex.getMessage());
+      showMessageDialog(null,"La alineación ya se encuentra registrada");
       }     
         
         return 0;
@@ -158,7 +162,8 @@ public class Controller {
             stmt.setString(2, newName);
             stmt.execute();
         }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            
+      showMessageDialog(null,"La alineación ya se encuentra registrada");
       }                              
     }
     
@@ -191,6 +196,8 @@ public class Controller {
         return alignments;
     }
     //FIN ALIGNMENT
+  
+    
     //INICIO NACIONALIDAD
         public  void insertNationality(String nacionalityName){
        try{
@@ -211,7 +218,7 @@ public class Controller {
             stmt.setString(2, newName);
             stmt.execute();
         }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"La nacionalidad ingresada ya se encuentra insertada.");
       }                              
     }   
       
@@ -472,7 +479,7 @@ public class Controller {
                stmt.setInt(2,getIdProvince(ProvinceName));
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"El cantón ingresado ya se encuentra insertado.");
         }  
       }
      
@@ -484,7 +491,7 @@ public class Controller {
                stmt.setInt(2,getIdCanton(CantonName));
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"El distrito ya se encuentra insertado.");
         }  
       }
        public void insertStadium(String stadiumName,String ProvinceName){
@@ -528,7 +535,7 @@ public class Controller {
               
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"El país ya se encuentra insertado,pruebe con otro.");
         }  
        }
        
@@ -546,7 +553,7 @@ public class Controller {
               
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"La provincia ya se encuentra insertada.");
         }
        }
        
@@ -564,7 +571,7 @@ public class Controller {
               
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"El cantón ya se encuentra insertado,pruebe con otro.");
         }
        }
        
@@ -601,6 +608,8 @@ public class Controller {
     }
         return idStadium;
        }
+       
+       
        public void updateStadium(String StadiumName,String newName,String ProvinceName){
            try{
                CallableStatement stmt= Connect.getInstance().getStmt("{call updateStadium(?,?,?)}");
@@ -658,6 +667,8 @@ public class Controller {
         }
         return idEvent;
    }
+    
+    
                                 //todas las consultas
     public  ArrayList<ArrayList<String>> getResultbyEventAndGroup(String Year,String eventType,String groupName){
          ArrayList<ArrayList<String>>rowsResult= new ArrayList<ArrayList<String>>();
@@ -712,7 +723,7 @@ public class Controller {
               
           }  
         }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"No hay partidos en el evento seleccionado");
         }
          return  rowsResult;
     }    
@@ -739,7 +750,7 @@ public class Controller {
             }
         
        }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"No hay jugadas en este evento");
         }
          return rowsResult;
     }
@@ -783,7 +794,7 @@ public class Controller {
             rowsResult.add(tempRow);
            }
        }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"No hay sanciones en este evento");
         }
          return rowsResult;
     }       
@@ -809,7 +820,7 @@ public class Controller {
            }
         
        }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+           showMessageDialog(null,"No hay jugadores con goles en este evento");
         }
         return TopNPlayer;
         
@@ -833,7 +844,7 @@ public class Controller {
            }
         
        }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"No hay jugadores con sanciones en este evento");
         }
         return TopNPlayer;
         
@@ -928,7 +939,7 @@ public class Controller {
          
           stmt.execute();
       }catch(SQLException ex){
-      System.out.println(ex.getMessage());
+      showMessageDialog(null,"El equipo ya se encuentra insertado, o hay un error en los datos.");
       }
     }
     
@@ -955,7 +966,7 @@ public class Controller {
           stmt.setString(6, Logo);
           stmt.execute();
       }catch(SQLException ex){
-      System.out.println(ex.getMessage());
+      showMessageDialog(null,"El equipo ya se encuentra insertado, o hay un error en los datos.");
       }
     }
     
@@ -988,7 +999,7 @@ public class Controller {
                stmt.setInt(6, getIdNationality(nationality));
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"El jugador ya se encuentra insertado, o hay un error en los datos.");
         }  
     }
     
@@ -1015,7 +1026,7 @@ public class Controller {
                }
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"El jugador ya se encuentra insertado, o hay un error en los datos.");
         }        
     }
     
@@ -1093,7 +1104,7 @@ public class Controller {
                stmt.setString(1, typeEvent);
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"El tipo de evento ya se encuentra insertado");
         }
     }
     public  void updateTypeEvent(String typeEvent,String newName){
@@ -1104,7 +1115,7 @@ public class Controller {
         
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"El tipo de evento ya se encuentra insertado");
         }  
     }
     
@@ -1116,7 +1127,7 @@ public class Controller {
         
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"El evento ya se encuentra insertado o hay un error en los datos");
         }  
     }
     
@@ -1164,7 +1175,7 @@ public class Controller {
                stmt.setString(3, date);    
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"El partido ya se encuentra insertado o hay un error en los datos");
         }  
     }
     
@@ -1187,7 +1198,7 @@ public class Controller {
 
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"El tipo de sanción ya se encuentra insertada");
         }  
     }
     
@@ -1198,7 +1209,7 @@ public class Controller {
 
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"El tipo de jugada ya se encuentra insertada");
         }  
     }
      public int getIdSanctionType(String typeName){
@@ -1275,7 +1286,7 @@ public class Controller {
                stmt.setString(4,MatchDate );
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+            showMessageDialog(null,"Hay un error en los datos");
         }  
     }
     
@@ -1288,7 +1299,7 @@ public class Controller {
                stmt.setInt(4,getIdPlayType(playTypeName));
                stmt.execute();
           }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+             showMessageDialog(null,"Hay un error en los datos");
         }  
     }
   
