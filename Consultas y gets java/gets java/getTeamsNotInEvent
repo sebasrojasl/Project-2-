@@ -1,0 +1,20 @@
+USE `project2`;
+DROP procedure IF EXISTS `getTeamsNotInEvent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getTeamsNotInEvent`(in pIdEvent int)
+BEGIN
+select team.Team_name
+    from team
+    where team.id_team not in (select team.id_team
+    from project2.group
+    inner join group_x_team
+    on project2.group.id_group = group_x_team.id_group and project2.group.id_event = pIdEvent
+    inner join team 
+    on team.id_team = group_x_team.id_team);
+    
+END$$
+
+DELIMITER ;
+
