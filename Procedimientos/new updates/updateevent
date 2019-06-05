@@ -1,0 +1,16 @@
+USE `project2`;
+DROP procedure IF EXISTS `updateEvent`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateEvent`(pid_event int,pdate datetime,pid_type_event int)
+BEGIN
+ update event
+    set
+    date = ifnull(pdate, date),
+    id_type_event = ifnull(pid_type_event, id_type_event)
+    where id_event = pid_event;
+    commit;
+END$$
+
+DELIMITER ;
