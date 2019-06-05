@@ -1,0 +1,14 @@
+USE `project2`;
+DROP procedure IF EXISTS `getAllStadium`;
+
+DELIMITER $$
+USE `project2`$$
+CREATE PROCEDURE `getAllStadium` ()
+BEGIN
+select stadium.stadium_name
+from stadium
+;
+END$$
+
+DELIMITER ;
+
