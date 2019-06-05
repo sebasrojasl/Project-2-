@@ -1136,7 +1136,11 @@ public class Controller {
                CallableStatement stmt= Connect.getInstance().getStmt("{call updateEvent(?,?,?)}");
                stmt.setInt(1,getIdEvent(year,TypeeventName ));
                stmt.setString(2,newDate);
-               stmt.setInt(3, getIdTypeEvent(newTypeEvent));
+               if(newTypeEvent==null){
+                stmt.setString(3,newTypeEvent);
+               }else{              
+                stmt.setInt(3, getIdTypeEvent(newTypeEvent));
+               }
                stmt.execute();
           }catch(SQLException ex){
             showMessageDialog(null,ex.getMessage());
