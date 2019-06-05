@@ -1131,6 +1131,17 @@ public class Controller {
         }  
     }
     
+    public void updateEvent(String year,String TypeeventName,String newDate,String newTypeEvent){
+        try{
+               CallableStatement stmt= Connect.getInstance().getStmt("{call updateEvent(?,?,?)}");
+               stmt.setInt(1,getIdEvent(year,TypeeventName ));
+               stmt.setString(2,newDate);
+               stmt.setInt(3, getIdTypeEvent(newTypeEvent));
+               stmt.execute();
+          }catch(SQLException ex){
+            showMessageDialog(null,ex.getMessage());
+        }  
+    }
     
     public  void createGroup(String groupName,String year,String typeEvent){
         try{
@@ -1307,16 +1318,18 @@ public class Controller {
     
     
     //GET LOGO Y NOMBRE EQUIPOS POR PARTIDO
-    public ArrayList<String> getLogoAndName(String Year,String eventType , String Date){
-        ArrayList<String> result = new ArrayList<String>();
+    public ArrayList<ArrayList<String>> getLogoAndName(String Year,String eventType , String Date){
+        ArrayList<ArrayList<String>> result = new ArrayList<>();
           try{
             CallableStatement stmt= Connect.getInstance().getStmt("{call getLogoAndName(?,?)}");
             stmt.setInt(1, getIdEvent(Year,eventType));
             stmt.setString(2,Date);
             ResultSet myRs = stmt.executeQuery();
              while(myRs.next()){
-             result.add(myRs.getString("logo_team"));  
-             result.add(myRs.getString("team_name"));
+                 ArrayList<String> row = new ArrayList<>();
+             row.add(myRs.getString("logo_team"));  
+             row.add(myRs.getString("team_name"));
+              result.add(row);
            }
            }catch(SQLException ex){
             System.out.println(ex.getMessage());
