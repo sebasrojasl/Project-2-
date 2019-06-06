@@ -1401,9 +1401,9 @@ public class Controller {
     }
   
     //Procedimiento que crea grupos rando para un evento, recibe el numeor de equipos, el nombre del grupo la fecha del evento, el tipo
-    void insertRandomteamsInGroup(int cantTeams,String groupName,String eventDate,String TypeEvent){
+    public void insertRandomteamsInGroup(int cantTeams,String groupName,String eventDate,String TypeEvent){
         try{
-               CallableStatement stmt= Connect.getInstance().getStmt("{call insertRandom(?,?,?,?)}");
+               CallableStatement stmt= Connect.getInstance().getStmt("{call insertRandom(?,?,?)}");
                stmt.setInt(1,cantTeams);
                stmt.setInt(2,getIdGroup(eventDate,TypeEvent,groupName));
                stmt.setInt(3,getIdEvent(eventDate,TypeEvent));
@@ -1486,15 +1486,16 @@ public class Controller {
     
     
     //Procedimiento que actualiza la tabla group_x_Team
-    public void updategroup_x_team(String Year,String eventType,String groupName,String teamName){
+    public void updategroup_x_team(String Year,String eventType,String groupName,String teamName, String newTeamName){
         try{
-            CallableStatement stmt= Connect.getInstance().getStmt("{call updategroup_x_team(?,?)}");
+            CallableStatement stmt= Connect.getInstance().getStmt("{call updategroup_x_team(?,?,?)}");
             stmt.setInt(1,getIdGroup(Year,eventType,groupName));
             stmt.setInt(2, getIdTeam(teamName));
+            stmt.setInt(3, getIdTeam(newTeamName));
             stmt.execute();
         }catch(SQLException ex){
             
-      showMessageDialog(null,"el equipo ya se encuentra en el grupo ya se encuentra registrada");
+      showMessageDialog(null,"el equipo ya se encuentra en el grupo ya se encuentra registrada"+ex.getMessage());
       }               
     }
        
@@ -1517,4 +1518,3 @@ public class Controller {
     
             
 }
-
